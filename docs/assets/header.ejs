@@ -1,0 +1,30 @@
+<div class="header">
+  <div class="container">
+    <a class="header__logo" href="<%= base %>/">
+      Knex Schema Reader
+    </a>
+        <span class="header__author">
+          made with &nbsp;♥&nbsp; by&nbsp; <a href="https://twitter.com/mattjcowan" rel="author" title="Matt Cowan on Twitter">@mattjcowan</a>
+        </span>
+    <% if (path === '/') { %>
+    <div class="header__hero">
+      <img class="header__hero-img" src="<%= base %>/img/database.png" alt="Knex Schema Reader" />
+      <h1 class="header__hero-title">Got a database!</h1>
+      <p class="header__hero-desc">Knex Schema Reader is a utility for exporting a database schema to an object and/or json file</p>
+      <%- include('stats'); %>
+      <a class="header__hero-btn" href="<%= base %>/getting-started">Get Started</a>
+      <a class="header__hero-btn header__hero-btn--muted" href="https://github.com/mattjcowan/knex-schema-reader">
+        <img class="header__hero-btn-icon" src="<%= base %>/img/github-icon.svg" alt="GitHub" />
+        View on GitHub
+      </a>
+    </div>
+    <% } %>
+  </div>
+</div>
+<% if (path === '/') { %>
+<div class="header__version">
+  <div class="container">
+    <span>2016-11-11 &nbsp; | &nbsp; <a href="https://www.npmjs.com/package/generator-javascript">v0.0.1</a> &nbsp;(<a href="https://github.com/mattjcowan/knex-schema-reader/blob/master/CHANGELOG.md">changelog</a>)</span>
+  </div>
+</div>
+<% } %>

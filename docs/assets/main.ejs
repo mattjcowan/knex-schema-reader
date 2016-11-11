@@ -1,0 +1,26 @@
+<!doctype html>
+<html class="no-js" lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title><%= title %></title>
+  <meta name="description" content="Knex Schema Reader is a utility for exporting a database schema to an object and/or json file">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="<%= base %>/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700italic">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="<%= base %>/main.css">
+</head>
+<body>
+  <%- include('header'); %>
+  <div class="content">
+    <div class="content-left">
+      <%- include('nav'); %>
+    </div>
+    <div class="content-right">
+      <%- content %>
+    </div>
+  </div>
+  <script src="<%= base %>/main.js"></script>
+</body>
+</html>
