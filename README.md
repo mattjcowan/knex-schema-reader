@@ -1,7 +1,5 @@
 # Knex Schema Reader
 
-[![NPM version](http://img.shields.io/npm/v/generator-javascript.svg?style=flat-square)](https://www.npmjs.com/package/generator-javascript)
-[![NPM downloads](http://img.shields.io/npm/dm/generator-javascript.svg?style=flat-square)](https://www.npmjs.com/package/generator-javascript)
 [![Build Status](http://img.shields.io/travis/mattjcowan/knex-schema-reader/master.svg?style=flat-square)](https://travis-ci.org/mattjcowan/knex-schema-reader)
 [![Coverage Status](https://img.shields.io/coveralls/mattjcowan/knex-schema-reader.svg?style=flat-square)](https://coveralls.io/github/mattjcowan/knex-schema-reader)
 [![Dependency Status](http://img.shields.io/david/dev/mattjcowan/knex-schema-reader.svg?style=flat-square)](https://david-dm.org/mattjcowan/knex-schema-reader#info=devDependencies)
