@@ -9,4 +9,5 @@ All notable changes to this project will be documented in this file.
 ### [v0.0.1] - 2016-11-11
 
 - Scaffolding of project using [Babel Starter Kit](https://www.kriasoft.com/babel-starter-kit/)
+- Added [Travis-CI](https://travis-ci.org/) integration
 
