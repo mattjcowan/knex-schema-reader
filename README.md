@@ -6,23 +6,35 @@
 
 > Knex Schema Reader is a utility for exporting a database schema to an object and/or json file
 
+**STILL A WORK IN PROGRESS!**
+
+### Install
+
+Install from github at this time. Once it's ready, we'll publish it to npm.
+
+```sh
+$ npm install git+https://git@github.com/mattjcowan/knex-schema-reader
+```
+
 ### Features
 
 Exports a database schema to either an object (api) or to a json file (cli). Useful in a code generation pipeline or to build tooling.
 
 Supported database dialects:
 
-- [x] mssql
-- [ ] mysql
 - [ ] pg
-- [ ] oracle
-- [ ] db2
 - [ ] sqlite3
+- [ ] mysql
+- [ ] mysql2
+- [ ] mariasql
+- [ ] strong-oracle
+- [ ] oracle
+- [x] mssql
 
 
 ### Documentation
 
-* [Getting Started](docs/getting-started.md)
+* [Getting Started](https://mattjcowan.github.io/knex-schema-reader/getting-started)
 
 
 ### Related Projects

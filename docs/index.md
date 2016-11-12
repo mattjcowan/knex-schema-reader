@@ -7,6 +7,8 @@ title: Knex Schema Reader ∙ A database schema reader and export utility
 
 Knex Schema Reader is a utility for exporting a database schema to an object and/or json file
 
+**STILL A WORK IN PROGRESS!**
+
 ### Features
 
 Exports a database schema to either an object (api) or to a json file (cli). Useful in a code generation pipeline or to build tooling.
