@@ -7,6 +7,7 @@ const schemaReader = require('../dist/index.js');
 var cliRunner = function (args, notifCallback) {
 
   var args = args || process.argv;
+  if(!notifCallback) process.env.NODE_ENV = 'production';
 
   program
     .version('0.0.1')
@@ -34,23 +35,18 @@ var cliRunner = function (args, notifCallback) {
 
     } catch(err) {
 
-        var message = 'Unknown exception';
-        if(err.stack.indexOf('Cannot find module')) {
-          message = 'Invalid dialect ' + program.dialect + '. Please make sure you have installed the required dialect, see http://knexjs.org/#Installation for more info.';
-        } else if(err.stack.indexOf('ConnectionError')) {
-          message = 'Invalid connectionstring ' + program.connectionstring + '. Could not establish a connection with given information.';
-        }
+      knex = null;
 
-        throw {
-          message: message,
-          source: 'knex',
-          sourceException: err.stack
-        }
+      var errorMessage = err.code === 'MODULE_NOT_FOUND' ?
+        `Invalid dialect ${program.dialect}. Please make sure you have installed the required dialect, see http://knexjs.org/#Installation for more info.`:
+        err.toString() + '\n' + err.stack;
+
+      if(notifCallback) notifCallback(errorMessage);
+      else console.error(errorMessage);
 
     }
 
     if(knex) {
-
       schemaReader(knex)
         .then(function(db) {
 
@@ -59,23 +55,25 @@ var cliRunner = function (args, notifCallback) {
           var pathToOutputFile = path.resolve(program.output);
           fs.writeFileSync(pathToOutputFile, JSON.stringify(db, null, '  '), 'utf8');
 
-          var msg = 'File created at: ' + pathToOutputFile;
-          if(notifCallback) notifCallback(msg);
-          else console.log(msg);
+          if(notifCallback) notifCallback(`File created at: ${pathToOutputFile}`);
 
         }, function(err) {
 
           knex.destroy();
 
-          if(notifCallback) notifCallback(err.stack);
-          console.error(err.stack);
+          var errorMessage = err.code === 'ESOCKET' || err.name === 'ConnectionError' ?
+            `Unable to connect to the database. Please check the connectionstring.`:
+            err.toString() + '\n' + err.stack;
+
+          if(notifCallback) notifCallback(errorMessage);
+          else {
+            console.error(errorMessage);
+            process.exit(0);
+          }
 
         });
-
     }
-
   }
-
 }
 
 module.exports = cliRunner;

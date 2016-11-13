@@ -131,9 +131,27 @@ function commands() {
       return knex.raw(sql, { schemaOwner, tableName });
     },
 
+    getIdentityDefinitions: (knex, schemaOwner, tableName) => {
+      const sql = `SELECT 
+                    --s.name as 'schema', 
+                    o.name as 'table', 
+                    c.name as 'column',
+                    seed_value as 'seed',
+                    increment_value as 'increment'
+                    FROM sys.identity_columns c
+                    INNER JOIN sys.all_objects o ON c.object_id = o.object_id
+                    INNER JOIN sys.schemas s ON s.schema_id = o.schema_id
+                    WHERE ` +
+        (schemaOwner && schemaOwner.length > 0 ? '(s.name = :schemaOwner) AND ' : '') +
+        (tableName && tableName.length > 0 ? '(o.name = :tableName) AND ' : '') + `
+                    o.type= 'U' 
+                    ORDER BY o.name, c.name`;
+      return knex.raw(sql, { schemaOwner, tableName });
+    },
+
     getCheckConstraints: (knex, schemaOwner, tableName) => {
       const sql = `SELECT 
-                    cons.constraint_name as 'constraint', 
+                    cons.constraint_name as 'name', 
                     cons.constraint_schema as 'schema',
                     cons.table_name as 'table', 
                     cons2.check_clause AS 'expression'
@@ -143,11 +161,58 @@ function commands() {
                       cons2.constraint_schema = cons.constraint_schema AND
                       cons2.constraint_name = cons.constraint_name
                     WHERE  ` +
-        (schemaOwner && schemaOwner.length > 0 ? '(cons.constraint_catalog = :schemaOwner) AND ' : '') +
+        (schemaOwner && schemaOwner.length > 0 ? '(cons.constraint_schema = :schemaOwner) AND ' : '') +
         (tableName && tableName.length > 0 ? '(cons.table_name = :tableName) AND ' : '') + `
                          cons.constraint_type = 'CHECK'
                     ORDER BY cons.table_name, cons.constraint_name
                     `;
+      return knex.raw(sql, { schemaOwner, tableName });
+    },
+
+    getIndexes: (knex, schemaOwner, tableName) => {
+      const sql = `SELECT 
+                         SCHEMA_NAME(t.schema_id) as 'schema',
+                         t.name as 'table',
+                         ind.name as 'name',
+                         col.name as 'column',
+                         ind.type_desc as 'type',
+                         is_primary_key as isPrimary,
+                         is_unique_constraint as isUnique
+                    FROM 
+                         sys.indexes ind 
+                    INNER JOIN 
+                         sys.index_columns ic ON  ind.object_id = ic.object_id and ind.index_id = ic.index_id 
+                    INNER JOIN 
+                         sys.columns col ON ic.object_id = col.object_id and ic.column_id = col.column_id 
+                    INNER JOIN 
+                         sys.tables t ON ind.object_id = t.object_id 
+                    WHERE ` +
+        (schemaOwner && schemaOwner.length > 0 ? '(SCHEMA_NAME(t.schema_id) = :schemaOwner) AND ' : '') +
+        (tableName && tableName.length > 0 ? '(t.name = :tableName) AND ' : '') + `
+                       t.is_ms_shipped = 0 
+                    ORDER BY 
+                         t.name, ind.name, col.name`;
+      return knex.raw(sql, { schemaOwner, tableName });
+    },
+
+    getCheckConstraintDescriptions: (knex, schemaOwner, tableName) => {
+      const sql = `SELECT
+                  s.name as 'schema',
+                  OBJECT_NAME(o.parent_obj) as 'table',
+                  cc.name as 'name',
+                  p.value as 'description'
+                  FROM sysobjects o
+                  INNER JOIN sys.check_constraints cc ON o.id = cc.object_id
+                  INNER JOIN  sys.schemas s
+                  ON s.schema_id = o.uid
+                  LEFT JOIN sys.extended_properties p
+                  ON p.major_id = cc.object_id
+                  AND	p.name = 'MS_Description'
+                  WHERE ` +
+        (schemaOwner && schemaOwner.length > 0 ? '(s.name = :schemaOwner) AND ' : '') +
+        (tableName && tableName.length > 0 ? '(OBJECT_NAME(o.parent_obj) = :tableName) AND ' : '') + `
+                  o.type= 'C'
+                  ORDER BY s.name, o.name`;
       return knex.raw(sql, { schemaOwner, tableName });
     },
 
@@ -156,6 +221,45 @@ function commands() {
     getUniqueKeyConstraints: (knex, schemaOwner, tableName) => getConstraints(knex, schemaOwner, tableName, 'UNIQUE'),
 
     getPrimaryKeyConstraints: (knex, schemaOwner, tableName) => getConstraints(knex, schemaOwner, tableName, 'PRIMARY KEY'),
+
+    getDefaultConstraints: (knex, schemaOwner, tableName) => {
+      const sql = `SELECT 
+                      s.name AS 'schema', 
+                      o.name AS 'table',
+                      c.name AS 'column',
+                      d.name AS 'name',
+                      d.[definition] AS 'expression'
+                  FROM sys.[default_constraints] d
+                  INNER JOIN sys.objects o
+                      ON o.object_id = d.parent_object_id
+                  INNER JOIN sys.columns c
+                      ON c.default_object_id = d.object_id
+                  INNER JOIN  sys.schemas s
+                      ON s.schema_id = o.schema_id
+                  WHERE ` +
+        (schemaOwner && schemaOwner.length > 0 ? '(s.name = :schemaOwner) AND ' : '') +
+        (tableName && tableName.length > 0 ? '(o.name = :tableName) AND ' : '') + `
+                  o.type= 'U' 
+                  ORDER BY s.name, o.name`;
+      return knex.raw(sql, { schemaOwner, tableName });
+    },
+
+    hasSequences: (knex, schemaOwner) => {
+      const sql = `SELECT COUNT(*) FROM sys.objects 
+                    WHERE type = 'SO' AND (schema_name(schema_id) = :schemaOwner)`;
+      return knex.raw(sql, { schemaOwner });
+    },
+
+    getSequences: (knex, schemaOwner) => {
+      const sql = `SELECT schema_name(schema_id) AS 'schema',
+                           name                   AS 'name',
+                           start_value            AS 'minValue',
+                           increment              AS 'increment',
+                           is_cycling             AS 'isCycling'
+                    FROM   sys.sequences
+                    WHERE (schema_name(schema_id) = :schemaOwner)`;
+      return knex.raw(sql, { schemaOwner });
+    },
 
     getUsers: (knex) => {
       const sql = 'select name from sysusers';
@@ -186,6 +290,99 @@ function commands() {
                     INNER JOIN sys.schemas b ON a.principal_id = b.schema_id 
                   WHERE a.schema_id = 1 or (a.schema_id >= 5 and a.schema_id <= 16000)`;
       return knex.raw(sql);
+    },
+
+    getFunctions: (knex, schemaOwner) => {
+      const sql = `SELECT 
+                    SPECIFIC_SCHEMA as 'schema',
+                    SPECIFIC_NAME as 'name',
+                    ROUTINE_DEFINITION as 'sql'
+                    -- DATA_TYPE as 'dataType',
+                    -- CHARACTER_MAXIMUM_LENGTH as maxLength, 
+                    -- NUMERIC_PRECISION as precision, 
+                    -- NUMERIC_PRECISION_RADIX as radix, 
+                    -- NUMERIC_SCALE as scale, 
+                    -- DATETIME_PRECISION as dateTimePrecision,
+                    -- CHARACTER_SET_NAME AS characterSet, 
+                    -- COLLATION_NAME AS collation
+                    FROM INFORMATION_SCHEMA.ROUTINES
+                    WHERE ` +
+        (schemaOwner && schemaOwner.length > 0 ? '(SPECIFIC_SCHEMA = :schemaOwner) AND ' : '') + `
+                        (ROUTINE_TYPE = 'FUNCTION')
+                        AND ObjectProperty (Object_Id (INFORMATION_SCHEMA.ROUTINES.ROUTINE_NAME), 'IsMSShipped') = 0 and
+                            (
+                                select 
+                                    major_id 
+                                from 
+                                    sys.extended_properties 
+                                where 
+                                    major_id = object_id(INFORMATION_SCHEMA.ROUTINES.ROUTINE_NAME) and 
+                                    minor_id = 0 and 
+                                    class = 1 and 
+                                    name = N'microsoft_database_tools_support'
+                            ) is null
+                    ORDER BY SPECIFIC_SCHEMA, SPECIFIC_NAME`;
+      return knex.raw(sql, { schemaOwner: schemaOwner });
+    },
+
+    getStoredProcedures: (knex, schemaOwner) => {
+      const sql = `SELECT
+                    SPECIFIC_SCHEMA as 'schema',
+                    SPECIFIC_NAME as 'name',
+                    ROUTINE_DEFINITION as 'sql'
+                    -- DATA_TYPE as 'dataType',
+                    FROM INFORMATION_SCHEMA.ROUTINES
+                    WHERE ` +
+                      (schemaOwner && schemaOwner.length > 0 ? '(SPECIFIC_SCHEMA = :schemaOwner) AND ' : '') + `
+                      (ROUTINE_TYPE = 'PROCEDURE')
+                      AND ObjectProperty (Object_Id (INFORMATION_SCHEMA.ROUTINES.ROUTINE_NAME), 'IsMSShipped') = 0 and
+                      (
+                                select 
+                                    major_id 
+                                from 
+                                    sys.extended_properties 
+                                where 
+                                    major_id = object_id(INFORMATION_SCHEMA.ROUTINES.ROUTINE_NAME) and 
+                                    minor_id = 0 and 
+                                    class = 1 and 
+                                    name = N'microsoft_database_tools_support'
+                      ) is null
+                    ORDER BY SPECIFIC_SCHEMA, SPECIFIC_NAME`;
+      return knex.raw(sql, { schemaOwner: schemaOwner });
+    },
+
+    getProcedureArguments: (knex, schemaOwner) => {
+      const sql = `SELECT
+                      SPECIFIC_SCHEMA as 'schema',
+                      SPECIFIC_NAME as 'procedureName',
+                      PARAMETER_NAME as 'parameterName',
+                      ORDINAL_POSITION as 'ordinal',
+                      PARAMETER_MODE as 'parameterMode',
+                      IS_RESULT as 'isResult',
+                      AS_LOCATOR as 'asLocator',
+                      CASE
+                        WHEN DATA_TYPE IS NULL THEN USER_DEFINED_TYPE_NAME
+                        WHEN DATA_TYPE = 'table type' THEN USER_DEFINED_TYPE_NAME
+                        ELSE DATA_TYPE
+                      END AS 'dataType',
+                      CHARACTER_MAXIMUM_LENGTH as 'maxLength',
+                      CHARACTER_OCTET_LENGTH as 'characterOctetLength',
+                      COLLATION_CATALOG as 'collationCatalog',
+                      COLLATION_SCHEMA as 'collationSchema',
+                      COLLATION_NAME as 'collation',
+                      CHARACTER_SET_CATALOG as 'characterSetCatalog',
+                      CHARACTER_SET_SCHEMA as 'characterSetSchema',
+                      CHARACTER_SET_NAME as 'characterSetName',
+                      NUMERIC_PRECISION as 'precision',
+                      NUMERIC_PRECISION_RADIX as 'radix',
+                      NUMERIC_SCALE as 'scale',
+                      DATETIME_PRECISION as 'dateTimePrecision',
+                      INTERVAL_TYPE as 'intervalType',
+                      INTERVAL_PRECISION as 'intervalPrecision'
+                    FROM INFORMATION_SCHEMA.PARAMETERS
+                    WHERE (SPECIFIC_SCHEMA = :schemaOwner)
+                    ORDER BY SPECIFIC_SCHEMA, SPECIFIC_NAME, ORDINAL_POSITION, PARAMETER_NAME`;
+      return knex.raw(sql, { schemaOwner: schemaOwner });
     },
 
   };
