@@ -1,3 +1,4 @@
+/* eslint no-useless-escape:0 */
 /**
  * Knex Schema Reader (https://github.com/mattjcowan/knex-schema-reader)
  *
@@ -14,6 +15,12 @@ const del = require('del');
 const rollup = require('rollup');
 const babel = require('rollup-plugin-babel');
 const pkg = require('../package.json');
+
+// From https://github.com/leecrossley/replaceall/blob/master/replaceall.js
+const replaceall = function (replaceThis, withThis, inThis) {
+  withThis = withThis.replace(/\$/g, '$$$$');
+  return inThis.replace(new RegExp(replaceThis.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&])/g, '\\$&'), 'g'), withThis);
+};
 
 let promise = Promise.resolve();
 
@@ -46,7 +53,11 @@ promise = promise.then(() => {
   delete pkg.scripts;
   delete pkg.eslintConfig;
   delete pkg.babel;
-  fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, '  '), 'utf-8');
+  if (!fs.existsSync('dist/bin')) {
+    fs.mkdirSync('dist/bin');
+  }
+  fs.writeFileSync('dist/bin/cli.js', fs.readFileSync('bin/cli.js', 'utf-8'), 'utf-8');
+  fs.writeFileSync('dist/package.json', replaceall('dist/', '', JSON.stringify(pkg, null, '  ')), 'utf-8');
   fs.writeFileSync('dist/LICENSE.txt', fs.readFileSync('LICENSE.txt', 'utf-8'), 'utf-8');
 });
 

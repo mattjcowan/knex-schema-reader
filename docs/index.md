@@ -21,3 +21,9 @@ Supported database dialects:
 - <i class="fa fa-square-o" aria-hidden="true"></i> oracle
 - <i class="fa fa-square-o" aria-hidden="true"></i> db2
 - <i class="fa fa-square-o" aria-hidden="true"></i> sqlite3
+
+### Sample Outputs
+
+- SQL Server samples:
+  - [AdventureWorks](https://github.com/mattjcowan/knex-schema-reader/blob/master/samples/mssql/adventureworks.json)
+  - [Northwind](https://github.com/mattjcowan/knex-schema-reader/blob/master/samples/mssql/northwind.json)

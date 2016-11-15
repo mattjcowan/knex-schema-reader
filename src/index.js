@@ -8,24 +8,27 @@
  */
 import mssqlExtractor from './mssql/index';
 
-function read(knex) {
-  let extractor;
+const extractors = {
+  mssql: mssqlExtractor
+};
 
-  if (!knex) {
-    throw new Error('What are you doing???');
+function reader(knex) {
+  const db = knex;
+
+  if (!db || !db.client || !db.client.config || !db.client.config.client) {
+    throw new Error('Knex client cannot be null');
   }
 
-  if (!knex.client || knex.client.length === 0) {
-    throw new Error('Knex client property is missing');
+  const extractor = extractors[db.client.config.client];
+
+  if (!extractor) {
+    throw new Error(`The ${db.client.config.client} knex client is not yet supported`);
   }
 
-  switch (knex.client.config.client) {
-    case 'mssql':
-      extractor = mssqlExtractor; break;
-    default:
-      throw new Error(`The ${knex.client.config.client} knex client is not yet supported`);
-  }
-  return extractor.extract(knex);
+  return {
+    extract: () => extractor.extract(db),
+  };
 }
 
-export default read;
+export default reader;
+

@@ -1,0 +1,4049 @@
+{
+	"driver": "mssql",
+	"catalog": "Northwind",
+	"dataTypes": {
+		"bigint": {
+			"typeName": "bigint",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 1,
+			"hasScale": 0
+		},
+		"binary": {
+			"typeName": "binary",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"bit": {
+			"typeName": "bit",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 1,
+			"hasScale": 0
+		},
+		"char": {
+			"typeName": "char",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"datetime": {
+			"typeName": "datetime",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 1,
+			"hasScale": 1
+		},
+		"datetimeoffset": {
+			"typeName": "datetimeoffset",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 1,
+			"hasScale": 1
+		},
+		"float": {
+			"typeName": "float",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 1,
+			"hasScale": 0
+		},
+		"image": {
+			"typeName": "image",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"int": {
+			"typeName": "int",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 1,
+			"hasScale": 0
+		},
+		"money": {
+			"typeName": "money",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 1,
+			"hasScale": 1
+		},
+		"nchar": {
+			"typeName": "nchar",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"ntext": {
+			"typeName": "ntext",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"nvarchar": {
+			"typeName": "nvarchar",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"real": {
+			"typeName": "real",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 1,
+			"hasScale": 0
+		},
+		"smallint": {
+			"typeName": "smallint",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 1,
+			"hasScale": 0
+		},
+		"sql_variant": {
+			"typeName": "sql_variant",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"sysname": {
+			"typeName": "sysname",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"tinyint": {
+			"typeName": "tinyint",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 1,
+			"hasScale": 0
+		},
+		"uniqueidentifier": {
+			"typeName": "uniqueidentifier",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"varbinary": {
+			"typeName": "varbinary",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"varchar": {
+			"typeName": "varchar",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		}
+	},
+	"schemas": {
+		"dbo": {
+			"name": "dbo",
+			"tables": {
+				"Categories": {
+					"name": "Categories",
+					"description": null,
+					"columns": {
+						"CategoryID": {
+							"name": "CategoryID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": true,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"identity": {
+								"seed": 1,
+								"increment": 1
+							},
+							"isPartOfPrimaryKey": true
+						},
+						"CategoryName": {
+							"name": "CategoryName",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": true,
+							"isUnique": false,
+							"isForeignKey": false,
+							"uniqueKeyName": "UC_Categories_CategoryName"
+						},
+						"Description": {
+							"name": "Description",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "ntext",
+							"maxLength": 1073741823,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Picture": {
+							"name": "Picture",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "image",
+							"maxLength": 2147483647,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"primaryKey": {
+						"name": "PK_Categories",
+						"columnCount": 1,
+						"columns": [
+							"CategoryID"
+						]
+					},
+					"uniqueKeys": {
+						"UC_Categories_CategoryName": {
+							"name": "UC_Categories_CategoryName",
+							"columnCount": 1,
+							"columns": [
+								"CategoryName"
+							]
+						}
+					},
+					"reverseForeignKeys": [
+						{
+							"name": "FK_Products_Categories",
+							"schemaName": "dbo",
+							"tableName": "Products",
+							"columnName": "CategoryID"
+						}
+					]
+				},
+				"CustomerCustomerDemo": {
+					"name": "CustomerCustomerDemo",
+					"description": null,
+					"columns": {
+						"CustomerID": {
+							"name": "CustomerID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "nchar",
+							"maxLength": 5,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "FK_CustomerCustomerDemo_Customers"
+						},
+						"CustomerTypeID": {
+							"name": "CustomerTypeID",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "nchar",
+							"maxLength": 10,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "FK_CustomerCustomerDemo"
+						}
+					},
+					"primaryKey": {
+						"name": "PK_CustomerCustomerDemo",
+						"columnCount": 2,
+						"columns": [
+							"CustomerID",
+							"CustomerTypeID"
+						]
+					}
+				},
+				"CustomerDemographics": {
+					"name": "CustomerDemographics",
+					"description": null,
+					"columns": {
+						"CustomerTypeID": {
+							"name": "CustomerTypeID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "nchar",
+							"maxLength": 10,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"isPartOfPrimaryKey": true
+						},
+						"CustomerDesc": {
+							"name": "CustomerDesc",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "ntext",
+							"maxLength": 1073741823,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"primaryKey": {
+						"name": "PK_CustomerDemographics",
+						"columnCount": 1,
+						"columns": [
+							"CustomerTypeID"
+						]
+					},
+					"reverseForeignKeys": [
+						{
+							"name": "FK_CustomerCustomerDemo",
+							"schemaName": "dbo",
+							"tableName": "CustomerCustomerDemo",
+							"columnName": "CustomerTypeID"
+						}
+					]
+				},
+				"Customers": {
+					"name": "Customers",
+					"description": null,
+					"columns": {
+						"CustomerID": {
+							"name": "CustomerID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "nchar",
+							"maxLength": 5,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"isPartOfPrimaryKey": true
+						},
+						"CompanyName": {
+							"name": "CompanyName",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": true,
+							"isUnique": false,
+							"isForeignKey": false,
+							"uniqueKeyName": "UC_Customers_CompanyName"
+						},
+						"ContactName": {
+							"name": "ContactName",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "nvarchar",
+							"maxLength": 30,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ContactTitle": {
+							"name": "ContactTitle",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "nvarchar",
+							"maxLength": 30,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Address": {
+							"name": "Address",
+							"description": "",
+							"ordinal": 5,
+							"dataType": "nvarchar",
+							"maxLength": 60,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"City": {
+							"name": "City",
+							"description": "",
+							"ordinal": 6,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Region": {
+							"name": "Region",
+							"description": "",
+							"ordinal": 7,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"PostalCode": {
+							"name": "PostalCode",
+							"description": "",
+							"ordinal": 8,
+							"dataType": "nvarchar",
+							"maxLength": 10,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Country": {
+							"name": "Country",
+							"description": "",
+							"ordinal": 9,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Phone": {
+							"name": "Phone",
+							"description": "",
+							"ordinal": 10,
+							"dataType": "nvarchar",
+							"maxLength": 24,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Fax": {
+							"name": "Fax",
+							"description": "",
+							"ordinal": 11,
+							"dataType": "nvarchar",
+							"maxLength": 24,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"primaryKey": {
+						"name": "PK_Customers",
+						"columnCount": 1,
+						"columns": [
+							"CustomerID"
+						]
+					},
+					"uniqueKeys": {
+						"UC_Customers_CompanyName": {
+							"name": "UC_Customers_CompanyName",
+							"columnCount": 1,
+							"columns": [
+								"CompanyName"
+							]
+						}
+					},
+					"reverseForeignKeys": [
+						{
+							"name": "FK_CustomerCustomerDemo_Customers",
+							"schemaName": "dbo",
+							"tableName": "CustomerCustomerDemo",
+							"columnName": "CustomerID"
+						},
+						{
+							"name": "FK_Orders_Customers",
+							"schemaName": "dbo",
+							"tableName": "Orders",
+							"columnName": "CustomerID"
+						}
+					]
+				},
+				"Employees": {
+					"name": "Employees",
+					"description": null,
+					"columns": {
+						"EmployeeID": {
+							"name": "EmployeeID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": true,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"identity": {
+								"seed": 1,
+								"increment": 1
+							},
+							"isPartOfPrimaryKey": true
+						},
+						"LastName": {
+							"name": "LastName",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 20,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"FirstName": {
+							"name": "FirstName",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "nvarchar",
+							"maxLength": 10,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Title": {
+							"name": "Title",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "nvarchar",
+							"maxLength": 30,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"TitleOfCourtesy": {
+							"name": "TitleOfCourtesy",
+							"description": "",
+							"ordinal": 5,
+							"dataType": "nvarchar",
+							"maxLength": 25,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"BirthDate": {
+							"name": "BirthDate",
+							"description": "",
+							"ordinal": 6,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"HireDate": {
+							"name": "HireDate",
+							"description": "",
+							"ordinal": 7,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Address": {
+							"name": "Address",
+							"description": "",
+							"ordinal": 8,
+							"dataType": "nvarchar",
+							"maxLength": 60,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"City": {
+							"name": "City",
+							"description": "",
+							"ordinal": 9,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Region": {
+							"name": "Region",
+							"description": "",
+							"ordinal": 10,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"PostalCode": {
+							"name": "PostalCode",
+							"description": "",
+							"ordinal": 11,
+							"dataType": "nvarchar",
+							"maxLength": 10,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Country": {
+							"name": "Country",
+							"description": "",
+							"ordinal": 12,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"HomePhone": {
+							"name": "HomePhone",
+							"description": "",
+							"ordinal": 13,
+							"dataType": "nvarchar",
+							"maxLength": 24,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Extension": {
+							"name": "Extension",
+							"description": "",
+							"ordinal": 14,
+							"dataType": "nvarchar",
+							"maxLength": 4,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Photo": {
+							"name": "Photo",
+							"description": "",
+							"ordinal": 15,
+							"dataType": "image",
+							"maxLength": 2147483647,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Notes": {
+							"name": "Notes",
+							"description": "",
+							"ordinal": 16,
+							"dataType": "ntext",
+							"maxLength": 1073741823,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ReportsTo": {
+							"name": "ReportsTo",
+							"description": "",
+							"ordinal": 17,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"foreignKeyName": "FK_Employees_Employees"
+						},
+						"PhotoPath": {
+							"name": "PhotoPath",
+							"description": "",
+							"ordinal": 18,
+							"dataType": "nvarchar",
+							"maxLength": 255,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"checkConstraints": {
+						"CK_Birthdate": {
+							"name": "CK_Birthdate",
+							"expression": "([BirthDate]<getdate())"
+						}
+					},
+					"primaryKey": {
+						"name": "PK_Employees",
+						"columnCount": 1,
+						"columns": [
+							"EmployeeID"
+						]
+					},
+					"reverseForeignKeys": [
+						{
+							"name": "FK_Employees_Employees",
+							"schemaName": "dbo",
+							"tableName": "Employees",
+							"columnName": "ReportsTo"
+						},
+						{
+							"name": "FK_EmployeeTerritories_Employees",
+							"schemaName": "dbo",
+							"tableName": "EmployeeTerritories",
+							"columnName": "EmployeeID"
+						},
+						{
+							"name": "FK_Orders_Employees",
+							"schemaName": "dbo",
+							"tableName": "Orders",
+							"columnName": "EmployeeID"
+						}
+					]
+				},
+				"EmployeeTerritories": {
+					"name": "EmployeeTerritories",
+					"description": null,
+					"columns": {
+						"EmployeeID": {
+							"name": "EmployeeID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "FK_EmployeeTerritories_Employees"
+						},
+						"TerritoryID": {
+							"name": "TerritoryID",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 20,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "FK_EmployeeTerritories_Territories"
+						}
+					},
+					"primaryKey": {
+						"name": "PK_EmployeeTerritories",
+						"columnCount": 2,
+						"columns": [
+							"EmployeeID",
+							"TerritoryID"
+						]
+					}
+				},
+				"Order Details": {
+					"name": "Order Details",
+					"description": null,
+					"columns": {
+						"OrderID": {
+							"name": "OrderID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "FK_Order_Details_Orders"
+						},
+						"ProductID": {
+							"name": "ProductID",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "FK_Order_Details_Products"
+						},
+						"UnitPrice": {
+							"name": "UnitPrice",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": {
+								"expression": "((0))",
+								"contraintName": "DF_Order_Details_UnitPrice"
+							},
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Quantity": {
+							"name": "Quantity",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "smallint",
+							"maxLength": null,
+							"precision": 5,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": {
+								"expression": "((1))",
+								"contraintName": "DF_Order_Details_Quantity"
+							},
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Discount": {
+							"name": "Discount",
+							"description": "",
+							"ordinal": 5,
+							"dataType": "real",
+							"maxLength": null,
+							"precision": 24,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": {
+								"expression": "((0))",
+								"contraintName": "DF_Order_Details_Discount"
+							},
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"checkConstraints": {
+						"CK_Discount": {
+							"name": "CK_Discount",
+							"expression": "([Discount]>=(0) AND [Discount]<=(1))"
+						},
+						"CK_Quantity": {
+							"name": "CK_Quantity",
+							"expression": "([Quantity]>(0))"
+						},
+						"CK_UnitPrice": {
+							"name": "CK_UnitPrice",
+							"expression": "([UnitPrice]>=(0))"
+						}
+					},
+					"primaryKey": {
+						"name": "PK_Order_Details",
+						"columnCount": 2,
+						"columns": [
+							"OrderID",
+							"ProductID"
+						]
+					}
+				},
+				"Orders": {
+					"name": "Orders",
+					"description": null,
+					"columns": {
+						"OrderID": {
+							"name": "OrderID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": true,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"identity": {
+								"seed": 1,
+								"increment": 1
+							},
+							"isPartOfPrimaryKey": true
+						},
+						"CustomerID": {
+							"name": "CustomerID",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "nchar",
+							"maxLength": 5,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"foreignKeyName": "FK_Orders_Customers"
+						},
+						"EmployeeID": {
+							"name": "EmployeeID",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"foreignKeyName": "FK_Orders_Employees"
+						},
+						"OrderDate": {
+							"name": "OrderDate",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"RequiredDate": {
+							"name": "RequiredDate",
+							"description": "",
+							"ordinal": 5,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ShippedDate": {
+							"name": "ShippedDate",
+							"description": "",
+							"ordinal": 6,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ShipVia": {
+							"name": "ShipVia",
+							"description": "",
+							"ordinal": 7,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"foreignKeyName": "FK_Orders_Shippers"
+						},
+						"Freight": {
+							"name": "Freight",
+							"description": "",
+							"ordinal": 8,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": {
+								"expression": "((0))",
+								"contraintName": "DF_Orders_Freight"
+							},
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ShipName": {
+							"name": "ShipName",
+							"description": "",
+							"ordinal": 9,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ShipAddress": {
+							"name": "ShipAddress",
+							"description": "",
+							"ordinal": 10,
+							"dataType": "nvarchar",
+							"maxLength": 60,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ShipCity": {
+							"name": "ShipCity",
+							"description": "",
+							"ordinal": 11,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ShipRegion": {
+							"name": "ShipRegion",
+							"description": "",
+							"ordinal": 12,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ShipPostalCode": {
+							"name": "ShipPostalCode",
+							"description": "",
+							"ordinal": 13,
+							"dataType": "nvarchar",
+							"maxLength": 10,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ShipCountry": {
+							"name": "ShipCountry",
+							"description": "",
+							"ordinal": 14,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"primaryKey": {
+						"name": "PK_Orders",
+						"columnCount": 1,
+						"columns": [
+							"OrderID"
+						]
+					},
+					"reverseForeignKeys": [
+						{
+							"name": "FK_Order_Details_Orders",
+							"schemaName": "dbo",
+							"tableName": "Order Details",
+							"columnName": "OrderID"
+						}
+					]
+				},
+				"Products": {
+					"name": "Products",
+					"description": null,
+					"columns": {
+						"ProductID": {
+							"name": "ProductID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": true,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"identity": {
+								"seed": 1,
+								"increment": 1
+							},
+							"isPartOfPrimaryKey": true
+						},
+						"ProductName": {
+							"name": "ProductName",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": true,
+							"isUnique": false,
+							"isForeignKey": false,
+							"uniqueKeyName": "UC_Products_ProductName"
+						},
+						"SupplierID": {
+							"name": "SupplierID",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"foreignKeyName": "FK_Products_Suppliers"
+						},
+						"CategoryID": {
+							"name": "CategoryID",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"foreignKeyName": "FK_Products_Categories"
+						},
+						"QuantityPerUnit": {
+							"name": "QuantityPerUnit",
+							"description": "",
+							"ordinal": 5,
+							"dataType": "nvarchar",
+							"maxLength": 20,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"UnitPrice": {
+							"name": "UnitPrice",
+							"description": "",
+							"ordinal": 6,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": {
+								"expression": "((0))",
+								"contraintName": "DF_Products_UnitPrice"
+							},
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"UnitsInStock": {
+							"name": "UnitsInStock",
+							"description": "",
+							"ordinal": 7,
+							"dataType": "smallint",
+							"maxLength": null,
+							"precision": 5,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": {
+								"expression": "((0))",
+								"contraintName": "DF_Products_UnitsInStock"
+							},
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"UnitsOnOrder": {
+							"name": "UnitsOnOrder",
+							"description": "",
+							"ordinal": 8,
+							"dataType": "smallint",
+							"maxLength": null,
+							"precision": 5,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": {
+								"expression": "((0))",
+								"contraintName": "DF_Products_UnitsOnOrder"
+							},
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ReorderLevel": {
+							"name": "ReorderLevel",
+							"description": "",
+							"ordinal": 9,
+							"dataType": "smallint",
+							"maxLength": null,
+							"precision": 5,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": {
+								"expression": "((0))",
+								"contraintName": "DF_Products_ReorderLevel"
+							},
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Discontinued": {
+							"name": "Discontinued",
+							"description": "",
+							"ordinal": 10,
+							"dataType": "bit",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": {
+								"expression": "((0))",
+								"contraintName": "DF_Products_Discontinued"
+							},
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"checkConstraints": {
+						"CK_Products_UnitPrice": {
+							"name": "CK_Products_UnitPrice",
+							"expression": "([UnitPrice]>=(0))"
+						},
+						"CK_ReorderLevel": {
+							"name": "CK_ReorderLevel",
+							"expression": "([ReorderLevel]>=(0))"
+						},
+						"CK_UnitsInStock": {
+							"name": "CK_UnitsInStock",
+							"expression": "([UnitsInStock]>=(0))"
+						},
+						"CK_UnitsOnOrder": {
+							"name": "CK_UnitsOnOrder",
+							"expression": "([UnitsOnOrder]>=(0))"
+						}
+					},
+					"primaryKey": {
+						"name": "PK_Products",
+						"columnCount": 1,
+						"columns": [
+							"ProductID"
+						]
+					},
+					"uniqueKeys": {
+						"UC_Products_ProductName": {
+							"name": "UC_Products_ProductName",
+							"columnCount": 1,
+							"columns": [
+								"ProductName"
+							]
+						}
+					},
+					"reverseForeignKeys": [
+						{
+							"name": "FK_Order_Details_Products",
+							"schemaName": "dbo",
+							"tableName": "Order Details",
+							"columnName": "ProductID"
+						}
+					]
+				},
+				"Region": {
+					"name": "Region",
+					"description": null,
+					"columns": {
+						"RegionID": {
+							"name": "RegionID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"isPartOfPrimaryKey": true
+						},
+						"RegionDescription": {
+							"name": "RegionDescription",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "nchar",
+							"maxLength": 50,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": true,
+							"isUnique": false,
+							"isForeignKey": false,
+							"uniqueKeyName": "UC_Region_RegionDescription"
+						}
+					},
+					"primaryKey": {
+						"name": "PK_Region",
+						"columnCount": 1,
+						"columns": [
+							"RegionID"
+						]
+					},
+					"uniqueKeys": {
+						"UC_Region_RegionDescription": {
+							"name": "UC_Region_RegionDescription",
+							"columnCount": 1,
+							"columns": [
+								"RegionDescription"
+							]
+						}
+					},
+					"reverseForeignKeys": [
+						{
+							"name": "FK_Territories_Region",
+							"schemaName": "dbo",
+							"tableName": "Territories",
+							"columnName": "RegionID"
+						}
+					]
+				},
+				"Shippers": {
+					"name": "Shippers",
+					"description": null,
+					"columns": {
+						"ShipperID": {
+							"name": "ShipperID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": true,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"identity": {
+								"seed": 1,
+								"increment": 1
+							},
+							"isPartOfPrimaryKey": true
+						},
+						"CompanyName": {
+							"name": "CompanyName",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": true,
+							"isUnique": false,
+							"isForeignKey": false,
+							"uniqueKeyName": "UC_Shippers_CompanyName"
+						},
+						"Phone": {
+							"name": "Phone",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "nvarchar",
+							"maxLength": 24,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"primaryKey": {
+						"name": "PK_Shippers",
+						"columnCount": 1,
+						"columns": [
+							"ShipperID"
+						]
+					},
+					"uniqueKeys": {
+						"UC_Shippers_CompanyName": {
+							"name": "UC_Shippers_CompanyName",
+							"columnCount": 1,
+							"columns": [
+								"CompanyName"
+							]
+						}
+					},
+					"reverseForeignKeys": [
+						{
+							"name": "FK_Orders_Shippers",
+							"schemaName": "dbo",
+							"tableName": "Orders",
+							"columnName": "ShipVia"
+						}
+					]
+				},
+				"Suppliers": {
+					"name": "Suppliers",
+					"description": null,
+					"columns": {
+						"SupplierID": {
+							"name": "SupplierID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": true,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"identity": {
+								"seed": 1,
+								"increment": 1
+							},
+							"isPartOfPrimaryKey": true
+						},
+						"CompanyName": {
+							"name": "CompanyName",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": true,
+							"isUnique": false,
+							"isForeignKey": false,
+							"uniqueKeyName": "UC_Suppliers_CompanyName"
+						},
+						"ContactName": {
+							"name": "ContactName",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "nvarchar",
+							"maxLength": 30,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"ContactTitle": {
+							"name": "ContactTitle",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "nvarchar",
+							"maxLength": 30,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Address": {
+							"name": "Address",
+							"description": "",
+							"ordinal": 5,
+							"dataType": "nvarchar",
+							"maxLength": 60,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"City": {
+							"name": "City",
+							"description": "",
+							"ordinal": 6,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Region": {
+							"name": "Region",
+							"description": "",
+							"ordinal": 7,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"PostalCode": {
+							"name": "PostalCode",
+							"description": "",
+							"ordinal": 8,
+							"dataType": "nvarchar",
+							"maxLength": 10,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Country": {
+							"name": "Country",
+							"description": "",
+							"ordinal": 9,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Phone": {
+							"name": "Phone",
+							"description": "",
+							"ordinal": 10,
+							"dataType": "nvarchar",
+							"maxLength": 24,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"Fax": {
+							"name": "Fax",
+							"description": "",
+							"ordinal": 11,
+							"dataType": "nvarchar",
+							"maxLength": 24,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"HomePage": {
+							"name": "HomePage",
+							"description": "",
+							"ordinal": 12,
+							"dataType": "ntext",
+							"maxLength": 1073741823,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"primaryKey": {
+						"name": "PK_Suppliers",
+						"columnCount": 1,
+						"columns": [
+							"SupplierID"
+						]
+					},
+					"uniqueKeys": {
+						"UC_Suppliers_CompanyName": {
+							"name": "UC_Suppliers_CompanyName",
+							"columnCount": 1,
+							"columns": [
+								"CompanyName"
+							]
+						}
+					},
+					"reverseForeignKeys": [
+						{
+							"name": "FK_Products_Suppliers",
+							"schemaName": "dbo",
+							"tableName": "Products",
+							"columnName": "SupplierID"
+						}
+					]
+				},
+				"Territories": {
+					"name": "Territories",
+					"description": null,
+					"columns": {
+						"TerritoryID": {
+							"name": "TerritoryID",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "nvarchar",
+							"maxLength": 20,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"isPartOfPrimaryKey": true
+						},
+						"TerritoryDescription": {
+							"name": "TerritoryDescription",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "nchar",
+							"maxLength": 50,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"RegionID": {
+							"name": "RegionID",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"foreignKeyName": "FK_Territories_Region"
+						}
+					},
+					"primaryKey": {
+						"name": "PK_Territories",
+						"columnCount": 1,
+						"columns": [
+							"TerritoryID"
+						]
+					},
+					"reverseForeignKeys": [
+						{
+							"name": "FK_EmployeeTerritories_Territories",
+							"schemaName": "dbo",
+							"tableName": "EmployeeTerritories",
+							"columnName": "TerritoryID"
+						}
+					]
+				}
+			},
+			"views": {
+				"Alphabetical list of products": {
+					"name": "Alphabetical list of products",
+					"description": null,
+					"sql": "create view [dbo].[Alphabetical list of products] AS\r\nSELECT Products.*, Categories.CategoryName\r\nFROM Categories INNER JOIN Products ON Categories.CategoryID = Products.CategoryID\r\nWHERE (((Products.Discontinued)=0))\r\n",
+					"columns": {
+						"ProductID": {
+							"name": "ProductID",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"ProductName": {
+							"name": "ProductName",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"SupplierID": {
+							"name": "SupplierID",
+							"ordinal": 3,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"CategoryID": {
+							"name": "CategoryID",
+							"ordinal": 4,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"QuantityPerUnit": {
+							"name": "QuantityPerUnit",
+							"ordinal": 5,
+							"dataType": "nvarchar",
+							"maxLength": 20,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"UnitPrice": {
+							"name": "UnitPrice",
+							"ordinal": 6,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"UnitsInStock": {
+							"name": "UnitsInStock",
+							"ordinal": 7,
+							"dataType": "smallint",
+							"maxLength": null,
+							"precision": 5,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"UnitsOnOrder": {
+							"name": "UnitsOnOrder",
+							"ordinal": 8,
+							"dataType": "smallint",
+							"maxLength": null,
+							"precision": 5,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"ReorderLevel": {
+							"name": "ReorderLevel",
+							"ordinal": 9,
+							"dataType": "smallint",
+							"maxLength": null,
+							"precision": 5,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"Discontinued": {
+							"name": "Discontinued",
+							"ordinal": 10,
+							"dataType": "bit",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"CategoryName": {
+							"name": "CategoryName",
+							"ordinal": 11,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						}
+					}
+				},
+				"Category Sales for 1997": {
+					"name": "Category Sales for 1997",
+					"description": null,
+					"sql": "create view [dbo].[Category Sales for 1997] AS\r\nSELECT \"Product Sales for 1997\".CategoryName, Sum(\"Product Sales for 1997\".ProductSales) AS CategorySales\r\nFROM \"Product Sales for 1997\"\r\nGROUP BY \"Product Sales for 1997\".CategoryName\r\n",
+					"columns": {
+						"CategoryName": {
+							"name": "CategoryName",
+							"ordinal": 1,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"CategorySales": {
+							"name": "CategorySales",
+							"ordinal": 2,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						}
+					}
+				},
+				"Current Product List": {
+					"name": "Current Product List",
+					"description": null,
+					"sql": "create view [dbo].[Current Product List] AS\r\nSELECT Product_List.ProductID, Product_List.ProductName\r\nFROM Products AS Product_List\r\nWHERE (((Product_List.Discontinued)=0))\r\n--ORDER BY Product_List.ProductName\r\n",
+					"columns": {
+						"ProductID": {
+							"name": "ProductID",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"ProductName": {
+							"name": "ProductName",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						}
+					}
+				},
+				"Customer and Suppliers by City": {
+					"name": "Customer and Suppliers by City",
+					"description": null,
+					"sql": "create view [dbo].[Customer and Suppliers by City] AS\r\nSELECT City, CompanyName, ContactName, 'Customers' AS Relationship \r\nFROM Customers\r\nUNION SELECT City, CompanyName, ContactName, 'Suppliers'\r\nFROM Suppliers\r\n--ORDER BY City, CompanyName\r\n",
+					"columns": {
+						"City": {
+							"name": "City",
+							"ordinal": 1,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"CompanyName": {
+							"name": "CompanyName",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"ContactName": {
+							"name": "ContactName",
+							"ordinal": 3,
+							"dataType": "nvarchar",
+							"maxLength": 30,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"Relationship": {
+							"name": "Relationship",
+							"ordinal": 4,
+							"dataType": "varchar",
+							"maxLength": 9,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "iso_1",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						}
+					}
+				},
+				"Invoices": {
+					"name": "Invoices",
+					"description": null,
+					"sql": "create view [dbo].[Invoices] AS\r\nSELECT Orders.ShipName, Orders.ShipAddress, Orders.ShipCity, Orders.ShipRegion, Orders.ShipPostalCode, \r\n  Orders.ShipCountry, Orders.CustomerID, Customers.CompanyName AS CustomerName, Customers.Address, Customers.City, \r\n  Customers.Region, Customers.PostalCode, Customers.Country, \r\n  (FirstName + ' ' + LastName) AS Salesperson, \r\n  Orders.OrderID, Orders.OrderDate, Orders.RequiredDate, Orders.ShippedDate, Shippers.CompanyName As ShipperName, \r\n  \"Order Details\".ProductID, Products.ProductName, \"Order Details\".UnitPrice, \"Order Details\".Quantity, \r\n  \"Order Details\".Discount, \r\n  (CONVERT(money,(\"Order Details\".UnitPrice*Quantity*(1-Discount)/100))*100) AS ExtendedPrice, Orders.Freight\r\nFROM  Shippers INNER JOIN \r\n    (Products INNER JOIN \r\n      (\r\n        (Employees INNER JOIN \r\n          (Customers INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID) \r\n        ON Employees.EmployeeID = Orders.EmployeeID) \r\n      INNER JOIN \"Order Details\" ON Orders.OrderID = \"Order Details\".OrderID) \r\n    ON Products.ProductID = \"Order Details\".ProductID) \r\n  ON Shippers.ShipperID = Orders.ShipVia\r\n",
+					"columns": {
+						"ShipName": {
+							"name": "ShipName",
+							"ordinal": 1,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"ShipAddress": {
+							"name": "ShipAddress",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 60,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"ShipCity": {
+							"name": "ShipCity",
+							"ordinal": 3,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"ShipRegion": {
+							"name": "ShipRegion",
+							"ordinal": 4,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"ShipPostalCode": {
+							"name": "ShipPostalCode",
+							"ordinal": 5,
+							"dataType": "nvarchar",
+							"maxLength": 10,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"ShipCountry": {
+							"name": "ShipCountry",
+							"ordinal": 6,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"CustomerID": {
+							"name": "CustomerID",
+							"ordinal": 7,
+							"dataType": "nchar",
+							"maxLength": 5,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"CustomerName": {
+							"name": "CustomerName",
+							"ordinal": 8,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"Address": {
+							"name": "Address",
+							"ordinal": 9,
+							"dataType": "nvarchar",
+							"maxLength": 60,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"City": {
+							"name": "City",
+							"ordinal": 10,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"Region": {
+							"name": "Region",
+							"ordinal": 11,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"PostalCode": {
+							"name": "PostalCode",
+							"ordinal": 12,
+							"dataType": "nvarchar",
+							"maxLength": 10,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"Country": {
+							"name": "Country",
+							"ordinal": 13,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"Salesperson": {
+							"name": "Salesperson",
+							"ordinal": 14,
+							"dataType": "nvarchar",
+							"maxLength": 31,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"OrderID": {
+							"name": "OrderID",
+							"ordinal": 15,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"OrderDate": {
+							"name": "OrderDate",
+							"ordinal": 16,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"RequiredDate": {
+							"name": "RequiredDate",
+							"ordinal": 17,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"ShippedDate": {
+							"name": "ShippedDate",
+							"ordinal": 18,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"ShipperName": {
+							"name": "ShipperName",
+							"ordinal": 19,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"ProductID": {
+							"name": "ProductID",
+							"ordinal": 20,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"ProductName": {
+							"name": "ProductName",
+							"ordinal": 21,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"UnitPrice": {
+							"name": "UnitPrice",
+							"ordinal": 22,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"Quantity": {
+							"name": "Quantity",
+							"ordinal": 23,
+							"dataType": "smallint",
+							"maxLength": null,
+							"precision": 5,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"Discount": {
+							"name": "Discount",
+							"ordinal": 24,
+							"dataType": "real",
+							"maxLength": null,
+							"precision": 24,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"ExtendedPrice": {
+							"name": "ExtendedPrice",
+							"ordinal": 25,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"Freight": {
+							"name": "Freight",
+							"ordinal": 26,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						}
+					}
+				},
+				"Order Details Extended": {
+					"name": "Order Details Extended",
+					"description": null,
+					"sql": "create view [dbo].[Order Details Extended] AS\r\nSELECT \"Order Details\".OrderID, \"Order Details\".ProductID, Products.ProductName, \r\n  \"Order Details\".UnitPrice, \"Order Details\".Quantity, \"Order Details\".Discount, \r\n  (CONVERT(money,(\"Order Details\".UnitPrice*Quantity*(1-Discount)/100))*100) AS ExtendedPrice\r\nFROM Products INNER JOIN \"Order Details\" ON Products.ProductID = \"Order Details\".ProductID\r\n--ORDER BY \"Order Details\".OrderID\r\n",
+					"columns": {
+						"OrderID": {
+							"name": "OrderID",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"ProductID": {
+							"name": "ProductID",
+							"ordinal": 2,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"ProductName": {
+							"name": "ProductName",
+							"ordinal": 3,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"UnitPrice": {
+							"name": "UnitPrice",
+							"ordinal": 4,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"Quantity": {
+							"name": "Quantity",
+							"ordinal": 5,
+							"dataType": "smallint",
+							"maxLength": null,
+							"precision": 5,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"Discount": {
+							"name": "Discount",
+							"ordinal": 6,
+							"dataType": "real",
+							"maxLength": null,
+							"precision": 24,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"ExtendedPrice": {
+							"name": "ExtendedPrice",
+							"ordinal": 7,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						}
+					}
+				},
+				"Order Subtotals": {
+					"name": "Order Subtotals",
+					"description": null,
+					"sql": "create view [dbo].[Order Subtotals] AS\r\nSELECT \"Order Details\".OrderID, Sum(CONVERT(money,(\"Order Details\".UnitPrice*Quantity*(1-Discount)/100))*100) AS Subtotal\r\nFROM \"Order Details\"\r\nGROUP BY \"Order Details\".OrderID\r\n",
+					"columns": {
+						"OrderID": {
+							"name": "OrderID",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"Subtotal": {
+							"name": "Subtotal",
+							"ordinal": 2,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						}
+					}
+				},
+				"Orders Qry": {
+					"name": "Orders Qry",
+					"description": null,
+					"sql": "create view [dbo].[Orders Qry] AS\r\nSELECT Orders.OrderID, Orders.CustomerID, Orders.EmployeeID, Orders.OrderDate, Orders.RequiredDate, \r\n  Orders.ShippedDate, Orders.ShipVia, Orders.Freight, Orders.ShipName, Orders.ShipAddress, Orders.ShipCity, \r\n  Orders.ShipRegion, Orders.ShipPostalCode, Orders.ShipCountry, \r\n  Customers.CompanyName, Customers.Address, Customers.City, Customers.Region, Customers.PostalCode, Customers.Country\r\nFROM Customers INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID\r\n",
+					"columns": {
+						"OrderID": {
+							"name": "OrderID",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"CustomerID": {
+							"name": "CustomerID",
+							"ordinal": 2,
+							"dataType": "nchar",
+							"maxLength": 5,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"EmployeeID": {
+							"name": "EmployeeID",
+							"ordinal": 3,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"OrderDate": {
+							"name": "OrderDate",
+							"ordinal": 4,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"RequiredDate": {
+							"name": "RequiredDate",
+							"ordinal": 5,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"ShippedDate": {
+							"name": "ShippedDate",
+							"ordinal": 6,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"ShipVia": {
+							"name": "ShipVia",
+							"ordinal": 7,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"Freight": {
+							"name": "Freight",
+							"ordinal": 8,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"ShipName": {
+							"name": "ShipName",
+							"ordinal": 9,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"ShipAddress": {
+							"name": "ShipAddress",
+							"ordinal": 10,
+							"dataType": "nvarchar",
+							"maxLength": 60,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"ShipCity": {
+							"name": "ShipCity",
+							"ordinal": 11,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"ShipRegion": {
+							"name": "ShipRegion",
+							"ordinal": 12,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"ShipPostalCode": {
+							"name": "ShipPostalCode",
+							"ordinal": 13,
+							"dataType": "nvarchar",
+							"maxLength": 10,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"ShipCountry": {
+							"name": "ShipCountry",
+							"ordinal": 14,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"CompanyName": {
+							"name": "CompanyName",
+							"ordinal": 15,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"Address": {
+							"name": "Address",
+							"ordinal": 16,
+							"dataType": "nvarchar",
+							"maxLength": 60,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"City": {
+							"name": "City",
+							"ordinal": 17,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"Region": {
+							"name": "Region",
+							"ordinal": 18,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"PostalCode": {
+							"name": "PostalCode",
+							"ordinal": 19,
+							"dataType": "nvarchar",
+							"maxLength": 10,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"Country": {
+							"name": "Country",
+							"ordinal": 20,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						}
+					}
+				},
+				"Product Sales for 1997": {
+					"name": "Product Sales for 1997",
+					"description": null,
+					"sql": "create view [dbo].[Product Sales for 1997] AS\r\nSELECT Categories.CategoryName, Products.ProductName, \r\nSum(CONVERT(money,(\"Order Details\".UnitPrice*Quantity*(1-Discount)/100))*100) AS ProductSales\r\nFROM (Categories INNER JOIN Products ON Categories.CategoryID = Products.CategoryID) \r\n  INNER JOIN (Orders \r\n    INNER JOIN \"Order Details\" ON Orders.OrderID = \"Order Details\".OrderID) \r\n  ON Products.ProductID = \"Order Details\".ProductID\r\nWHERE (((Orders.ShippedDate) Between '19970101' And '19971231'))\r\nGROUP BY Categories.CategoryName, Products.ProductName\r\n",
+					"columns": {
+						"CategoryName": {
+							"name": "CategoryName",
+							"ordinal": 1,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"ProductName": {
+							"name": "ProductName",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"ProductSales": {
+							"name": "ProductSales",
+							"ordinal": 3,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						}
+					}
+				},
+				"Products Above Average Price": {
+					"name": "Products Above Average Price",
+					"description": null,
+					"sql": "create view [dbo].[Products Above Average Price] AS\r\nSELECT Products.ProductName, Products.UnitPrice\r\nFROM Products\r\nWHERE Products.UnitPrice>(SELECT AVG(UnitPrice) From Products)\r\n--ORDER BY Products.UnitPrice DESC\r\n",
+					"columns": {
+						"ProductName": {
+							"name": "ProductName",
+							"ordinal": 1,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"UnitPrice": {
+							"name": "UnitPrice",
+							"ordinal": 2,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						}
+					}
+				},
+				"Products by Category": {
+					"name": "Products by Category",
+					"description": null,
+					"sql": "create view [dbo].[Products by Category] AS\r\nSELECT Categories.CategoryName, Products.ProductName, Products.QuantityPerUnit, Products.UnitsInStock, Products.Discontinued\r\nFROM Categories INNER JOIN Products ON Categories.CategoryID = Products.CategoryID\r\nWHERE Products.Discontinued <> 1\r\n--ORDER BY Categories.CategoryName, Products.ProductName\r\n",
+					"columns": {
+						"CategoryName": {
+							"name": "CategoryName",
+							"ordinal": 1,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"ProductName": {
+							"name": "ProductName",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"QuantityPerUnit": {
+							"name": "QuantityPerUnit",
+							"ordinal": 3,
+							"dataType": "nvarchar",
+							"maxLength": 20,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"UnitsInStock": {
+							"name": "UnitsInStock",
+							"ordinal": 4,
+							"dataType": "smallint",
+							"maxLength": null,
+							"precision": 5,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"Discontinued": {
+							"name": "Discontinued",
+							"ordinal": 5,
+							"dataType": "bit",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						}
+					}
+				},
+				"Quarterly Orders": {
+					"name": "Quarterly Orders",
+					"description": null,
+					"sql": "create view [dbo].[Quarterly Orders] AS\r\nSELECT DISTINCT Customers.CustomerID, Customers.CompanyName, Customers.City, Customers.Country\r\nFROM Customers RIGHT JOIN Orders ON Customers.CustomerID = Orders.CustomerID\r\nWHERE Orders.OrderDate BETWEEN '19970101' And '19971231'\r\n",
+					"columns": {
+						"CustomerID": {
+							"name": "CustomerID",
+							"ordinal": 1,
+							"dataType": "nchar",
+							"maxLength": 5,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"CompanyName": {
+							"name": "CompanyName",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"City": {
+							"name": "City",
+							"ordinal": 3,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						},
+						"Country": {
+							"name": "Country",
+							"ordinal": 4,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": true
+						}
+					}
+				},
+				"Sales by Category": {
+					"name": "Sales by Category",
+					"description": null,
+					"sql": "create view [dbo].[Sales by Category] AS\r\nSELECT Categories.CategoryID, Categories.CategoryName, Products.ProductName, \r\n  Sum(\"Order Details Extended\".ExtendedPrice) AS ProductSales\r\nFROM  Categories INNER JOIN \r\n    (Products INNER JOIN \r\n      (Orders INNER JOIN \"Order Details Extended\" ON Orders.OrderID = \"Order Details Extended\".OrderID) \r\n    ON Products.ProductID = \"Order Details Extended\".ProductID) \r\n  ON Categories.CategoryID = Products.CategoryID\r\nWHERE Orders.OrderDate BETWEEN '19970101' And '19971231'\r\nGROUP BY Categories.CategoryID, Categories.CategoryName, Products.ProductName\r\n--ORDER BY Products.ProductName\r\n",
+					"columns": {
+						"CategoryID": {
+							"name": "CategoryID",
+							"ordinal": 1,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"CategoryName": {
+							"name": "CategoryName",
+							"ordinal": 2,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"ProductName": {
+							"name": "ProductName",
+							"ordinal": 3,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"ProductSales": {
+							"name": "ProductSales",
+							"ordinal": 4,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						}
+					}
+				},
+				"Sales Totals by Amount": {
+					"name": "Sales Totals by Amount",
+					"description": null,
+					"sql": "create view [dbo].[Sales Totals by Amount] AS\r\nSELECT \"Order Subtotals\".Subtotal AS SaleAmount, Orders.OrderID, Customers.CompanyName, Orders.ShippedDate\r\nFROM  Customers INNER JOIN \r\n    (Orders INNER JOIN \"Order Subtotals\" ON Orders.OrderID = \"Order Subtotals\".OrderID) \r\n  ON Customers.CustomerID = Orders.CustomerID\r\nWHERE (\"Order Subtotals\".Subtotal >2500) AND (Orders.ShippedDate BETWEEN '19970101' And '19971231')\r\n",
+					"columns": {
+						"SaleAmount": {
+							"name": "SaleAmount",
+							"ordinal": 1,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"OrderID": {
+							"name": "OrderID",
+							"ordinal": 2,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"CompanyName": {
+							"name": "CompanyName",
+							"ordinal": 3,
+							"dataType": "nvarchar",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS",
+							"isNullable": false
+						},
+						"ShippedDate": {
+							"name": "ShippedDate",
+							"ordinal": 4,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						}
+					}
+				},
+				"Summary of Sales by Quarter": {
+					"name": "Summary of Sales by Quarter",
+					"description": null,
+					"sql": "create view [dbo].[Summary of Sales by Quarter] AS\r\nSELECT Orders.ShippedDate, Orders.OrderID, \"Order Subtotals\".Subtotal\r\nFROM Orders INNER JOIN \"Order Subtotals\" ON Orders.OrderID = \"Order Subtotals\".OrderID\r\nWHERE Orders.ShippedDate IS NOT NULL\r\n--ORDER BY Orders.ShippedDate\r\n",
+					"columns": {
+						"ShippedDate": {
+							"name": "ShippedDate",
+							"ordinal": 1,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"OrderID": {
+							"name": "OrderID",
+							"ordinal": 2,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"Subtotal": {
+							"name": "Subtotal",
+							"ordinal": 3,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						}
+					}
+				},
+				"Summary of Sales by Year": {
+					"name": "Summary of Sales by Year",
+					"description": null,
+					"sql": "create view [dbo].[Summary of Sales by Year] AS\r\nSELECT Orders.ShippedDate, Orders.OrderID, \"Order Subtotals\".Subtotal\r\nFROM Orders INNER JOIN \"Order Subtotals\" ON Orders.OrderID = \"Order Subtotals\".OrderID\r\nWHERE Orders.ShippedDate IS NOT NULL\r\n--ORDER BY Orders.ShippedDate\r\n",
+					"columns": {
+						"ShippedDate": {
+							"name": "ShippedDate",
+							"ordinal": 1,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						},
+						"OrderID": {
+							"name": "OrderID",
+							"ordinal": 2,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false
+						},
+						"Subtotal": {
+							"name": "Subtotal",
+							"ordinal": 3,
+							"dataType": "money",
+							"maxLength": null,
+							"precision": 19,
+							"scale": 4,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
+						}
+					}
+				}
+			},
+			"foreignKeys": {
+				"FK_CustomerCustomerDemo": {
+					"name": "FK_CustomerCustomerDemo",
+					"fkSchemaName": "dbo",
+					"fkTableName": "CustomerCustomerDemo",
+					"fkColumnName": "CustomerTypeID",
+					"pkSchemaName": "dbo",
+					"pkTableName": "CustomerDemographics",
+					"pkName": "PK_CustomerDemographics",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_CustomerCustomerDemo_Customers": {
+					"name": "FK_CustomerCustomerDemo_Customers",
+					"fkSchemaName": "dbo",
+					"fkTableName": "CustomerCustomerDemo",
+					"fkColumnName": "CustomerID",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Customers",
+					"pkName": "PK_Customers",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_Employees_Employees": {
+					"name": "FK_Employees_Employees",
+					"fkSchemaName": "dbo",
+					"fkTableName": "Employees",
+					"fkColumnName": "ReportsTo",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Employees",
+					"pkName": "PK_Employees",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_EmployeeTerritories_Employees": {
+					"name": "FK_EmployeeTerritories_Employees",
+					"fkSchemaName": "dbo",
+					"fkTableName": "EmployeeTerritories",
+					"fkColumnName": "EmployeeID",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Employees",
+					"pkName": "PK_Employees",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_EmployeeTerritories_Territories": {
+					"name": "FK_EmployeeTerritories_Territories",
+					"fkSchemaName": "dbo",
+					"fkTableName": "EmployeeTerritories",
+					"fkColumnName": "TerritoryID",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Territories",
+					"pkName": "PK_Territories",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_Order_Details_Orders": {
+					"name": "FK_Order_Details_Orders",
+					"fkSchemaName": "dbo",
+					"fkTableName": "Order Details",
+					"fkColumnName": "OrderID",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Orders",
+					"pkName": "PK_Orders",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_Order_Details_Products": {
+					"name": "FK_Order_Details_Products",
+					"fkSchemaName": "dbo",
+					"fkTableName": "Order Details",
+					"fkColumnName": "ProductID",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Products",
+					"pkName": "PK_Products",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_Orders_Customers": {
+					"name": "FK_Orders_Customers",
+					"fkSchemaName": "dbo",
+					"fkTableName": "Orders",
+					"fkColumnName": "CustomerID",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Customers",
+					"pkName": "PK_Customers",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_Orders_Employees": {
+					"name": "FK_Orders_Employees",
+					"fkSchemaName": "dbo",
+					"fkTableName": "Orders",
+					"fkColumnName": "EmployeeID",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Employees",
+					"pkName": "PK_Employees",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_Orders_Shippers": {
+					"name": "FK_Orders_Shippers",
+					"fkSchemaName": "dbo",
+					"fkTableName": "Orders",
+					"fkColumnName": "ShipVia",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Shippers",
+					"pkName": "PK_Shippers",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_Products_Categories": {
+					"name": "FK_Products_Categories",
+					"fkSchemaName": "dbo",
+					"fkTableName": "Products",
+					"fkColumnName": "CategoryID",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Categories",
+					"pkName": "PK_Categories",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_Products_Suppliers": {
+					"name": "FK_Products_Suppliers",
+					"fkSchemaName": "dbo",
+					"fkTableName": "Products",
+					"fkColumnName": "SupplierID",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Suppliers",
+					"pkName": "PK_Suppliers",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				},
+				"FK_Territories_Region": {
+					"name": "FK_Territories_Region",
+					"fkSchemaName": "dbo",
+					"fkTableName": "Territories",
+					"fkColumnName": "RegionID",
+					"pkSchemaName": "dbo",
+					"pkTableName": "Region",
+					"pkName": "PK_Region",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
+				}
+			},
+			"procedures": {
+				"CustOrderHist": {
+					"name": "CustOrderHist",
+					"sql": "CREATE PROCEDURE [dbo].[CustOrderHist] @CustomerID nchar(5)\r\nAS\r\nSELECT ProductName, Total=SUM(Quantity)\r\nFROM Products P, [Order Details] OD, Orders O, Customers C\r\nWHERE C.CustomerID = @CustomerID\r\nAND C.CustomerID = O.CustomerID AND O.OrderID = OD.OrderID AND OD.ProductID = P.ProductID\r\nGROUP BY ProductName\r\n",
+					"arguments": [
+						{
+							"name": "@CustomerID",
+							"ordinal": 1,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "nchar",
+							"maxLength": 5,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS"
+						}
+					]
+				},
+				"CustOrdersDetail": {
+					"name": "CustOrdersDetail",
+					"sql": "CREATE PROCEDURE [dbo].[CustOrdersDetail] @OrderID int\r\nAS\r\nSELECT ProductName,\r\n    UnitPrice=ROUND(Od.UnitPrice, 2),\r\n    Quantity,\r\n    Discount=CONVERT(int, Discount * 100), \r\n    ExtendedPrice=ROUND(CONVERT(money, Quantity * (1 - Discount) * Od.UnitPrice), 2)\r\nFROM Products P, [Order Details] Od\r\nWHERE Od.ProductID = P.ProductID and Od.OrderID = @OrderID\r\n",
+					"arguments": [
+						{
+							"name": "@OrderID",
+							"ordinal": 1,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "int",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null
+						}
+					]
+				},
+				"CustOrdersOrders": {
+					"name": "CustOrdersOrders",
+					"sql": "CREATE PROCEDURE [dbo].[CustOrdersOrders] @CustomerID nchar(5)\r\nAS\r\nSELECT OrderID, \r\n  OrderDate,\r\n  RequiredDate,\r\n  ShippedDate\r\nFROM Orders\r\nWHERE CustomerID = @CustomerID\r\nORDER BY OrderID\r\n",
+					"arguments": [
+						{
+							"name": "@CustomerID",
+							"ordinal": 1,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "nchar",
+							"maxLength": 5,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS"
+						}
+					]
+				},
+				"Employee Sales by Country": {
+					"name": "Employee Sales by Country",
+					"sql": "create procedure [dbo].[Employee Sales by Country] \r\n@Beginning_Date DateTime, @Ending_Date DateTime AS\r\nSELECT Employees.Country, Employees.LastName, Employees.FirstName, Orders.ShippedDate, Orders.OrderID, \"Order Subtotals\".Subtotal AS SaleAmount\r\nFROM Employees INNER JOIN \r\n  (Orders INNER JOIN \"Order Subtotals\" ON Orders.OrderID = \"Order Subtotals\".OrderID) \r\n  ON Employees.EmployeeID = Orders.EmployeeID\r\nWHERE Orders.ShippedDate Between @Beginning_Date And @Ending_Date\r\n",
+					"arguments": [
+						{
+							"name": "@Beginning_Date",
+							"ordinal": 1,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null
+						},
+						{
+							"name": "@Ending_Date",
+							"ordinal": 2,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null
+						}
+					]
+				},
+				"Sales by Year": {
+					"name": "Sales by Year",
+					"sql": "create procedure [dbo].[Sales by Year] \r\n  @Beginning_Date DateTime, @Ending_Date DateTime AS\r\nSELECT Orders.ShippedDate, Orders.OrderID, \"Order Subtotals\".Subtotal, DATENAME(yy,ShippedDate) AS Year\r\nFROM Orders INNER JOIN \"Order Subtotals\" ON Orders.OrderID = \"Order Subtotals\".OrderID\r\nWHERE Orders.ShippedDate Between @Beginning_Date And @Ending_Date\r\n",
+					"arguments": [
+						{
+							"name": "@Beginning_Date",
+							"ordinal": 1,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null
+						},
+						{
+							"name": "@Ending_Date",
+							"ordinal": 2,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "datetime",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 3,
+							"characterSet": null,
+							"collation": null
+						}
+					]
+				},
+				"SalesByCategory": {
+					"name": "SalesByCategory",
+					"sql": "CREATE PROCEDURE [dbo].[SalesByCategory]\r\n    @CategoryName nvarchar(15), @OrdYear nvarchar(4) = '1998'\r\nAS\r\nIF @OrdYear != '1996' AND @OrdYear != '1997' AND @OrdYear != '1998' \r\nBEGIN\r\n  SELECT @OrdYear = '1998'\r\nEND\r\n\r\nSELECT ProductName,\r\n  TotalPurchase=ROUND(SUM(CONVERT(decimal(14,2), OD.Quantity * (1-OD.Discount) * OD.UnitPrice)), 0)\r\nFROM [Order Details] OD, Orders O, Products P, Categories C\r\nWHERE OD.OrderID = O.OrderID \r\n  AND OD.ProductID = P.ProductID \r\n  AND P.CategoryID = C.CategoryID\r\n  AND C.CategoryName = @CategoryName\r\n  AND SUBSTRING(CONVERT(nvarchar(22), O.OrderDate, 111), 1, 4) = @OrdYear\r\nGROUP BY ProductName\r\nORDER BY ProductName\r\n",
+					"arguments": [
+						{
+							"name": "@CategoryName",
+							"ordinal": 1,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "nvarchar",
+							"maxLength": 15,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS"
+						},
+						{
+							"name": "@OrdYear",
+							"ordinal": 2,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "nvarchar",
+							"maxLength": 4,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "UNICODE",
+							"collation": "SQL_Latin1_General_CP1_CI_AS"
+						}
+					]
+				},
+				"Ten Most Expensive Products": {
+					"name": "Ten Most Expensive Products",
+					"sql": "create procedure [dbo].[Ten Most Expensive Products] AS\r\nSET ROWCOUNT 10\r\nSELECT Products.ProductName AS TenMostExpensiveProducts, Products.UnitPrice\r\nFROM Products\r\nORDER BY Products.UnitPrice DESC\r\n"
+				}
+			}
+		}
+	}
+}

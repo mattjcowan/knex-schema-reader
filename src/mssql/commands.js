@@ -63,9 +63,54 @@ function commands() {
       return knex.raw(sql, { schemaOwner });
     },
 
-    getColumns: (knex, schemaOwner, tableName) => {
+    getViewColumns: (knex, schemaOwner, viewName) => {
       const sql = `select 
-                    c.TABLE_NAME as [table], 
+                    c.TABLE_SCHEMA as 'schema', 
+                    c.TABLE_NAME as 'view', 
+                    COLUMN_NAME as 'name', 
+                    ORDINAL_POSITION as ordinal, 
+                    COLUMN_DEFAULT as [default], 
+                    case when IS_NULLABLE = 'NO' then 0 else 1 end as isNullable, 
+                    DATA_TYPE as dataType, 
+                    CHARACTER_MAXIMUM_LENGTH as maxLength, 
+                    NUMERIC_PRECISION as precision, 
+                    NUMERIC_SCALE as scale, 
+                    DATETIME_PRECISION as dateTimePrecision,
+                    CHARACTER_SET_NAME AS characterSet, 
+                    COLLATION_NAME AS collation
+                    from INFORMATION_SCHEMA.COLUMNS c
+                    JOIN INFORMATION_SCHEMA.VIEWS v 
+                    ON c.TABLE_SCHEMA = v.TABLE_SCHEMA AND 
+                    c.TABLE_NAME = v.TABLE_NAME
+                    where ` +
+        (schemaOwner && schemaOwner.length > 0 ? '(c.TABLE_SCHEMA = :schemaOwner) AND ' : '') +
+        (viewName && viewName.length > 0 ? '(c.TABLE_NAME = :viewName) AND ' : '') + `
+                    1 = 1
+                    order by 
+                    c.TABLE_SCHEMA, c.TABLE_NAME, ORDINAL_POSITION`;
+      return knex.raw(sql, { schemaOwner, viewName });
+    },
+
+    getViewSources: (knex, schemaOwner, viewName) => {
+      const sql = `SELECT
+                    OBJECT_SCHEMA_NAME(o.object_id) AS 'schema',
+                    OBJECT_NAME(sm.object_id) AS 'name',
+                    sm.definition As 'sql'
+                    FROM sys.sql_modules AS sm
+                    JOIN sys.objects AS o
+                    ON sm.object_id = o.object_id
+                    WHERE ` +
+                    (schemaOwner && schemaOwner.length > 0 ? '(OBJECT_SCHEMA_NAME(o.object_id) = :schemaOwner) AND ' : '') +
+                    (viewName && viewName.length > 0 ? '(OBJECT_NAME(sm.object_id) = :viewName) AND ' : '') + `
+                    (o.type='V')
+                    ORDER BY o.type;`;
+      return knex.raw(sql, { schemaOwner, viewName });
+    },
+
+    getTableColumns: (knex, schemaOwner, tableName) => {
+      const sql = `select 
+                    c.TABLE_SCHEMA as 'schema',
+                    c.TABLE_NAME as 'table', 
                     COLUMN_NAME as name, 
                     ORDINAL_POSITION as ordinal, 
                     COLUMN_DEFAULT as [default], 
@@ -284,6 +329,8 @@ function commands() {
       return knex.raw(sql);
     },
 
+    getCatalog: knex => knex.raw('select db_name() as [name]'),
+
     getSchemas: (knex) => {
       const sql = `SELECT distinct a.schema_id as id, a.name as [name] 
                   FROM sys.schemas a 
@@ -297,14 +344,6 @@ function commands() {
                     SPECIFIC_SCHEMA as 'schema',
                     SPECIFIC_NAME as 'name',
                     ROUTINE_DEFINITION as 'sql'
-                    -- DATA_TYPE as 'dataType',
-                    -- CHARACTER_MAXIMUM_LENGTH as maxLength, 
-                    -- NUMERIC_PRECISION as precision, 
-                    -- NUMERIC_PRECISION_RADIX as radix, 
-                    -- NUMERIC_SCALE as scale, 
-                    -- DATETIME_PRECISION as dateTimePrecision,
-                    -- CHARACTER_SET_NAME AS characterSet, 
-                    -- COLLATION_NAME AS collation
                     FROM INFORMATION_SCHEMA.ROUTINES
                     WHERE ` +
         (schemaOwner && schemaOwner.length > 0 ? '(SPECIFIC_SCHEMA = :schemaOwner) AND ' : '') + `
@@ -322,7 +361,7 @@ function commands() {
                                     name = N'microsoft_database_tools_support'
                             ) is null
                     ORDER BY SPECIFIC_SCHEMA, SPECIFIC_NAME`;
-      return knex.raw(sql, { schemaOwner: schemaOwner });
+      return knex.raw(sql, { schemaOwner });
     },
 
     getStoredProcedures: (knex, schemaOwner) => {
@@ -330,7 +369,6 @@ function commands() {
                     SPECIFIC_SCHEMA as 'schema',
                     SPECIFIC_NAME as 'name',
                     ROUTINE_DEFINITION as 'sql'
-                    -- DATA_TYPE as 'dataType',
                     FROM INFORMATION_SCHEMA.ROUTINES
                     WHERE ` +
                       (schemaOwner && schemaOwner.length > 0 ? '(SPECIFIC_SCHEMA = :schemaOwner) AND ' : '') + `
@@ -348,7 +386,7 @@ function commands() {
                                     name = N'microsoft_database_tools_support'
                       ) is null
                     ORDER BY SPECIFIC_SCHEMA, SPECIFIC_NAME`;
-      return knex.raw(sql, { schemaOwner: schemaOwner });
+      return knex.raw(sql, { schemaOwner });
     },
 
     getProcedureArguments: (knex, schemaOwner) => {
@@ -358,8 +396,8 @@ function commands() {
                       PARAMETER_NAME as 'parameterName',
                       ORDINAL_POSITION as 'ordinal',
                       PARAMETER_MODE as 'parameterMode',
-                      IS_RESULT as 'isResult',
-                      AS_LOCATOR as 'asLocator',
+                      case when IS_RESULT = 'NO' then 0 else 1 end as 'isResult',
+                      case when AS_LOCATOR = 'NO' then 0 else 1 end as 'asLocator',
                       CASE
                         WHEN DATA_TYPE IS NULL THEN USER_DEFINED_TYPE_NAME
                         WHEN DATA_TYPE = 'table type' THEN USER_DEFINED_TYPE_NAME
@@ -382,8 +420,29 @@ function commands() {
                     FROM INFORMATION_SCHEMA.PARAMETERS
                     WHERE (SPECIFIC_SCHEMA = :schemaOwner)
                     ORDER BY SPECIFIC_SCHEMA, SPECIFIC_NAME, ORDINAL_POSITION, PARAMETER_NAME`;
-      return knex.raw(sql, { schemaOwner: schemaOwner });
+      return knex.raw(sql, { schemaOwner });
     },
+
+    getViews: (knex, schemaOwner) => {
+      const sql = `SELECT 
+                        s.name as 'schema',
+                        o.name as 'name',
+                        p.value as 'description'
+                    FROM sysobjects o
+                    INNER JOIN  sys.schemas s
+                        ON s.schema_id = o.uid
+                    LEFT JOIN sys.extended_properties p 
+                        ON p.major_id = o.id
+                        AND p.minor_id = 0
+                        AND p.name = 'MS_Description'
+                    WHERE ` +
+        (schemaOwner && schemaOwner.length > 0 ? '(s.name = :schemaOwner) AND ' : '') + `
+                      o.type= 'V' 
+                    ORDER BY s.name, o.name
+                    `;
+      return knex.raw(sql, { schemaOwner });
+    },
+
 
   };
 }
