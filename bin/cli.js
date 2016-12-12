@@ -38,7 +38,7 @@ function checkLocalModule(env) {
 var knex;
 function initKnex(env) {
 
-  //checkLocalModule(env);
+  checkLocalModule(env);
 
   if (!env.configPath) {
     exit('No knexfile found in this directory. Specify a path with --knexfile');

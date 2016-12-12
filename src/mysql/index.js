@@ -5,29 +5,59 @@ import co from 'co';
 import cmds from './commands';
 
 function extractor() {
+  const getRows = function (result) {
+    // MySQL does a weird thing on some queries, where it wraps the result into a second array.
+    // - The 1st array is a RowDataPacket
+    // - The 2nd array is a FieldPacket
+    if (Array.isArray(result) && result.length > 0) {
+      if (Array.isArray(result[0])) {
+        return result[0];
+      }
+    }
+    return result;
+  };
+
   return {
     extract: function extract(knex) {
       return co(function*() {
         const db = {
-          driver: 'mssql',
-          variant: (yield cmds.getVersionInfo(knex))[0],
-          catalog: (yield cmds.getCatalog(knex))[0].name,
-          dataTypes: _.keyBy(yield cmds.getDataTypes(knex), 'typeName'),
+          driver: 'mysql',
+          variant: {},
+          catalog: getRows(yield cmds.getCatalog(knex))[0].name,
+          dataTypes: _.keyBy(getRows(yield cmds.getDataTypes(knex)), 'typeName'),
           schemas: {},
         };
 
-        // get database users
-        // db.users = _.map(yield cmds.getUsers(knex), 'name');
+        _.forEach(getRows(yield cmds.getVersionInfo(knex)), function (row) {
+          if (row.Variable_name === 'version') {
+            db.variant.productVersion = row.Value;
+          } else if (row.Variable_name === 'version_comment') {
+            db.variant.edition = row.Value;
+          } else if (row.Variable_name === 'protocol_version') {
+            db.variant.productLevel = row.Value;
+          }
+        });
 
-        // get database schemas, but only include schemas that have tables in the output,
+        if (db.variant.productVersion && db.variant.productVersion.length > 0) {
+          db.variant.majorVersion = `MySQL${db.variant.productVersion.split('.')[0]}`;
+        }
+
+        // get database users
+        // db.users = _.map(getRows(yield cmds.getUsers(knex)), 'name');
+
+        // in MySQL, a schema is a database, so always default the schema to the current database
         // we also want to pre-populate all the tables on each schema before we iterate
         // through and populate table details
-        const schemaNames = _.map(yield cmds.getSchemas(knex), 'name');
+
+        // the following would retrieve a list of all databases the current user has access to,
+        // this is not what we want in our case, so default instead to the current database
+        // const schemaNames = _.map(getRows(yield cmds.getSchemas(knex)), 'name');
+        const schemaNames = [db.catalog];
         for (let i = 0; i < schemaNames.length; i++) {
           const schemaName = schemaNames[i];
 
           // get schema tables
-          const tables = yield cmds.getTables(knex, schemaName);
+          const tables = getRows(yield cmds.getTables(knex, schemaName));
           if (tables.length === 0) continue;
           const schema = {
             name: schemaName,
@@ -41,13 +71,14 @@ function extractor() {
           db.schemas[schemaName] = schema;
 
           // get schema table columns
-          const schemaTableColumns = _.map(yield cmds.getTableColumns(knex, schema.name), function (row) {
+          const schemaTableColumns = _.map(getRows(yield cmds.getTableColumns(knex, schema.name)), function (row) {
             return {
               table: row.table,
               name: row.name,
               description: '', // gets populated later
               ordinal: row.ordinal,
               dataType: row.dataType,
+              dataTypeDescriptor: row.dataTypeDescriptor,
               maxLength: row.maxLength,
               precision: row.precision,
               scale: row.scale,
@@ -74,25 +105,25 @@ function extractor() {
           });
 
           // get schema views
-          const views = yield cmds.getViews(knex, schemaName);
-          const viewSources = _.keyBy(yield cmds.getViewSources(knex, schema.name), 'name');
+          const views = getRows(yield cmds.getViews(knex, schemaName));
           if (views.length > 0) {
             schema.views = _.keyBy(_.map(views, function (v) {
               return {
                 name: v.name,
                 description: v.description,
-                sql: viewSources[v.name].sql
+                sql: v.sql
               };
             }), 'name');
           }
 
           // get schema view columns
-          const schemaViewColumns = _.map(yield cmds.getViewColumns(knex, schema.name), function (row) {
+          const schemaViewColumns = _.map(getRows(yield cmds.getViewColumns(knex, schema.name)), function (row) {
             return {
               view: row.view,
               name: row.name,
               ordinal: row.ordinal,
               dataType: row.dataType,
+              dataTypeDescriptor: row.dataTypeDescriptor,
               maxLength: row.maxLength,
               precision: row.precision,
               scale: row.scale,
@@ -119,16 +150,10 @@ function extractor() {
           const schema = db.schemas[schemaName];
           if (!schema) continue;
 
-          const schemaColumnDescriptions = yield cmds.getColumnDescriptions(knex, schema.name);
-          const schemaColumnDefaultConstraint = yield cmds.getDefaultConstraints(knex, schema.name);
-          const schemaColumnIdentityDefinitions = yield cmds.getIdentityDefinitions(knex, schema.name);
-          const schemaComputedColumnDefinitions = yield cmds.getComputedColumnDefinitions(knex, schema.name);
+          const schemaColumnDefaultConstraint = getRows(yield cmds.getDefaultConstraints(knex, schema.name));
+          const schemaColumnIdentityDefinitions = getRows(yield cmds.getIdentityDefinitions(knex, schema.name));
+          const schemaComputedColumnDefinitions = getRows(yield cmds.getComputedColumnDefinitions(knex, schema.name));
 
-          _.forEach(schemaColumnDescriptions, function (scd) {
-            if (scd.description && scd.description.length > 0) {
-              schema.tables[scd.table].columns[scd.name].description = scd.description;
-            }
-          });
           _.forEach(schemaComputedColumnDefinitions, function (scdd) {
             if (scdd.definition && scdd.definition.length > 0) {
               schema.tables[scdd.table].columns[scdd.name].isComputed = true;
@@ -138,7 +163,12 @@ function extractor() {
           _.forEach(schemaColumnDefaultConstraint, function (scdc) {
             if (scdc.expression && scdc.expression.length > 0) {
               const dcc = schema.tables[scdc.table].columns[scdc.column];
-              dcc.default = { expression: scdc.expression, contraintName: scdc.name };
+              let cExpression = scdc.expression;
+              if (scdc.extra && scdc.extra.length > 0) {
+                cExpression += ` ${scdc.extra}`;
+              }
+              const cName = scdc.name && scdc.name.length > 0 ? scdc.name : null;
+              dcc.default = { expression: cExpression, contraintName: cName };
             }
           });
           _.forEach(schemaColumnIdentityDefinitions, function (idcd) {
@@ -150,31 +180,31 @@ function extractor() {
             };
           });
 
-          // get check constraints
-          const checkConstraints = yield cmds.getCheckConstraints(knex, schema.name);
-          const checkConstraintDescriptions = yield cmds.getCheckConstraintDescriptions(knex, schema.name);
-          if (checkConstraints.length > 0) {
-            _.forEach(schema.tables, function (table) {
-              const tableCheckConstraints = _.filter(checkConstraints, { table: table.name });
-              if (tableCheckConstraints.length > 0) {
-                table.checkConstraints = _.keyBy(tableCheckConstraints, 'name');
-                _.forEach(table.checkConstraints, function (ck) {
-                  _.unset(ck, 'schema');
-                  _.unset(ck, 'table');
-                });
-              }
-            });
-            _.forEach(checkConstraintDescriptions, function (ccd) {
-              if (ccd.description && ccd.description.length > 0) {
-                schema.tables[ccd.table].checkConstraints[ccd.name].description = ccd.description;
-              }
-            });
-          }
+          // get check constraints (NOT SUPPORTED IN MYSQL)
+          // const checkConstraints = getRows(yield cmds.getCheckConstraints(knex, schema.name));
+          // const checkConstraintDescriptions = getRows(yield cmds.getCheckConstraintDescriptions(knex, schema.name));
+          // if (checkConstraints.length > 0) {
+          //   _.forEach(schema.tables, function (table) {
+          //     const tableCheckConstraints = _.filter(checkConstraints, { table: table.name });
+          //     if (tableCheckConstraints.length > 0) {
+          //       table.checkConstraints = _.keyBy(tableCheckConstraints, 'name');
+          //       _.forEach(table.checkConstraints, function (ck) {
+          //         _.unset(ck, 'schema');
+          //         _.unset(ck, 'table');
+          //       });
+          //     }
+          //   });
+          //   _.forEach(checkConstraintDescriptions, function (ccd) {
+          //     if (ccd.description && ccd.description.length > 0) {
+          //       schema.tables[ccd.table].checkConstraints[ccd.name].description = ccd.description;
+          //     }
+          //   });
+          // }
 
           // get indexes
-          const indexes = yield cmds.getIndexes(knex, schema.name);
+          const indexes = getRows(yield cmds.getIndexes(knex, schema.name));
           if (indexes.length > 0) {
-            _.forEach(_.groupBy(indexes, 'name'), function (idx, idxName) {
+            _.forEach(_.groupBy(indexes, 'long_name'), function (idx, idxName) {
               if (!idx[0].isPrimary === 1) {
                 const table = schema.tables[idx[0].table];
                 const idxc = {
@@ -196,13 +226,12 @@ function extractor() {
             });
           }
 
-
-          // get primary key
-          const primaryKeyConstraints = yield cmds.getPrimaryKeyConstraints(knex, schema.name);
+          // get primary key (in MySQL, primary key names are always 'PRIMARY' so we need to group by table name instead)
+          const primaryKeyConstraints = getRows(yield cmds.getPrimaryKeyConstraints(knex, schema.name));
           if (primaryKeyConstraints.length > 0) {
-            _.forEach(_.groupBy(primaryKeyConstraints, 'name'), function (pk, pkName) {
-              const table = schema.tables[pk[0].table];
-              table.primaryKey = { name: pkName, columnCount: pk.length, columns: _.map(pk, 'column') };
+            _.forEach(_.groupBy(primaryKeyConstraints, 'table'), function (pk, pkName) {
+              const table = schema.tables[pkName];
+              table.primaryKey = { name: pk.name, columnCount: pk.length, columns: _.map(pk, 'column') };
               _.forEach(pk, function (pkc) {
                 table.columns[pkc.column].isPartOfPrimaryKey = true;
               });
@@ -210,7 +239,7 @@ function extractor() {
           }
 
           // get unique keys
-          const uniqueKeyConstraints = yield cmds.getUniqueKeyConstraints(knex, schema.name);
+          const uniqueKeyConstraints = getRows(yield cmds.getUniqueKeyConstraints(knex, schema.name));
           if (uniqueKeyConstraints.length > 0) {
             _.forEach(_.groupBy(uniqueKeyConstraints, 'name'), function (uk, ukName) {
               const table = schema.tables[uk[0].table];
@@ -224,17 +253,17 @@ function extractor() {
             });
           }
 
-          // get sequences
-          const hasSequences = yield cmds.hasSequences(knex, schema.name);
-          if (hasSequences) {
-            const sequences = yield cmds.getSequences(knex, schemaName);
-            if (sequences.length > 0) {
-              schema.sequences = _.keyBy(sequences, 'name');
-            }
-          }
+          // get sequences (NO SEQUENCES IN MYSQL)
+          // const hasSequences = getRows(yield cmds.hasSequences(knex, schema.name));
+          // if (hasSequences) {
+          //   const sequences = getRows(yield cmds.getSequences(knex, schemaName));
+          //   if (sequences.length > 0) {
+          //     schema.sequences = _.keyBy(sequences, 'name');
+          //   }
+          // }
 
           // get foreign keys
-          const foreignKeyConstraints = yield cmds.getForeignKeyConstraints(knex, schema.name);
+          const foreignKeyConstraints = getRows(yield cmds.getForeignKeyConstraints(knex, schema.name));
           if (foreignKeyConstraints.length > 0) {
             schema.foreignKeys = _.keyBy(_.map(foreignKeyConstraints, function (fkc) {
               return {
@@ -266,10 +295,28 @@ function extractor() {
           }
 
           // get schema functions
-          const functions = _.map(yield cmds.getFunctions(knex, schemaName), function (row) {
+          const functions = _.map(getRows(yield cmds.getFunctions(knex, schemaName)), function (row) {
             return {
               name: row.name,
-              sql: row.sql
+              description: row.description,
+              sql: row.sql,
+              language: row.language, // typically always 'SQL'
+              result: !row.dataType ? null : {
+                name: '',
+                ordinal: 0,
+                isIn: false,
+                isOut: true,
+                isResult: true,
+                asLocator: false,
+                dataType: row.dataType,
+                dataTypeDescriptor: row.dataTypeDescriptor,
+                maxLength: row.maxLength,
+                precision: row.precision,
+                scale: row.scale,
+                dateTimePrecision: row.dateTimePrecision,
+                characterSet: row.characterSetName,
+                collation: row.collation
+              }
             };
           });
           if (functions.length > 0) {
@@ -277,10 +324,28 @@ function extractor() {
           }
 
           // get schema procedures
-          const procedures = _.map(yield cmds.getStoredProcedures(knex, schemaName), function (row) {
+          const procedures = _.map(getRows(yield cmds.getStoredProcedures(knex, schemaName)), function (row) {
             return {
               name: row.name,
-              sql: row.sql
+              description: row.description,
+              sql: row.sql,
+              language: row.language, // typically always 'SQL'
+              result: !row.dataType ? null : {
+                name: '',
+                ordinal: 0,
+                isIn: false,
+                isOut: true,
+                isResult: true,
+                asLocator: false,
+                dataType: row.dataType,
+                dataTypeDescriptor: row.dataTypeDescriptor,
+                maxLength: row.maxLength,
+                precision: row.precision,
+                scale: row.scale,
+                dateTimePrecision: row.dateTimePrecision,
+                characterSet: row.characterSetName,
+                collation: row.collation
+              }
             };
           });
           if (procedures.length > 0) {
@@ -288,7 +353,7 @@ function extractor() {
           }
 
           // get procedure arguments
-          const procedureArguments = yield cmds.getProcedureArguments(knex, schemaName);
+          const procedureArguments = getRows(yield cmds.getProcedureArguments(knex, schemaName));
           if (procedureArguments.length > 0) {
             _.forEach(_.groupBy(procedureArguments, 'procedureName'), function (groupedArguments, procedureName) {
               const pargs = _.map(groupedArguments, function (parg) {
@@ -297,9 +362,10 @@ function extractor() {
                   ordinal: parg.ordinal,
                   isIn: parg.parameterMode && parg.parameterMode.indexOf('IN') >= 0, // can be INOUT
                   isOut: parg.parameterMode && parg.parameterMode.indexOf('OUT') >= 0, // can be INOUT
-                  isResult: parg.isResult === 1,
-                  asLocator: parg.asLocator === 1,
+                  isResult: false,
+                  asLocator: false,
                   dataType: parg.dataType,
+                  dataTypeDescriptor: parg.dataTypeDescriptor,
                   maxLength: parg.maxLength,
                   precision: parg.precision,
                   scale: parg.scale,

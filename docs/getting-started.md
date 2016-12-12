@@ -14,8 +14,6 @@ Install from github at this time. Once it's ready, we'll publish it to npm.
 $ npm install git+https://git@github.com/mattjcowan/knex-schema-reader
 ```
 
-**STILL A WORK IN PROGRESS!**
-
 ### CLI
 
 The cli utilizes the [knexfile.js](http://knexjs.org/#knexfile) to 

@@ -47,7 +47,7 @@ describe('api', () => {
       }).should.throw(Error);
     });
 
-    it('fails if knex client connection cannot be established', () => {
+    it('fails if client connection cannot be established', () => {
 
       (() => {
         reader({ client: 'mssql', connectionstring: 'bogus connectionstring' }).extract();

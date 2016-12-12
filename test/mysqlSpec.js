@@ -19,21 +19,21 @@ chai.should();
 
 describe('api', () => {
 
-  describe('mssql checks', () => {
+  describe('mysql checks', () => {
 
     // variables
 
     // common methods
     beforeEach(() => {
       if (!fs.existsSync('./samples')) fs.mkdirSync('./samples');
-      if (!fs.existsSync('./samples/mssql')) fs.mkdirSync('./samples/mssql');
+      if (!fs.existsSync('./samples/mysql')) fs.mkdirSync('./samples/mysql');
     });
 
-    it('able to extract schema from AdventureWorks database', function (done) {
+    it('able to extract schema from Sakila database', function (done) {
 
       this.timeout(0);
 
-      const connectionFile = './knexfile.mssql.adventureworks.json';
+      const connectionFile = './knexfile.mysql.sakila.json';
       const connectionInfo = fs.existsSync(connectionFile) ?
         JSON.parse(fs.readFileSync(connectionFile)) : null;
 
@@ -45,7 +45,7 @@ describe('api', () => {
           reader(k).extract().then(function (db) {
             k.destroy();
             db.should.not.be.null;
-            fs.writeFileSync('./samples/mssql/adventureworks.json', JSON.stringify(db, null, '\t'), 'utf-8');
+            fs.writeFileSync('./samples/mysql/sakila.json', JSON.stringify(db, null, '\t'), 'utf-8');
             done();
           }).catch(function (err) {
             k.destroy();
@@ -54,7 +54,7 @@ describe('api', () => {
           });
 
         }).catch(function () {
-          console.error('Unable to connect to database');
+          console.log('Unable to connect to database');
           done();
         });
 
@@ -64,12 +64,12 @@ describe('api', () => {
 
     });
 
-    it('able to extract schema from Northwind database', function (done) {
+    it('able to extract schema from Employees database', function (done) {
 
       this.timeout(0);
 
-      const connectionInfo = fs.existsSync('./knexfile.mssql.northwind.json') ?
-        JSON.parse(fs.readFileSync('./knexfile.mssql.northwind.json')) : null;
+      const connectionInfo = fs.existsSync('./knexfile.mysql.employees.json') ?
+        JSON.parse(fs.readFileSync('./knexfile.mysql.employees.json')) : null;
 
       if (connectionInfo) {
 
@@ -79,7 +79,7 @@ describe('api', () => {
           reader(k).extract().then(function (db) {
             k.destroy();
             db.should.not.be.null;
-            fs.writeFileSync('./samples/mssql/northwind.json', JSON.stringify(db, null, '\t'), 'utf-8');
+            fs.writeFileSync('./samples/mysql/employees.json', JSON.stringify(db, null, '\t'), 'utf-8');
             done();
           }).catch(function (err) {
             k.destroy();
@@ -88,7 +88,7 @@ describe('api', () => {
           });
 
         }).catch(function () {
-          console.error('Unable to connect to database');
+          console.log('Unable to connect to database');
           done();
         });
 

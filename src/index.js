@@ -7,9 +7,11 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 import mssqlExtractor from './mssql/index';
+import mysqlExtractor from './mysql/index';
 
 const extractors = {
-  mssql: mssqlExtractor
+  mssql: mssqlExtractor,
+  mysql: mysqlExtractor
 };
 
 function reader(knex) {

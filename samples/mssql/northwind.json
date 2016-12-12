@@ -1,5 +1,11 @@
 {
 	"driver": "mssql",
+	"variant": {
+    "majorVersion": "SQL2014",
+    "edition": "Express Edition (64-bit)",
+    "productLevel": "SP2",
+    "productVersion": "12.0.5203.0"
+	},
 	"catalog": "Northwind",
 	"dataTypes": {
 		"bigint": {
@@ -282,14 +288,14 @@
 							]
 						}
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Products_Categories": {
 							"name": "FK_Products_Categories",
 							"schemaName": "dbo",
 							"tableName": "Products",
 							"columnName": "CategoryID"
 						}
-					]
+					}
 				},
 				"CustomerCustomerDemo": {
 					"name": "CustomerCustomerDemo",
@@ -402,14 +408,14 @@
 							"CustomerTypeID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_CustomerCustomerDemo": {
 							"name": "FK_CustomerCustomerDemo",
 							"schemaName": "dbo",
 							"tableName": "CustomerCustomerDemo",
 							"columnName": "CustomerTypeID"
 						}
-					]
+					}
 				},
 				"Customers": {
 					"name": "Customers",
@@ -654,20 +660,20 @@
 							]
 						}
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_CustomerCustomerDemo_Customers": {
 							"name": "FK_CustomerCustomerDemo_Customers",
 							"schemaName": "dbo",
 							"tableName": "CustomerCustomerDemo",
 							"columnName": "CustomerID"
 						},
-						{
+						"FK_Orders_Customers": {
 							"name": "FK_Orders_Customers",
 							"schemaName": "dbo",
 							"tableName": "Orders",
 							"columnName": "CustomerID"
 						}
-					]
+					}
 				},
 				"Employees": {
 					"name": "Employees",
@@ -1053,26 +1059,26 @@
 							"EmployeeID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Employees_Employees": {
 							"name": "FK_Employees_Employees",
 							"schemaName": "dbo",
 							"tableName": "Employees",
 							"columnName": "ReportsTo"
 						},
-						{
+						"FK_EmployeeTerritories_Employees": {
 							"name": "FK_EmployeeTerritories_Employees",
 							"schemaName": "dbo",
 							"tableName": "EmployeeTerritories",
 							"columnName": "EmployeeID"
 						},
-						{
+						"FK_Orders_Employees": {
 							"name": "FK_Orders_Employees",
 							"schemaName": "dbo",
 							"tableName": "Orders",
 							"columnName": "EmployeeID"
 						}
-					]
+					}
 				},
 				"EmployeeTerritories": {
 					"name": "EmployeeTerritories",
@@ -1576,14 +1582,14 @@
 							"OrderID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Order_Details_Orders": {
 							"name": "FK_Order_Details_Orders",
 							"schemaName": "dbo",
 							"tableName": "Order Details",
 							"columnName": "OrderID"
 						}
-					]
+					}
 				},
 				"Products": {
 					"name": "Products",
@@ -1847,14 +1853,14 @@
 							]
 						}
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Order_Details_Products": {
 							"name": "FK_Order_Details_Products",
 							"schemaName": "dbo",
 							"tableName": "Order Details",
 							"columnName": "ProductID"
 						}
-					]
+					}
 				},
 				"Region": {
 					"name": "Region",
@@ -1919,14 +1925,14 @@
 							]
 						}
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Territories_Region": {
 							"name": "FK_Territories_Region",
 							"schemaName": "dbo",
 							"tableName": "Territories",
 							"columnName": "RegionID"
 						}
-					]
+					}
 				},
 				"Shippers": {
 					"name": "Shippers",
@@ -2015,14 +2021,14 @@
 							]
 						}
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Orders_Shippers": {
 							"name": "FK_Orders_Shippers",
 							"schemaName": "dbo",
 							"tableName": "Orders",
 							"columnName": "ShipVia"
 						}
-					]
+					}
 				},
 				"Suppliers": {
 					"name": "Suppliers",
@@ -2291,14 +2297,14 @@
 							]
 						}
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Products_Suppliers": {
 							"name": "FK_Products_Suppliers",
 							"schemaName": "dbo",
 							"tableName": "Products",
 							"columnName": "SupplierID"
 						}
-					]
+					}
 				},
 				"Territories": {
 					"name": "Territories",
@@ -2374,14 +2380,14 @@
 							"TerritoryID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_EmployeeTerritories_Territories": {
 							"name": "FK_EmployeeTerritories_Territories",
 							"schemaName": "dbo",
 							"tableName": "EmployeeTerritories",
 							"columnName": "TerritoryID"
 						}
-					]
+					}
 				}
 			},
 			"views": {
@@ -3871,8 +3877,8 @@
 				"CustOrderHist": {
 					"name": "CustOrderHist",
 					"sql": "CREATE PROCEDURE [dbo].[CustOrderHist] @CustomerID nchar(5)\r\nAS\r\nSELECT ProductName, Total=SUM(Quantity)\r\nFROM Products P, [Order Details] OD, Orders O, Customers C\r\nWHERE C.CustomerID = @CustomerID\r\nAND C.CustomerID = O.CustomerID AND O.OrderID = OD.OrderID AND OD.ProductID = P.ProductID\r\nGROUP BY ProductName\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@CustomerID": {
 							"name": "@CustomerID",
 							"ordinal": 1,
 							"isIn": true,
@@ -3887,13 +3893,13 @@
 							"characterSet": "UNICODE",
 							"collation": "SQL_Latin1_General_CP1_CI_AS"
 						}
-					]
+					}
 				},
 				"CustOrdersDetail": {
 					"name": "CustOrdersDetail",
 					"sql": "CREATE PROCEDURE [dbo].[CustOrdersDetail] @OrderID int\r\nAS\r\nSELECT ProductName,\r\n    UnitPrice=ROUND(Od.UnitPrice, 2),\r\n    Quantity,\r\n    Discount=CONVERT(int, Discount * 100), \r\n    ExtendedPrice=ROUND(CONVERT(money, Quantity * (1 - Discount) * Od.UnitPrice), 2)\r\nFROM Products P, [Order Details] Od\r\nWHERE Od.ProductID = P.ProductID and Od.OrderID = @OrderID\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@OrderID": {
 							"name": "@OrderID",
 							"ordinal": 1,
 							"isIn": true,
@@ -3908,13 +3914,13 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"CustOrdersOrders": {
 					"name": "CustOrdersOrders",
 					"sql": "CREATE PROCEDURE [dbo].[CustOrdersOrders] @CustomerID nchar(5)\r\nAS\r\nSELECT OrderID, \r\n  OrderDate,\r\n  RequiredDate,\r\n  ShippedDate\r\nFROM Orders\r\nWHERE CustomerID = @CustomerID\r\nORDER BY OrderID\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@CustomerID": {
 							"name": "@CustomerID",
 							"ordinal": 1,
 							"isIn": true,
@@ -3929,13 +3935,13 @@
 							"characterSet": "UNICODE",
 							"collation": "SQL_Latin1_General_CP1_CI_AS"
 						}
-					]
+					}
 				},
 				"Employee Sales by Country": {
 					"name": "Employee Sales by Country",
 					"sql": "create procedure [dbo].[Employee Sales by Country] \r\n@Beginning_Date DateTime, @Ending_Date DateTime AS\r\nSELECT Employees.Country, Employees.LastName, Employees.FirstName, Orders.ShippedDate, Orders.OrderID, \"Order Subtotals\".Subtotal AS SaleAmount\r\nFROM Employees INNER JOIN \r\n  (Orders INNER JOIN \"Order Subtotals\" ON Orders.OrderID = \"Order Subtotals\".OrderID) \r\n  ON Employees.EmployeeID = Orders.EmployeeID\r\nWHERE Orders.ShippedDate Between @Beginning_Date And @Ending_Date\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@Beginning_Date": {
 							"name": "@Beginning_Date",
 							"ordinal": 1,
 							"isIn": true,
@@ -3950,7 +3956,7 @@
 							"characterSet": null,
 							"collation": null
 						},
-						{
+						"@Ending_Date": {
 							"name": "@Ending_Date",
 							"ordinal": 2,
 							"isIn": true,
@@ -3965,13 +3971,13 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"Sales by Year": {
 					"name": "Sales by Year",
 					"sql": "create procedure [dbo].[Sales by Year] \r\n  @Beginning_Date DateTime, @Ending_Date DateTime AS\r\nSELECT Orders.ShippedDate, Orders.OrderID, \"Order Subtotals\".Subtotal, DATENAME(yy,ShippedDate) AS Year\r\nFROM Orders INNER JOIN \"Order Subtotals\" ON Orders.OrderID = \"Order Subtotals\".OrderID\r\nWHERE Orders.ShippedDate Between @Beginning_Date And @Ending_Date\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@Beginning_Date": {
 							"name": "@Beginning_Date",
 							"ordinal": 1,
 							"isIn": true,
@@ -3986,7 +3992,7 @@
 							"characterSet": null,
 							"collation": null
 						},
-						{
+						"@Ending_Date": {
 							"name": "@Ending_Date",
 							"ordinal": 2,
 							"isIn": true,
@@ -4001,13 +4007,13 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"SalesByCategory": {
 					"name": "SalesByCategory",
 					"sql": "CREATE PROCEDURE [dbo].[SalesByCategory]\r\n    @CategoryName nvarchar(15), @OrdYear nvarchar(4) = '1998'\r\nAS\r\nIF @OrdYear != '1996' AND @OrdYear != '1997' AND @OrdYear != '1998' \r\nBEGIN\r\n  SELECT @OrdYear = '1998'\r\nEND\r\n\r\nSELECT ProductName,\r\n  TotalPurchase=ROUND(SUM(CONVERT(decimal(14,2), OD.Quantity * (1-OD.Discount) * OD.UnitPrice)), 0)\r\nFROM [Order Details] OD, Orders O, Products P, Categories C\r\nWHERE OD.OrderID = O.OrderID \r\n  AND OD.ProductID = P.ProductID \r\n  AND P.CategoryID = C.CategoryID\r\n  AND C.CategoryName = @CategoryName\r\n  AND SUBSTRING(CONVERT(nvarchar(22), O.OrderDate, 111), 1, 4) = @OrdYear\r\nGROUP BY ProductName\r\nORDER BY ProductName\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@CategoryName": {
 							"name": "@CategoryName",
 							"ordinal": 1,
 							"isIn": true,
@@ -4022,7 +4028,7 @@
 							"characterSet": "UNICODE",
 							"collation": "SQL_Latin1_General_CP1_CI_AS"
 						},
-						{
+						"@OrdYear": {
 							"name": "@OrdYear",
 							"ordinal": 2,
 							"isIn": true,
@@ -4037,7 +4043,7 @@
 							"characterSet": "UNICODE",
 							"collation": "SQL_Latin1_General_CP1_CI_AS"
 						}
-					]
+					}
 				},
 				"Ten Most Expensive Products": {
 					"name": "Ten Most Expensive Products",

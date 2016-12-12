@@ -9,6 +9,13 @@
     "no-param-reassign": 0,
     "func-names": 0,
     "max-len": 0,
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ]
   }
 }

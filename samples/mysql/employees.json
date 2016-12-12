@@ -1,0 +1,775 @@
+{
+	"driver": "mysql",
+	"variant": {
+		"productLevel": "10",
+		"productVersion": "5.7.9",
+		"edition": "MySQL Community Server (GPL)",
+		"majorVersion": "MySQL5"
+	},
+	"catalog": "employees",
+	"dataTypes": {
+		"char": {
+			"typeName": "char",
+			"isUserDefined": 0,
+			"isAssemblyType": 0,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"date": {
+			"typeName": "date",
+			"isUserDefined": 0,
+			"isAssemblyType": 0,
+			"hasMaxLength": 0,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"enum": {
+			"typeName": "enum",
+			"isUserDefined": 0,
+			"isAssemblyType": 0,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		},
+		"int": {
+			"typeName": "int",
+			"isUserDefined": 0,
+			"isAssemblyType": 0,
+			"hasMaxLength": 0,
+			"hasPrecision": 1,
+			"hasScale": 0
+		},
+		"varchar": {
+			"typeName": "varchar",
+			"isUserDefined": 0,
+			"isAssemblyType": 0,
+			"hasMaxLength": 1,
+			"hasPrecision": 0,
+			"hasScale": 0
+		}
+	},
+	"schemas": {
+		"employees": {
+			"name": "employees",
+			"tables": {
+				"departments": {
+					"name": "departments",
+					"description": "",
+					"columns": {
+						"dept_no": {
+							"name": "dept_no",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "char",
+							"dataTypeDescriptor": "char(4)",
+							"maxLength": 4,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "latin1",
+							"collation": "latin1_swedish_ci",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"isPartOfPrimaryKey": true
+						},
+						"dept_name": {
+							"name": "dept_name",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "varchar",
+							"dataTypeDescriptor": "varchar(40)",
+							"maxLength": 40,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "latin1",
+							"collation": "latin1_swedish_ci",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": true,
+							"isUnique": false,
+							"isForeignKey": false,
+							"uniqueKeyName": "dept_name"
+						}
+					},
+					"primaryKey": {
+						"columnCount": 1,
+						"columns": [
+							"dept_no"
+						]
+					},
+					"uniqueKeys": {
+						"dept_name": {
+							"name": "dept_name",
+							"columnCount": 1,
+							"columns": [
+								"dept_name"
+							]
+						}
+					},
+					"reverseForeignKeys": {
+						"dept_emp_ibfk_2": {
+							"name": "dept_emp_ibfk_2",
+							"schemaName": "employees",
+							"tableName": "dept_emp",
+							"columnName": "dept_no"
+						},
+						"dept_manager_ibfk_2": {
+							"name": "dept_manager_ibfk_2",
+							"schemaName": "employees",
+							"tableName": "dept_manager",
+							"columnName": "dept_no"
+						}
+					}
+				},
+				"dept_emp": {
+					"name": "dept_emp",
+					"description": "",
+					"columns": {
+						"emp_no": {
+							"name": "emp_no",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"dataTypeDescriptor": "int(11)",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "dept_emp_ibfk_1"
+						},
+						"dept_no": {
+							"name": "dept_no",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "char",
+							"dataTypeDescriptor": "char(4)",
+							"maxLength": 4,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "latin1",
+							"collation": "latin1_swedish_ci",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "dept_emp_ibfk_2"
+						},
+						"from_date": {
+							"name": "from_date",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "date",
+							"dataTypeDescriptor": "date",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"to_date": {
+							"name": "to_date",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "date",
+							"dataTypeDescriptor": "date",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"primaryKey": {
+						"columnCount": 2,
+						"columns": [
+							"emp_no",
+							"dept_no"
+						]
+					}
+				},
+				"dept_manager": {
+					"name": "dept_manager",
+					"description": "",
+					"columns": {
+						"dept_no": {
+							"name": "dept_no",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "char",
+							"dataTypeDescriptor": "char(4)",
+							"maxLength": 4,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "latin1",
+							"collation": "latin1_swedish_ci",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "dept_manager_ibfk_2"
+						},
+						"emp_no": {
+							"name": "emp_no",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "int",
+							"dataTypeDescriptor": "int(11)",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "dept_manager_ibfk_1"
+						},
+						"from_date": {
+							"name": "from_date",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "date",
+							"dataTypeDescriptor": "date",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"to_date": {
+							"name": "to_date",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "date",
+							"dataTypeDescriptor": "date",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"primaryKey": {
+						"columnCount": 2,
+						"columns": [
+							"emp_no",
+							"dept_no"
+						]
+					}
+				},
+				"employees": {
+					"name": "employees",
+					"description": "",
+					"columns": {
+						"emp_no": {
+							"name": "emp_no",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"dataTypeDescriptor": "int(11)",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"isPartOfPrimaryKey": true
+						},
+						"birth_date": {
+							"name": "birth_date",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "date",
+							"dataTypeDescriptor": "date",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"first_name": {
+							"name": "first_name",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "varchar",
+							"dataTypeDescriptor": "varchar(14)",
+							"maxLength": 14,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "latin1",
+							"collation": "latin1_swedish_ci",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"last_name": {
+							"name": "last_name",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "varchar",
+							"dataTypeDescriptor": "varchar(16)",
+							"maxLength": 16,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "latin1",
+							"collation": "latin1_swedish_ci",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"gender": {
+							"name": "gender",
+							"description": "",
+							"ordinal": 5,
+							"dataType": "enum",
+							"dataTypeDescriptor": "enum('M','F')",
+							"maxLength": 1,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "latin1",
+							"collation": "latin1_swedish_ci",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"hire_date": {
+							"name": "hire_date",
+							"description": "",
+							"ordinal": 6,
+							"dataType": "date",
+							"dataTypeDescriptor": "date",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"primaryKey": {
+						"columnCount": 1,
+						"columns": [
+							"emp_no"
+						]
+					},
+					"reverseForeignKeys": {
+						"dept_emp_ibfk_1": {
+							"name": "dept_emp_ibfk_1",
+							"schemaName": "employees",
+							"tableName": "dept_emp",
+							"columnName": "emp_no"
+						},
+						"dept_manager_ibfk_1": {
+							"name": "dept_manager_ibfk_1",
+							"schemaName": "employees",
+							"tableName": "dept_manager",
+							"columnName": "emp_no"
+						},
+						"salaries_ibfk_1": {
+							"name": "salaries_ibfk_1",
+							"schemaName": "employees",
+							"tableName": "salaries",
+							"columnName": "emp_no"
+						},
+						"titles_ibfk_1": {
+							"name": "titles_ibfk_1",
+							"schemaName": "employees",
+							"tableName": "titles",
+							"columnName": "emp_no"
+						}
+					}
+				},
+				"salaries": {
+					"name": "salaries",
+					"description": "",
+					"columns": {
+						"emp_no": {
+							"name": "emp_no",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"dataTypeDescriptor": "int(11)",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "salaries_ibfk_1"
+						},
+						"salary": {
+							"name": "salary",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "int",
+							"dataTypeDescriptor": "int(11)",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"from_date": {
+							"name": "from_date",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "date",
+							"dataTypeDescriptor": "date",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"isPartOfPrimaryKey": true
+						},
+						"to_date": {
+							"name": "to_date",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "date",
+							"dataTypeDescriptor": "date",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"primaryKey": {
+						"columnCount": 2,
+						"columns": [
+							"emp_no",
+							"from_date"
+						]
+					}
+				},
+				"titles": {
+					"name": "titles",
+					"description": "",
+					"columns": {
+						"emp_no": {
+							"name": "emp_no",
+							"description": "",
+							"ordinal": 1,
+							"dataType": "int",
+							"dataTypeDescriptor": "int(11)",
+							"maxLength": null,
+							"precision": 10,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": true,
+							"isPartOfPrimaryKey": true,
+							"foreignKeyName": "titles_ibfk_1"
+						},
+						"title": {
+							"name": "title",
+							"description": "",
+							"ordinal": 2,
+							"dataType": "varchar",
+							"dataTypeDescriptor": "varchar(50)",
+							"maxLength": 50,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": "latin1",
+							"collation": "latin1_swedish_ci",
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"isPartOfPrimaryKey": true
+						},
+						"from_date": {
+							"name": "from_date",
+							"description": "",
+							"ordinal": 3,
+							"dataType": "date",
+							"dataTypeDescriptor": "date",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false,
+							"isPartOfPrimaryKey": true
+						},
+						"to_date": {
+							"name": "to_date",
+							"description": "",
+							"ordinal": 4,
+							"dataType": "date",
+							"dataTypeDescriptor": "date",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						}
+					},
+					"primaryKey": {
+						"columnCount": 3,
+						"columns": [
+							"emp_no",
+							"title",
+							"from_date"
+						]
+					}
+				}
+			},
+			"foreignKeys": {
+				"dept_emp_ibfk_1": {
+					"name": "dept_emp_ibfk_1",
+					"fkSchemaName": "employees",
+					"fkTableName": "dept_emp",
+					"fkColumnName": "emp_no",
+					"pkSchemaName": "employees",
+					"pkTableName": "employees",
+					"pkName": "PRIMARY",
+					"deleteRule": "CASCADE",
+					"updateRule": "RESTRICT"
+				},
+				"dept_emp_ibfk_2": {
+					"name": "dept_emp_ibfk_2",
+					"fkSchemaName": "employees",
+					"fkTableName": "dept_emp",
+					"fkColumnName": "dept_no",
+					"pkSchemaName": "employees",
+					"pkTableName": "departments",
+					"pkName": "PRIMARY",
+					"deleteRule": "CASCADE",
+					"updateRule": "RESTRICT"
+				},
+				"dept_manager_ibfk_1": {
+					"name": "dept_manager_ibfk_1",
+					"fkSchemaName": "employees",
+					"fkTableName": "dept_manager",
+					"fkColumnName": "emp_no",
+					"pkSchemaName": "employees",
+					"pkTableName": "employees",
+					"pkName": "PRIMARY",
+					"deleteRule": "CASCADE",
+					"updateRule": "RESTRICT"
+				},
+				"dept_manager_ibfk_2": {
+					"name": "dept_manager_ibfk_2",
+					"fkSchemaName": "employees",
+					"fkTableName": "dept_manager",
+					"fkColumnName": "dept_no",
+					"pkSchemaName": "employees",
+					"pkTableName": "departments",
+					"pkName": "PRIMARY",
+					"deleteRule": "CASCADE",
+					"updateRule": "RESTRICT"
+				},
+				"salaries_ibfk_1": {
+					"name": "salaries_ibfk_1",
+					"fkSchemaName": "employees",
+					"fkTableName": "salaries",
+					"fkColumnName": "emp_no",
+					"pkSchemaName": "employees",
+					"pkTableName": "employees",
+					"pkName": "PRIMARY",
+					"deleteRule": "CASCADE",
+					"updateRule": "RESTRICT"
+				},
+				"titles_ibfk_1": {
+					"name": "titles_ibfk_1",
+					"fkSchemaName": "employees",
+					"fkTableName": "titles",
+					"fkColumnName": "emp_no",
+					"pkSchemaName": "employees",
+					"pkTableName": "employees",
+					"pkName": "PRIMARY",
+					"deleteRule": "CASCADE",
+					"updateRule": "RESTRICT"
+				}
+			}
+		}
+	}
+}

@@ -1,5 +1,11 @@
 {
 	"driver": "mssql",
+	"variant": {
+		"majorVersion": "SQL2014",
+		"edition": "Express Edition (64-bit)",
+		"productLevel": "SP2",
+		"productVersion": "12.0.5203.0"
+	},
 	"catalog": "AdventureWorks2014",
 	"dataTypes": {
 		"AccountNumber": {
@@ -756,50 +762,48 @@
 				"ufnGetAccountingEndDate": {
 					"name": "ufnGetAccountingEndDate",
 					"sql": "\r\nCREATE FUNCTION [dbo].[ufnGetAccountingEndDate]()\r\nRETURNS [datetime] \r\nAS \r\nBEGIN\r\n    RETURN DATEADD(millisecond, -2, CONVERT(datetime, '20040701', 112));\r\nEND;\r\n",
-					"arguments": [
-						{
-							"name": "",
-							"ordinal": 0,
-							"isIn": false,
-							"isOut": true,
-							"isResult": true,
-							"asLocator": false,
-							"dataType": "datetime",
-							"maxLength": null,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": 3,
-							"characterSet": null,
-							"collation": null
-						}
-					]
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": true,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "datetime",
+						"maxLength": null,
+						"precision": null,
+						"scale": null,
+						"dateTimePrecision": 3,
+						"characterSet": null,
+						"collation": null
+					},
+					"arguments": {}
 				},
 				"ufnGetAccountingStartDate": {
 					"name": "ufnGetAccountingStartDate",
 					"sql": "\r\nCREATE FUNCTION [dbo].[ufnGetAccountingStartDate]()\r\nRETURNS [datetime] \r\nAS \r\nBEGIN\r\n    RETURN CONVERT(datetime, '20030701', 112);\r\nEND;\r\n",
-					"arguments": [
-						{
-							"name": "",
-							"ordinal": 0,
-							"isIn": false,
-							"isOut": true,
-							"isResult": true,
-							"asLocator": false,
-							"dataType": "datetime",
-							"maxLength": null,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": 3,
-							"characterSet": null,
-							"collation": null
-						}
-					]
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": true,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "datetime",
+						"maxLength": null,
+						"precision": null,
+						"scale": null,
+						"dateTimePrecision": 3,
+						"characterSet": null,
+						"collation": null
+					},
+					"arguments": {}
 				},
 				"ufnGetContactInformation": {
 					"name": "ufnGetContactInformation",
 					"sql": "\r\nCREATE FUNCTION [dbo].[ufnGetContactInformation](@PersonID int)\r\nRETURNS @retContactInformation TABLE \r\n(\r\n    -- Columns returned by the function\r\n    [PersonID] int NOT NULL, \r\n    [FirstName] [nvarchar](50) NULL, \r\n    [LastName] [nvarchar](50) NULL, \r\n\t[JobTitle] [nvarchar](50) NULL,\r\n    [BusinessEntityType] [nvarchar](50) NULL\r\n)\r\nAS \r\n-- Returns the first name, last name, job title and business entity type for the specified contact.\r\n-- Since a contact can serve multiple roles, more than one row may be returned.\r\nBEGIN\r\n\tIF @PersonID IS NOT NULL \r\n\t\tBEGIN\r\n\t\tIF EXISTS(SELECT * FROM [HumanResources].[Employee] e \r\n\t\t\t\t\tWHERE e.[BusinessEntityID] = @PersonID) \r\n\t\t\tINSERT INTO @retContactInformation\r\n\t\t\t\tSELECT @PersonID, p.FirstName, p.LastName, e.[JobTitle], 'Employee'\r\n\t\t\t\tFROM [HumanResources].[Employee] AS e\r\n\t\t\t\t\tINNER JOIN [Person].[Person] p\r\n\t\t\t\t\tON p.[BusinessEntityID] = e.[BusinessEntityID]\r\n\t\t\t\tWHERE e.[BusinessEntityID] = @PersonID;\r\n\r\n\t\tIF EXISTS(SELECT * FROM [Purchasing].[Vendor] AS v\r\n\t\t\t\t\tINNER JOIN [Person].[BusinessEntityContact] bec \r\n\t\t\t\t\tON bec.[BusinessEntityID] = v.[BusinessEntityID]\r\n\t\t\t\t\tWHERE bec.[PersonID] = @PersonID)\r\n\t\t\tINSERT INTO @retContactInformation\r\n\t\t\t\tSELECT @PersonID, p.FirstName, p.LastName, ct.[Name], 'Vendor Contact' \r\n\t\t\t\tFROM [Purchasing].[Vendor] AS v\r\n\t\t\t\t\tINNER JOIN [Person].[BusinessEntityContact] bec \r\n\t\t\t\t\tON bec.[BusinessEntityID] = v.[BusinessEntityID]\r\n\t\t\t\t\tINNER JOIN [Person].ContactType ct\r\n\t\t\t\t\tON ct.[ContactTypeID] = bec.[ContactTypeID]\r\n\t\t\t\t\tINNER JOIN [Person].[Person] p\r\n\t\t\t\t\tON p.[BusinessEntityID] = bec.[PersonID]\r\n\t\t\t\tWHERE bec.[PersonID] = @PersonID;\r\n\t\t\r\n\t\tIF EXISTS(SELECT * FROM [Sales].[Store] AS s\r\n\t\t\t\t\tINNER JOIN [Person].[BusinessEntityContact] bec \r\n\t\t\t\t\tON bec.[BusinessEntityID] = s.[BusinessEntityID]\r\n\t\t\t\t\tWHERE bec.[PersonID] = @PersonID)\r\n\t\t\tINSERT INTO @retContactInformation\r\n\t\t\t\tSELECT @PersonID, p.FirstName, p.LastName, ct.[Name], 'Store Contact' \r\n\t\t\t\tFROM [Sales].[Store] AS s\r\n\t\t\t\t\tINNER JOIN [Person].[BusinessEntityContact] bec \r\n\t\t\t\t\tON bec.[BusinessEntityID] = s.[BusinessEntityID]\r\n\t\t\t\t\tINNER JOIN [Person].ContactType ct\r\n\t\t\t\t\tON ct.[ContactTypeID] = bec.[ContactTypeID]\r\n\t\t\t\t\tINNER JOIN [Person].[Person] p\r\n\t\t\t\t\tON p.[BusinessEntityID] = bec.[PersonID]\r\n\t\t\t\tWHERE bec.[PersonID] = @PersonID;\r\n\r\n\t\tIF EXISTS(SELECT * FROM [Person].[Person] AS p\r\n\t\t\t\t\tINNER JOIN [Sales].[Customer] AS c\r\n\t\t\t\t\tON c.[PersonID] = p.[BusinessEntityID]\r\n\t\t\t\t\tWHERE p.[BusinessEntityID] = @PersonID AND c.[StoreID] IS NULL) \r\n\t\t\tINSERT INTO @retContactInformation\r\n\t\t\t\tSELECT @PersonID, p.FirstName, p.LastName, NULL, 'Consumer' \r\n\t\t\t\tFROM [Person].[Person] AS p\r\n\t\t\t\t\tINNER JOIN [Sales].[Customer] AS c\r\n\t\t\t\t\tON c.[PersonID] = p.[BusinessEntityID]\r\n\t\t\t\t\tWHERE p.[BusinessEntityID] = @PersonID AND c.[StoreID] IS NULL; \r\n\t\tEND\r\n\r\n\tRETURN;\r\nEND;\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@PersonID": {
 							"name": "@PersonID",
 							"ordinal": 1,
 							"isIn": true,
@@ -814,28 +818,28 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"ufnGetDocumentStatusText": {
 					"name": "ufnGetDocumentStatusText",
 					"sql": "\r\nCREATE FUNCTION [dbo].[ufnGetDocumentStatusText](@Status [tinyint])\r\nRETURNS [nvarchar](16) \r\nAS \r\n-- Returns the sales order status text representation for the status value.\r\nBEGIN\r\n    DECLARE @ret [nvarchar](16);\r\n\r\n    SET @ret = \r\n        CASE @Status\r\n            WHEN 1 THEN N'Pending approval'\r\n            WHEN 2 THEN N'Approved'\r\n            WHEN 3 THEN N'Obsolete'\r\n            ELSE N'** Invalid **'\r\n        END;\r\n    \r\n    RETURN @ret\r\nEND;\r\n",
-					"arguments": [
-						{
-							"name": "",
-							"ordinal": 0,
-							"isIn": false,
-							"isOut": true,
-							"isResult": true,
-							"asLocator": false,
-							"dataType": "nvarchar",
-							"maxLength": 16,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": null,
-							"characterSet": "UNICODE",
-							"collation": "SQL_Latin1_General_CP1_CI_AS"
-						},
-						{
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": true,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "nvarchar",
+						"maxLength": 16,
+						"precision": null,
+						"scale": null,
+						"dateTimePrecision": null,
+						"characterSet": "UNICODE",
+						"collation": "SQL_Latin1_General_CP1_CI_AS"
+					},
+					"arguments": {
+						"@Status": {
 							"name": "@Status",
 							"ordinal": 1,
 							"isIn": true,
@@ -850,28 +854,28 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"ufnGetProductDealerPrice": {
 					"name": "ufnGetProductDealerPrice",
 					"sql": "\r\n\r\n\r\nCREATE FUNCTION [dbo].[ufnGetProductDealerPrice](@ProductID [int], @OrderDate [datetime])\r\nRETURNS [money] \r\nAS \r\n-- Returns the dealer price for the product on a specific date.\r\nBEGIN\r\n    DECLARE @DealerPrice money;\r\n    DECLARE @DealerDiscount money;\r\n\r\n    SET @DealerDiscount = 0.60  -- 60% of list price\r\n\r\n    SELECT @DealerPrice = plph.[ListPrice] * @DealerDiscount \r\n    FROM [Production].[Product] p \r\n        INNER JOIN [Production].[ProductListPriceHistory] plph \r\n        ON p.[ProductID] = plph.[ProductID] \r\n            AND p.[ProductID] = @ProductID \r\n            AND @OrderDate BETWEEN plph.[StartDate] AND COALESCE(plph.[EndDate], CONVERT(datetime, '99991231', 112)); -- Make sure we get all the prices!\r\n\r\n    RETURN @DealerPrice;\r\nEND;\r\n",
-					"arguments": [
-						{
-							"name": "",
-							"ordinal": 0,
-							"isIn": false,
-							"isOut": true,
-							"isResult": true,
-							"asLocator": false,
-							"dataType": "money",
-							"maxLength": null,
-							"precision": 19,
-							"scale": 4,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
-						},
-						{
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": true,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "money",
+						"maxLength": null,
+						"precision": 19,
+						"scale": 4,
+						"dateTimePrecision": null,
+						"characterSet": null,
+						"collation": null
+					},
+					"arguments": {
+						"@ProductID": {
 							"name": "@ProductID",
 							"ordinal": 1,
 							"isIn": true,
@@ -886,7 +890,7 @@
 							"characterSet": null,
 							"collation": null
 						},
-						{
+						"@OrderDate": {
 							"name": "@OrderDate",
 							"ordinal": 2,
 							"isIn": true,
@@ -901,28 +905,28 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"ufnGetProductListPrice": {
 					"name": "ufnGetProductListPrice",
 					"sql": "\r\nCREATE FUNCTION [dbo].[ufnGetProductListPrice](@ProductID [int], @OrderDate [datetime])\r\nRETURNS [money] \r\nAS \r\nBEGIN\r\n    DECLARE @ListPrice money;\r\n\r\n    SELECT @ListPrice = plph.[ListPrice] \r\n    FROM [Production].[Product] p \r\n        INNER JOIN [Production].[ProductListPriceHistory] plph \r\n        ON p.[ProductID] = plph.[ProductID] \r\n            AND p.[ProductID] = @ProductID \r\n            AND @OrderDate BETWEEN plph.[StartDate] AND COALESCE(plph.[EndDate], CONVERT(datetime, '99991231', 112)); -- Make sure we get all the prices!\r\n\r\n    RETURN @ListPrice;\r\nEND;\r\n",
-					"arguments": [
-						{
-							"name": "",
-							"ordinal": 0,
-							"isIn": false,
-							"isOut": true,
-							"isResult": true,
-							"asLocator": false,
-							"dataType": "money",
-							"maxLength": null,
-							"precision": 19,
-							"scale": 4,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
-						},
-						{
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": true,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "money",
+						"maxLength": null,
+						"precision": 19,
+						"scale": 4,
+						"dateTimePrecision": null,
+						"characterSet": null,
+						"collation": null
+					},
+					"arguments": {
+						"@ProductID": {
 							"name": "@ProductID",
 							"ordinal": 1,
 							"isIn": true,
@@ -937,7 +941,7 @@
 							"characterSet": null,
 							"collation": null
 						},
-						{
+						"@OrderDate": {
 							"name": "@OrderDate",
 							"ordinal": 2,
 							"isIn": true,
@@ -952,28 +956,28 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"ufnGetProductStandardCost": {
 					"name": "ufnGetProductStandardCost",
 					"sql": "\r\nCREATE FUNCTION [dbo].[ufnGetProductStandardCost](@ProductID [int], @OrderDate [datetime])\r\nRETURNS [money] \r\nAS \r\n-- Returns the standard cost for the product on a specific date.\r\nBEGIN\r\n    DECLARE @StandardCost money;\r\n\r\n    SELECT @StandardCost = pch.[StandardCost] \r\n    FROM [Production].[Product] p \r\n        INNER JOIN [Production].[ProductCostHistory] pch \r\n        ON p.[ProductID] = pch.[ProductID] \r\n            AND p.[ProductID] = @ProductID \r\n            AND @OrderDate BETWEEN pch.[StartDate] AND COALESCE(pch.[EndDate], CONVERT(datetime, '99991231', 112)); -- Make sure we get all the prices!\r\n\r\n    RETURN @StandardCost;\r\nEND;\r\n",
-					"arguments": [
-						{
-							"name": "",
-							"ordinal": 0,
-							"isIn": false,
-							"isOut": true,
-							"isResult": true,
-							"asLocator": false,
-							"dataType": "money",
-							"maxLength": null,
-							"precision": 19,
-							"scale": 4,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
-						},
-						{
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": true,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "money",
+						"maxLength": null,
+						"precision": 19,
+						"scale": 4,
+						"dateTimePrecision": null,
+						"characterSet": null,
+						"collation": null
+					},
+					"arguments": {
+						"@ProductID": {
 							"name": "@ProductID",
 							"ordinal": 1,
 							"isIn": true,
@@ -988,7 +992,7 @@
 							"characterSet": null,
 							"collation": null
 						},
-						{
+						"@OrderDate": {
 							"name": "@OrderDate",
 							"ordinal": 2,
 							"isIn": true,
@@ -1003,28 +1007,28 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"ufnGetPurchaseOrderStatusText": {
 					"name": "ufnGetPurchaseOrderStatusText",
 					"sql": "\r\nCREATE FUNCTION [dbo].[ufnGetPurchaseOrderStatusText](@Status [tinyint])\r\nRETURNS [nvarchar](15) \r\nAS \r\n-- Returns the sales order status text representation for the status value.\r\nBEGIN\r\n    DECLARE @ret [nvarchar](15);\r\n\r\n    SET @ret = \r\n        CASE @Status\r\n            WHEN 1 THEN 'Pending'\r\n            WHEN 2 THEN 'Approved'\r\n            WHEN 3 THEN 'Rejected'\r\n            WHEN 4 THEN 'Complete'\r\n            ELSE '** Invalid **'\r\n        END;\r\n    \r\n    RETURN @ret\r\nEND;\r\n",
-					"arguments": [
-						{
-							"name": "",
-							"ordinal": 0,
-							"isIn": false,
-							"isOut": true,
-							"isResult": true,
-							"asLocator": false,
-							"dataType": "nvarchar",
-							"maxLength": 15,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": null,
-							"characterSet": "UNICODE",
-							"collation": "SQL_Latin1_General_CP1_CI_AS"
-						},
-						{
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": true,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "nvarchar",
+						"maxLength": 15,
+						"precision": null,
+						"scale": null,
+						"dateTimePrecision": null,
+						"characterSet": "UNICODE",
+						"collation": "SQL_Latin1_General_CP1_CI_AS"
+					},
+					"arguments": {
+						"@Status": {
 							"name": "@Status",
 							"ordinal": 1,
 							"isIn": true,
@@ -1039,28 +1043,28 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"ufnGetSalesOrderStatusText": {
 					"name": "ufnGetSalesOrderStatusText",
 					"sql": "\r\nCREATE FUNCTION [dbo].[ufnGetSalesOrderStatusText](@Status [tinyint])\r\nRETURNS [nvarchar](15) \r\nAS \r\n-- Returns the sales order status text representation for the status value.\r\nBEGIN\r\n    DECLARE @ret [nvarchar](15);\r\n\r\n    SET @ret = \r\n        CASE @Status\r\n            WHEN 1 THEN 'In process'\r\n            WHEN 2 THEN 'Approved'\r\n            WHEN 3 THEN 'Backordered'\r\n            WHEN 4 THEN 'Rejected'\r\n            WHEN 5 THEN 'Shipped'\r\n            WHEN 6 THEN 'Cancelled'\r\n            ELSE '** Invalid **'\r\n        END;\r\n    \r\n    RETURN @ret\r\nEND;\r\n",
-					"arguments": [
-						{
-							"name": "",
-							"ordinal": 0,
-							"isIn": false,
-							"isOut": true,
-							"isResult": true,
-							"asLocator": false,
-							"dataType": "nvarchar",
-							"maxLength": 15,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": null,
-							"characterSet": "UNICODE",
-							"collation": "SQL_Latin1_General_CP1_CI_AS"
-						},
-						{
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": true,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "nvarchar",
+						"maxLength": 15,
+						"precision": null,
+						"scale": null,
+						"dateTimePrecision": null,
+						"characterSet": "UNICODE",
+						"collation": "SQL_Latin1_General_CP1_CI_AS"
+					},
+					"arguments": {
+						"@Status": {
 							"name": "@Status",
 							"ordinal": 1,
 							"isIn": true,
@@ -1075,28 +1079,28 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"ufnGetStock": {
 					"name": "ufnGetStock",
 					"sql": "\r\nCREATE FUNCTION [dbo].[ufnGetStock](@ProductID [int])\r\nRETURNS [int] \r\nAS \r\n-- Returns the stock level for the product. This function is used internally only\r\nBEGIN\r\n    DECLARE @ret int;\r\n    \r\n    SELECT @ret = SUM(p.[Quantity]) \r\n    FROM [Production].[ProductInventory] p \r\n    WHERE p.[ProductID] = @ProductID \r\n        AND p.[LocationID] = '6'; -- Only look at inventory in the misc storage\r\n    \r\n    IF (@ret IS NULL) \r\n        SET @ret = 0\r\n    \r\n    RETURN @ret\r\nEND;\r\n",
-					"arguments": [
-						{
-							"name": "",
-							"ordinal": 0,
-							"isIn": false,
-							"isOut": true,
-							"isResult": true,
-							"asLocator": false,
-							"dataType": "int",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
-						},
-						{
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": true,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "int",
+						"maxLength": null,
+						"precision": 10,
+						"scale": 0,
+						"dateTimePrecision": null,
+						"characterSet": null,
+						"collation": null
+					},
+					"arguments": {
+						"@ProductID": {
 							"name": "@ProductID",
 							"ordinal": 1,
 							"isIn": true,
@@ -1111,28 +1115,28 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"ufnLeadingZeros": {
 					"name": "ufnLeadingZeros",
 					"sql": "\r\nCREATE FUNCTION [dbo].[ufnLeadingZeros](\r\n    @Value int\r\n) \r\nRETURNS varchar(8) \r\nWITH SCHEMABINDING \r\nAS \r\nBEGIN\r\n    DECLARE @ReturnValue varchar(8);\r\n\r\n    SET @ReturnValue = CONVERT(varchar(8), @Value);\r\n    SET @ReturnValue = REPLICATE('0', 8 - DATALENGTH(@ReturnValue)) + @ReturnValue;\r\n\r\n    RETURN (@ReturnValue);\r\nEND;\r\n",
-					"arguments": [
-						{
-							"name": "",
-							"ordinal": 0,
-							"isIn": false,
-							"isOut": true,
-							"isResult": true,
-							"asLocator": false,
-							"dataType": "varchar",
-							"maxLength": 8,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": null,
-							"characterSet": "iso_1",
-							"collation": "SQL_Latin1_General_CP1_CI_AS"
-						},
-						{
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": true,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "varchar",
+						"maxLength": 8,
+						"precision": null,
+						"scale": null,
+						"dateTimePrecision": null,
+						"characterSet": "iso_1",
+						"collation": "SQL_Latin1_General_CP1_CI_AS"
+					},
+					"arguments": {
+						"@Value": {
 							"name": "@Value",
 							"ordinal": 1,
 							"isIn": true,
@@ -1147,15 +1151,15 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				}
 			},
 			"procedures": {
 				"uspGetBillOfMaterials": {
 					"name": "uspGetBillOfMaterials",
 					"sql": "\r\nCREATE PROCEDURE [dbo].[uspGetBillOfMaterials]\r\n    @StartProductID [int],\r\n    @CheckDate [datetime]\r\nAS\r\nBEGIN\r\n    SET NOCOUNT ON;\r\n\r\n    -- Use recursive query to generate a multi-level Bill of Material (i.e. all level 1 \r\n    -- components of a level 0 assembly, all level 2 components of a level 1 assembly)\r\n    -- The CheckDate eliminates any components that are no longer used in the product on this date.\r\n    WITH [BOM_cte]([ProductAssemblyID], [ComponentID], [ComponentDesc], [PerAssemblyQty], [StandardCost], [ListPrice], [BOMLevel], [RecursionLevel]) -- CTE name and columns\r\n    AS (\r\n        SELECT b.[ProductAssemblyID], b.[ComponentID], p.[Name], b.[PerAssemblyQty], p.[StandardCost], p.[ListPrice], b.[BOMLevel], 0 -- Get the initial list of components for the bike assembly\r\n        FROM [Production].[BillOfMaterials] b\r\n            INNER JOIN [Production].[Product] p \r\n            ON b.[ComponentID] = p.[ProductID] \r\n        WHERE b.[ProductAssemblyID] = @StartProductID \r\n            AND @CheckDate >= b.[StartDate] \r\n            AND @CheckDate <= ISNULL(b.[EndDate], @CheckDate)\r\n        UNION ALL\r\n        SELECT b.[ProductAssemblyID], b.[ComponentID], p.[Name], b.[PerAssemblyQty], p.[StandardCost], p.[ListPrice], b.[BOMLevel], [RecursionLevel] + 1 -- Join recursive member to anchor\r\n        FROM [BOM_cte] cte\r\n            INNER JOIN [Production].[BillOfMaterials] b \r\n            ON b.[ProductAssemblyID] = cte.[ComponentID]\r\n            INNER JOIN [Production].[Product] p \r\n            ON b.[ComponentID] = p.[ProductID] \r\n        WHERE @CheckDate >= b.[StartDate] \r\n            AND @CheckDate <= ISNULL(b.[EndDate], @CheckDate)\r\n        )\r\n    -- Outer select from the CTE\r\n    SELECT b.[ProductAssemblyID], b.[ComponentID], b.[ComponentDesc], SUM(b.[PerAssemblyQty]) AS [TotalQuantity] , b.[StandardCost], b.[ListPrice], b.[BOMLevel], b.[RecursionLevel]\r\n    FROM [BOM_cte] b\r\n    GROUP BY b.[ComponentID], b.[ComponentDesc], b.[ProductAssemblyID], b.[BOMLevel], b.[RecursionLevel], b.[StandardCost], b.[ListPrice]\r\n    ORDER BY b.[BOMLevel], b.[ProductAssemblyID], b.[ComponentID]\r\n    OPTION (MAXRECURSION 25) \r\nEND;\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@StartProductID": {
 							"name": "@StartProductID",
 							"ordinal": 1,
 							"isIn": true,
@@ -1170,7 +1174,7 @@
 							"characterSet": null,
 							"collation": null
 						},
-						{
+						"@CheckDate": {
 							"name": "@CheckDate",
 							"ordinal": 2,
 							"isIn": true,
@@ -1185,13 +1189,13 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"uspGetEmployeeManagers": {
 					"name": "uspGetEmployeeManagers",
 					"sql": "\r\nCREATE PROCEDURE [dbo].[uspGetEmployeeManagers]\r\n    @BusinessEntityID [int]\r\nAS\r\nBEGIN\r\n    SET NOCOUNT ON;\r\n\r\n    -- Use recursive query to list out all Employees required for a particular Manager\r\n    WITH [EMP_cte]([BusinessEntityID], [OrganizationNode], [FirstName], [LastName], [JobTitle], [RecursionLevel]) -- CTE name and columns\r\n    AS (\r\n        SELECT e.[BusinessEntityID], e.[OrganizationNode], p.[FirstName], p.[LastName], e.[JobTitle], 0 -- Get the initial Employee\r\n        FROM [HumanResources].[Employee] e \r\n\t\t\tINNER JOIN [Person].[Person] as p\r\n\t\t\tON p.[BusinessEntityID] = e.[BusinessEntityID]\r\n        WHERE e.[BusinessEntityID] = @BusinessEntityID\r\n        UNION ALL\r\n        SELECT e.[BusinessEntityID], e.[OrganizationNode], p.[FirstName], p.[LastName], e.[JobTitle], [RecursionLevel] + 1 -- Join recursive member to anchor\r\n        FROM [HumanResources].[Employee] e \r\n            INNER JOIN [EMP_cte]\r\n            ON e.[OrganizationNode] = [EMP_cte].[OrganizationNode].GetAncestor(1)\r\n            INNER JOIN [Person].[Person] p \r\n            ON p.[BusinessEntityID] = e.[BusinessEntityID]\r\n    )\r\n    -- Join back to Employee to return the manager name \r\n    SELECT [EMP_cte].[RecursionLevel], [EMP_cte].[BusinessEntityID], [EMP_cte].[FirstName], [EMP_cte].[LastName], \r\n        [EMP_cte].[OrganizationNode].ToString() AS [OrganizationNode], p.[FirstName] AS 'ManagerFirstName', p.[LastName] AS 'ManagerLastName'  -- Outer select from the CTE\r\n    FROM [EMP_cte] \r\n        INNER JOIN [HumanResources].[Employee] e \r\n        ON [EMP_cte].[OrganizationNode].GetAncestor(1) = e.[OrganizationNode]\r\n        INNER JOIN [Person].[Person] p \r\n        ON p.[BusinessEntityID] = e.[BusinessEntityID]\r\n    ORDER BY [RecursionLevel], [EMP_cte].[OrganizationNode].ToString()\r\n    OPTION (MAXRECURSION 25) \r\nEND;\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@BusinessEntityID": {
 							"name": "@BusinessEntityID",
 							"ordinal": 1,
 							"isIn": true,
@@ -1206,13 +1210,13 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"uspGetManagerEmployees": {
 					"name": "uspGetManagerEmployees",
 					"sql": "\r\nCREATE PROCEDURE [dbo].[uspGetManagerEmployees]\r\n    @BusinessEntityID [int]\r\nAS\r\nBEGIN\r\n    SET NOCOUNT ON;\r\n\r\n    -- Use recursive query to list out all Employees required for a particular Manager\r\n    WITH [EMP_cte]([BusinessEntityID], [OrganizationNode], [FirstName], [LastName], [RecursionLevel]) -- CTE name and columns\r\n    AS (\r\n        SELECT e.[BusinessEntityID], e.[OrganizationNode], p.[FirstName], p.[LastName], 0 -- Get the initial list of Employees for Manager n\r\n        FROM [HumanResources].[Employee] e \r\n\t\t\tINNER JOIN [Person].[Person] p \r\n\t\t\tON p.[BusinessEntityID] = e.[BusinessEntityID]\r\n        WHERE e.[BusinessEntityID] = @BusinessEntityID\r\n        UNION ALL\r\n        SELECT e.[BusinessEntityID], e.[OrganizationNode], p.[FirstName], p.[LastName], [RecursionLevel] + 1 -- Join recursive member to anchor\r\n        FROM [HumanResources].[Employee] e \r\n            INNER JOIN [EMP_cte]\r\n            ON e.[OrganizationNode].GetAncestor(1) = [EMP_cte].[OrganizationNode]\r\n\t\t\tINNER JOIN [Person].[Person] p \r\n\t\t\tON p.[BusinessEntityID] = e.[BusinessEntityID]\r\n        )\r\n    -- Join back to Employee to return the manager name \r\n    SELECT [EMP_cte].[RecursionLevel], [EMP_cte].[OrganizationNode].ToString() as [OrganizationNode], p.[FirstName] AS 'ManagerFirstName', p.[LastName] AS 'ManagerLastName',\r\n        [EMP_cte].[BusinessEntityID], [EMP_cte].[FirstName], [EMP_cte].[LastName] -- Outer select from the CTE\r\n    FROM [EMP_cte] \r\n        INNER JOIN [HumanResources].[Employee] e \r\n        ON [EMP_cte].[OrganizationNode].GetAncestor(1) = e.[OrganizationNode]\r\n\t\t\tINNER JOIN [Person].[Person] p \r\n\t\t\tON p.[BusinessEntityID] = e.[BusinessEntityID]\r\n    ORDER BY [RecursionLevel], [EMP_cte].[OrganizationNode].ToString()\r\n    OPTION (MAXRECURSION 25) \r\nEND;\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@BusinessEntityID": {
 							"name": "@BusinessEntityID",
 							"ordinal": 1,
 							"isIn": true,
@@ -1227,13 +1231,13 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"uspGetWhereUsedProductID": {
 					"name": "uspGetWhereUsedProductID",
 					"sql": "\r\nCREATE PROCEDURE [dbo].[uspGetWhereUsedProductID]\r\n    @StartProductID [int],\r\n    @CheckDate [datetime]\r\nAS\r\nBEGIN\r\n    SET NOCOUNT ON;\r\n\r\n    --Use recursive query to generate a multi-level Bill of Material (i.e. all level 1 components of a level 0 assembly, all level 2 components of a level 1 assembly)\r\n    WITH [BOM_cte]([ProductAssemblyID], [ComponentID], [ComponentDesc], [PerAssemblyQty], [StandardCost], [ListPrice], [BOMLevel], [RecursionLevel]) -- CTE name and columns\r\n    AS (\r\n        SELECT b.[ProductAssemblyID], b.[ComponentID], p.[Name], b.[PerAssemblyQty], p.[StandardCost], p.[ListPrice], b.[BOMLevel], 0 -- Get the initial list of components for the bike assembly\r\n        FROM [Production].[BillOfMaterials] b\r\n            INNER JOIN [Production].[Product] p \r\n            ON b.[ProductAssemblyID] = p.[ProductID] \r\n        WHERE b.[ComponentID] = @StartProductID \r\n            AND @CheckDate >= b.[StartDate] \r\n            AND @CheckDate <= ISNULL(b.[EndDate], @CheckDate)\r\n        UNION ALL\r\n        SELECT b.[ProductAssemblyID], b.[ComponentID], p.[Name], b.[PerAssemblyQty], p.[StandardCost], p.[ListPrice], b.[BOMLevel], [RecursionLevel] + 1 -- Join recursive member to anchor\r\n        FROM [BOM_cte] cte\r\n            INNER JOIN [Production].[BillOfMaterials] b \r\n            ON cte.[ProductAssemblyID] = b.[ComponentID]\r\n            INNER JOIN [Production].[Product] p \r\n            ON b.[ProductAssemblyID] = p.[ProductID] \r\n        WHERE @CheckDate >= b.[StartDate] \r\n            AND @CheckDate <= ISNULL(b.[EndDate], @CheckDate)\r\n        )\r\n    -- Outer select from the CTE\r\n    SELECT b.[ProductAssemblyID], b.[ComponentID], b.[ComponentDesc], SUM(b.[PerAssemblyQty]) AS [TotalQuantity] , b.[StandardCost], b.[ListPrice], b.[BOMLevel], b.[RecursionLevel]\r\n    FROM [BOM_cte] b\r\n    GROUP BY b.[ComponentID], b.[ComponentDesc], b.[ProductAssemblyID], b.[BOMLevel], b.[RecursionLevel], b.[StandardCost], b.[ListPrice]\r\n    ORDER BY b.[BOMLevel], b.[ProductAssemblyID], b.[ComponentID]\r\n    OPTION (MAXRECURSION 25) \r\nEND;\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@StartProductID": {
 							"name": "@StartProductID",
 							"ordinal": 1,
 							"isIn": true,
@@ -1248,7 +1252,7 @@
 							"characterSet": null,
 							"collation": null
 						},
-						{
+						"@CheckDate": {
 							"name": "@CheckDate",
 							"ordinal": 2,
 							"isIn": true,
@@ -1263,13 +1267,13 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"uspLogError": {
 					"name": "uspLogError",
 					"sql": "\r\n-- uspLogError logs error information in the ErrorLog table about the \r\n-- error that caused execution to jump to the CATCH block of a \r\n-- TRY...CATCH construct. This should be executed from within the scope \r\n-- of a CATCH block otherwise it will return without inserting error \r\n-- information. \r\nCREATE PROCEDURE [dbo].[uspLogError] \r\n    @ErrorLogID [int] = 0 OUTPUT -- contains the ErrorLogID of the row inserted\r\nAS                               -- by uspLogError in the ErrorLog table\r\nBEGIN\r\n    SET NOCOUNT ON;\r\n\r\n    -- Output parameter value of 0 indicates that error \r\n    -- information was not logged\r\n    SET @ErrorLogID = 0;\r\n\r\n    BEGIN TRY\r\n        -- Return if there is no error information to log\r\n        IF ERROR_NUMBER() IS NULL\r\n            RETURN;\r\n\r\n        -- Return if inside an uncommittable transaction.\r\n        -- Data insertion/modification is not allowed when \r\n        -- a transaction is in an uncommittable state.\r\n        IF XACT_STATE() = -1\r\n        BEGIN\r\n            PRINT 'Cannot log error since the current transaction is in an uncommittable state. ' \r\n                + 'Rollback the transaction before executing uspLogError in order to successfully log error information.';\r\n            RETURN;\r\n        END\r\n\r\n        INSERT [dbo].[ErrorLog] \r\n            (\r\n            [UserName], \r\n            [ErrorNumber], \r\n            [ErrorSeverity], \r\n            [ErrorState], \r\n            [ErrorProcedure], \r\n            [ErrorLine], \r\n            [ErrorMessage]\r\n            ) \r\n        VALUES \r\n            (\r\n            CONVERT(sysname, CURRENT_USER), \r\n            ERROR_NUMBER(),\r\n            ERROR_SEVERITY(),\r\n            ERROR_STATE(),\r\n            ERROR_PROCEDURE(),\r\n            ERROR_LINE(),\r\n            ERROR_MESSAGE()\r\n            );\r\n\r\n        -- Pass back the ErrorLogID of the row inserted\r\n        SET @ErrorLogID = @@IDENTITY;\r\n    END TRY\r\n    BEGIN CATCH\r\n        PRINT 'An error occurred in stored procedure uspLogError: ';\r\n        EXECUTE [dbo].[uspPrintError];\r\n        RETURN -1;\r\n    END CATCH\r\nEND;\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@ErrorLogID": {
 							"name": "@ErrorLogID",
 							"ordinal": 1,
 							"isIn": true,
@@ -1284,7 +1288,7 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				},
 				"uspPrintError": {
 					"name": "uspPrintError",
@@ -1293,8 +1297,8 @@
 				"uspSearchCandidateResumes": {
 					"name": "uspSearchCandidateResumes",
 					"sql": "\r\n--A stored procedure which demonstrates integrated full text search\r\n\r\nCREATE PROCEDURE [dbo].[uspSearchCandidateResumes]\r\n    @searchString [nvarchar](1000),   \r\n    @useInflectional [bit]=0,\r\n    @useThesaurus [bit]=0,\r\n    @language[int]=0\r\n\r\n\r\nWITH EXECUTE AS CALLER\r\nAS\r\nBEGIN\r\n    SET NOCOUNT ON;\r\n\r\n      DECLARE @string nvarchar(1050)\r\n      --setting the lcid to the default instance LCID if needed\r\n      IF @language = NULL OR @language = 0 \r\n      BEGIN \r\n            SELECT @language =CONVERT(int, serverproperty('lcid'))  \r\n      END\r\n      \r\n\r\n            --FREETEXTTABLE case as inflectional and Thesaurus were required\r\n      IF @useThesaurus = 1 AND @useInflectional = 1  \r\n        BEGIN\r\n                  SELECT FT_TBL.[JobCandidateID], KEY_TBL.[RANK] FROM [HumanResources].[JobCandidate] AS FT_TBL \r\n                        INNER JOIN FREETEXTTABLE([HumanResources].[JobCandidate],*, @searchString,LANGUAGE @language) AS KEY_TBL\r\n                   ON  FT_TBL.[JobCandidateID] =KEY_TBL.[KEY]\r\n            END\r\n\r\n      ELSE IF @useThesaurus = 1\r\n            BEGIN\r\n                  SELECT @string ='FORMSOF(THESAURUS,\"'+@searchString +'\"'+')'      \r\n                  SELECT FT_TBL.[JobCandidateID], KEY_TBL.[RANK] FROM [HumanResources].[JobCandidate] AS FT_TBL \r\n                        INNER JOIN CONTAINSTABLE([HumanResources].[JobCandidate],*, @string,LANGUAGE @language) AS KEY_TBL\r\n                   ON  FT_TBL.[JobCandidateID] =KEY_TBL.[KEY]\r\n        END\r\n\r\n      ELSE IF @useInflectional = 1\r\n            BEGIN\r\n                  SELECT @string ='FORMSOF(INFLECTIONAL,\"'+@searchString +'\"'+')'\r\n                  SELECT FT_TBL.[JobCandidateID], KEY_TBL.[RANK] FROM [HumanResources].[JobCandidate] AS FT_TBL \r\n                        INNER JOIN CONTAINSTABLE([HumanResources].[JobCandidate],*, @string,LANGUAGE @language) AS KEY_TBL\r\n                   ON  FT_TBL.[JobCandidateID] =KEY_TBL.[KEY]\r\n        END\r\n  \r\n      ELSE --base case, plain CONTAINSTABLE\r\n            BEGIN\r\n                  SELECT @string='\"'+@searchString +'\"'\r\n                  SELECT FT_TBL.[JobCandidateID],KEY_TBL.[RANK] FROM [HumanResources].[JobCandidate] AS FT_TBL \r\n                        INNER JOIN CONTAINSTABLE([HumanResources].[JobCandidate],*,@string,LANGUAGE @language) AS KEY_TBL\r\n                   ON  FT_TBL.[JobCandidateID] =KEY_TBL.[KEY]\r\n            END\r\n\r\nEND;\r\n",
-					"arguments": [
-						{
+					"arguments": {
+						"@searchString": {
 							"name": "@searchString",
 							"ordinal": 1,
 							"isIn": true,
@@ -1309,7 +1313,7 @@
 							"characterSet": "UNICODE",
 							"collation": "SQL_Latin1_General_CP1_CI_AS"
 						},
-						{
+						"@useInflectional": {
 							"name": "@useInflectional",
 							"ordinal": 2,
 							"isIn": true,
@@ -1324,7 +1328,7 @@
 							"characterSet": null,
 							"collation": null
 						},
-						{
+						"@useThesaurus": {
 							"name": "@useThesaurus",
 							"ordinal": 3,
 							"isIn": true,
@@ -1339,7 +1343,7 @@
 							"characterSet": null,
 							"collation": null
 						},
-						{
+						"@language": {
 							"name": "@language",
 							"ordinal": 4,
 							"isIn": true,
@@ -1354,7 +1358,7 @@
 							"characterSet": null,
 							"collation": null
 						}
-					]
+					}
 				}
 			}
 		},
@@ -1461,14 +1465,14 @@
 							"DepartmentID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_EmployeeDepartmentHistory_Department_DepartmentID": {
 							"name": "FK_EmployeeDepartmentHistory_Department_DepartmentID",
 							"schemaName": "HumanResources",
 							"tableName": "EmployeeDepartmentHistory",
 							"columnName": "DepartmentID"
 						}
-					]
+					}
 				},
 				"Employee": {
 					"name": "Employee",
@@ -1855,44 +1859,44 @@
 							"BusinessEntityID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_EmployeeDepartmentHistory_Employee_BusinessEntityID": {
 							"name": "FK_EmployeeDepartmentHistory_Employee_BusinessEntityID",
 							"schemaName": "HumanResources",
 							"tableName": "EmployeeDepartmentHistory",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_EmployeePayHistory_Employee_BusinessEntityID": {
 							"name": "FK_EmployeePayHistory_Employee_BusinessEntityID",
 							"schemaName": "HumanResources",
 							"tableName": "EmployeePayHistory",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_JobCandidate_Employee_BusinessEntityID": {
 							"name": "FK_JobCandidate_Employee_BusinessEntityID",
 							"schemaName": "HumanResources",
 							"tableName": "JobCandidate",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_Document_Employee_Owner": {
 							"name": "FK_Document_Employee_Owner",
 							"schemaName": "Production",
 							"tableName": "Document",
 							"columnName": "Owner"
 						},
-						{
+						"FK_PurchaseOrderHeader_Employee_EmployeeID": {
 							"name": "FK_PurchaseOrderHeader_Employee_EmployeeID",
 							"schemaName": "Purchasing",
 							"tableName": "PurchaseOrderHeader",
 							"columnName": "EmployeeID"
 						},
-						{
+						"FK_SalesPerson_Employee_BusinessEntityID": {
 							"name": "FK_SalesPerson_Employee_BusinessEntityID",
 							"schemaName": "Sales",
 							"tableName": "SalesPerson",
 							"columnName": "BusinessEntityID"
 						}
-					]
+					}
 				},
 				"EmployeeDepartmentHistory": {
 					"name": "EmployeeDepartmentHistory",
@@ -2401,14 +2405,14 @@
 							"ShiftID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_EmployeeDepartmentHistory_Shift_ShiftID": {
 							"name": "FK_EmployeeDepartmentHistory_Shift_ShiftID",
 							"schemaName": "HumanResources",
 							"tableName": "EmployeeDepartmentHistory",
 							"columnName": "ShiftID"
 						}
-					]
+					}
 				}
 			},
 			"views": {
@@ -3679,26 +3683,26 @@
 							"AddressID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_BusinessEntityAddress_Address_AddressID": {
 							"name": "FK_BusinessEntityAddress_Address_AddressID",
 							"schemaName": "Person",
 							"tableName": "BusinessEntityAddress",
 							"columnName": "AddressID"
 						},
-						{
+						"FK_SalesOrderHeader_Address_BillToAddressID": {
 							"name": "FK_SalesOrderHeader_Address_BillToAddressID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderHeader",
 							"columnName": "BillToAddressID"
 						},
-						{
+						"FK_SalesOrderHeader_Address_ShipToAddressID": {
 							"name": "FK_SalesOrderHeader_Address_ShipToAddressID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderHeader",
 							"columnName": "ShipToAddressID"
 						}
-					]
+					}
 				},
 				"AddressType": {
 					"name": "AddressType",
@@ -3803,14 +3807,14 @@
 							"AddressTypeID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_BusinessEntityAddress_AddressType_AddressTypeID": {
 							"name": "FK_BusinessEntityAddress_AddressType_AddressTypeID",
 							"schemaName": "Person",
 							"tableName": "BusinessEntityAddress",
 							"columnName": "AddressTypeID"
 						}
-					]
+					}
 				},
 				"BusinessEntity": {
 					"name": "BusinessEntity",
@@ -3895,38 +3899,38 @@
 							"BusinessEntityID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID": {
 							"name": "FK_BusinessEntityAddress_BusinessEntity_BusinessEntityID",
 							"schemaName": "Person",
 							"tableName": "BusinessEntityAddress",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_BusinessEntityContact_BusinessEntity_BusinessEntityID": {
 							"name": "FK_BusinessEntityContact_BusinessEntity_BusinessEntityID",
 							"schemaName": "Person",
 							"tableName": "BusinessEntityContact",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_Person_BusinessEntity_BusinessEntityID": {
 							"name": "FK_Person_BusinessEntity_BusinessEntityID",
 							"schemaName": "Person",
 							"tableName": "Person",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_Vendor_BusinessEntity_BusinessEntityID": {
 							"name": "FK_Vendor_BusinessEntity_BusinessEntityID",
 							"schemaName": "Purchasing",
 							"tableName": "Vendor",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_Store_BusinessEntity_BusinessEntityID": {
 							"name": "FK_Store_BusinessEntity_BusinessEntityID",
 							"schemaName": "Sales",
 							"tableName": "Store",
 							"columnName": "BusinessEntityID"
 						}
-					]
+					}
 				},
 				"BusinessEntityAddress": {
 					"name": "BusinessEntityAddress",
@@ -4262,14 +4266,14 @@
 							"ContactTypeID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_BusinessEntityContact_ContactType_ContactTypeID": {
 							"name": "FK_BusinessEntityContact_ContactType_ContactTypeID",
 							"schemaName": "Person",
 							"tableName": "BusinessEntityContact",
 							"columnName": "ContactTypeID"
 						}
-					]
+					}
 				},
 				"CountryRegion": {
 					"name": "CountryRegion",
@@ -4347,26 +4351,26 @@
 							"CountryRegionCode"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_StateProvince_CountryRegion_CountryRegionCode": {
 							"name": "FK_StateProvince_CountryRegion_CountryRegionCode",
 							"schemaName": "Person",
 							"tableName": "StateProvince",
 							"columnName": "CountryRegionCode"
 						},
-						{
+						"FK_CountryRegionCurrency_CountryRegion_CountryRegionCode": {
 							"name": "FK_CountryRegionCurrency_CountryRegion_CountryRegionCode",
 							"schemaName": "Sales",
 							"tableName": "CountryRegionCurrency",
 							"columnName": "CountryRegionCode"
 						},
-						{
+						"FK_SalesTerritory_CountryRegion_CountryRegionCode": {
 							"name": "FK_SalesTerritory_CountryRegion_CountryRegionCode",
 							"schemaName": "Sales",
 							"tableName": "SalesTerritory",
 							"columnName": "CountryRegionCode"
 						}
-					]
+					}
 				},
 				"EmailAddress": {
 					"name": "EmailAddress",
@@ -4895,50 +4899,50 @@
 							"isForeignKey": false
 						}
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Employee_Person_BusinessEntityID": {
 							"name": "FK_Employee_Person_BusinessEntityID",
 							"schemaName": "HumanResources",
 							"tableName": "Employee",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_BusinessEntityContact_Person_PersonID": {
 							"name": "FK_BusinessEntityContact_Person_PersonID",
 							"schemaName": "Person",
 							"tableName": "BusinessEntityContact",
 							"columnName": "PersonID"
 						},
-						{
+						"FK_EmailAddress_Person_BusinessEntityID": {
 							"name": "FK_EmailAddress_Person_BusinessEntityID",
 							"schemaName": "Person",
 							"tableName": "EmailAddress",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_Password_Person_BusinessEntityID": {
 							"name": "FK_Password_Person_BusinessEntityID",
 							"schemaName": "Person",
 							"tableName": "Password",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_PersonPhone_Person_BusinessEntityID": {
 							"name": "FK_PersonPhone_Person_BusinessEntityID",
 							"schemaName": "Person",
 							"tableName": "PersonPhone",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_Customer_Person_PersonID": {
 							"name": "FK_Customer_Person_PersonID",
 							"schemaName": "Sales",
 							"tableName": "Customer",
 							"columnName": "PersonID"
 						},
-						{
+						"FK_PersonCreditCard_Person_BusinessEntityID": {
 							"name": "FK_PersonCreditCard_Person_BusinessEntityID",
 							"schemaName": "Sales",
 							"tableName": "PersonCreditCard",
 							"columnName": "BusinessEntityID"
 						}
-					],
+					},
 					"checkConstraints": {
 						"CK_Person_EmailPromotion": {
 							"name": "CK_Person_EmailPromotion",
@@ -5142,14 +5146,14 @@
 							"PhoneNumberTypeID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID": {
 							"name": "FK_PersonPhone_PhoneNumberType_PhoneNumberTypeID",
 							"schemaName": "Person",
 							"tableName": "PersonPhone",
 							"columnName": "PhoneNumberTypeID"
 						}
-					]
+					}
 				},
 				"StateProvince": {
 					"name": "StateProvince",
@@ -5339,20 +5343,20 @@
 							"StateProvinceID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Address_StateProvince_StateProvinceID": {
 							"name": "FK_Address_StateProvince_StateProvinceID",
 							"schemaName": "Person",
 							"tableName": "Address",
 							"columnName": "StateProvinceID"
 						},
-						{
+						"FK_SalesTaxRate_StateProvince_StateProvinceID": {
 							"name": "FK_SalesTaxRate_StateProvince_StateProvinceID",
 							"schemaName": "Sales",
 							"tableName": "SalesTaxRate",
 							"columnName": "StateProvinceID"
 						}
-					]
+					}
 				}
 			},
 			"views": {
@@ -6127,14 +6131,14 @@
 							"CultureID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_ProductModelProductDescriptionCulture_Culture_CultureID": {
 							"name": "FK_ProductModelProductDescriptionCulture_Culture_CultureID",
 							"schemaName": "Production",
 							"tableName": "ProductModelProductDescriptionCulture",
 							"columnName": "CultureID"
 						}
-					]
+					}
 				},
 				"Document": {
 					"name": "Document",
@@ -6460,14 +6464,14 @@
 							]
 						}
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_ProductDocument_Document_DocumentNode": {
 							"name": "FK_ProductDocument_Document_DocumentNode",
 							"schemaName": "Production",
 							"tableName": "ProductDocument",
 							"columnName": "DocumentNode"
 						}
-					]
+					}
 				},
 				"Illustration": {
 					"name": "Illustration",
@@ -6549,14 +6553,14 @@
 							"IllustrationID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_ProductModelIllustration_Illustration_IllustrationID": {
 							"name": "FK_ProductModelIllustration_Illustration_IllustrationID",
 							"schemaName": "Production",
 							"tableName": "ProductModelIllustration",
 							"columnName": "IllustrationID"
 						}
-					]
+					}
 				},
 				"Location": {
 					"name": "Location",
@@ -6696,20 +6700,20 @@
 							"LocationID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_ProductInventory_Location_LocationID": {
 							"name": "FK_ProductInventory_Location_LocationID",
 							"schemaName": "Production",
 							"tableName": "ProductInventory",
 							"columnName": "LocationID"
 						},
-						{
+						"FK_WorkOrderRouting_Location_LocationID": {
 							"name": "FK_WorkOrderRouting_Location_LocationID",
 							"schemaName": "Production",
 							"tableName": "WorkOrderRouting",
 							"columnName": "LocationID"
 						}
-					]
+					}
 				},
 				"Product": {
 					"name": "Product",
@@ -7296,92 +7300,92 @@
 							"ProductID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_BillOfMaterials_Product_ComponentID": {
 							"name": "FK_BillOfMaterials_Product_ComponentID",
 							"schemaName": "Production",
 							"tableName": "BillOfMaterials",
 							"columnName": "ComponentID"
 						},
-						{
+						"FK_BillOfMaterials_Product_ProductAssemblyID": {
 							"name": "FK_BillOfMaterials_Product_ProductAssemblyID",
 							"schemaName": "Production",
 							"tableName": "BillOfMaterials",
 							"columnName": "ProductAssemblyID"
 						},
-						{
+						"FK_ProductCostHistory_Product_ProductID": {
 							"name": "FK_ProductCostHistory_Product_ProductID",
 							"schemaName": "Production",
 							"tableName": "ProductCostHistory",
 							"columnName": "ProductID"
 						},
-						{
+						"FK_ProductDocument_Product_ProductID": {
 							"name": "FK_ProductDocument_Product_ProductID",
 							"schemaName": "Production",
 							"tableName": "ProductDocument",
 							"columnName": "ProductID"
 						},
-						{
+						"FK_ProductInventory_Product_ProductID": {
 							"name": "FK_ProductInventory_Product_ProductID",
 							"schemaName": "Production",
 							"tableName": "ProductInventory",
 							"columnName": "ProductID"
 						},
-						{
+						"FK_ProductListPriceHistory_Product_ProductID": {
 							"name": "FK_ProductListPriceHistory_Product_ProductID",
 							"schemaName": "Production",
 							"tableName": "ProductListPriceHistory",
 							"columnName": "ProductID"
 						},
-						{
+						"FK_ProductProductPhoto_Product_ProductID": {
 							"name": "FK_ProductProductPhoto_Product_ProductID",
 							"schemaName": "Production",
 							"tableName": "ProductProductPhoto",
 							"columnName": "ProductID"
 						},
-						{
+						"FK_ProductReview_Product_ProductID": {
 							"name": "FK_ProductReview_Product_ProductID",
 							"schemaName": "Production",
 							"tableName": "ProductReview",
 							"columnName": "ProductID"
 						},
-						{
+						"FK_TransactionHistory_Product_ProductID": {
 							"name": "FK_TransactionHistory_Product_ProductID",
 							"schemaName": "Production",
 							"tableName": "TransactionHistory",
 							"columnName": "ProductID"
 						},
-						{
+						"FK_WorkOrder_Product_ProductID": {
 							"name": "FK_WorkOrder_Product_ProductID",
 							"schemaName": "Production",
 							"tableName": "WorkOrder",
 							"columnName": "ProductID"
 						},
-						{
+						"FK_ProductVendor_Product_ProductID": {
 							"name": "FK_ProductVendor_Product_ProductID",
 							"schemaName": "Purchasing",
 							"tableName": "ProductVendor",
 							"columnName": "ProductID"
 						},
-						{
+						"FK_PurchaseOrderDetail_Product_ProductID": {
 							"name": "FK_PurchaseOrderDetail_Product_ProductID",
 							"schemaName": "Purchasing",
 							"tableName": "PurchaseOrderDetail",
 							"columnName": "ProductID"
 						},
-						{
+						"FK_ShoppingCartItem_Product_ProductID": {
 							"name": "FK_ShoppingCartItem_Product_ProductID",
 							"schemaName": "Sales",
 							"tableName": "ShoppingCartItem",
 							"columnName": "ProductID"
 						},
-						{
+						"FK_SpecialOfferProduct_Product_ProductID": {
 							"name": "FK_SpecialOfferProduct_Product_ProductID",
 							"schemaName": "Sales",
 							"tableName": "SpecialOfferProduct",
 							"columnName": "ProductID"
 						}
-					]
+					}
 				},
 				"ProductCategory": {
 					"name": "ProductCategory",
@@ -7486,14 +7490,14 @@
 							"ProductCategoryID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_ProductSubcategory_ProductCategory_ProductCategoryID": {
 							"name": "FK_ProductSubcategory_ProductCategory_ProductCategoryID",
 							"schemaName": "Production",
 							"tableName": "ProductSubcategory",
 							"columnName": "ProductCategoryID"
 						}
-					]
+					}
 				},
 				"ProductCostHistory": {
 					"name": "ProductCostHistory",
@@ -7730,14 +7734,14 @@
 							"ProductDescriptionID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID": {
 							"name": "FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID",
 							"schemaName": "Production",
 							"tableName": "ProductModelProductDescriptionCulture",
 							"columnName": "ProductDescriptionID"
 						}
-					]
+					}
 				},
 				"ProductDocument": {
 					"name": "ProductDocument",
@@ -8274,26 +8278,26 @@
 							"ProductModelID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Product_ProductModel_ProductModelID": {
 							"name": "FK_Product_ProductModel_ProductModelID",
 							"schemaName": "Production",
 							"tableName": "Product",
 							"columnName": "ProductModelID"
 						},
-						{
+						"FK_ProductModelIllustration_ProductModel_ProductModelID": {
 							"name": "FK_ProductModelIllustration_ProductModel_ProductModelID",
 							"schemaName": "Production",
 							"tableName": "ProductModelIllustration",
 							"columnName": "ProductModelID"
 						},
-						{
+						"FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID": {
 							"name": "FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID",
 							"schemaName": "Production",
 							"tableName": "ProductModelProductDescriptionCulture",
 							"columnName": "ProductModelID"
 						}
-					]
+					}
 				},
 				"ProductModelIllustration": {
 					"name": "ProductModelIllustration",
@@ -8620,14 +8624,14 @@
 							"ProductPhotoID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_ProductProductPhoto_ProductPhoto_ProductPhotoID": {
 							"name": "FK_ProductProductPhoto_ProductPhoto_ProductPhotoID",
 							"schemaName": "Production",
 							"tableName": "ProductProductPhoto",
 							"columnName": "ProductPhotoID"
 						}
-					]
+					}
 				},
 				"ProductProductPhoto": {
 					"name": "ProductProductPhoto",
@@ -9049,14 +9053,14 @@
 							"ProductSubcategoryID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Product_ProductSubcategory_ProductSubcategoryID": {
 							"name": "FK_Product_ProductSubcategory_ProductSubcategoryID",
 							"schemaName": "Production",
 							"tableName": "Product",
 							"columnName": "ProductSubcategoryID"
 						}
-					]
+					}
 				},
 				"ScrapReason": {
 					"name": "ScrapReason",
@@ -9138,14 +9142,14 @@
 							"ScrapReasonID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_WorkOrder_ScrapReason_ScrapReasonID": {
 							"name": "FK_WorkOrder_ScrapReason_ScrapReasonID",
 							"schemaName": "Production",
 							"tableName": "WorkOrder",
 							"columnName": "ScrapReasonID"
 						}
-					]
+					}
 				},
 				"TransactionHistory": {
 					"name": "TransactionHistory",
@@ -9648,32 +9652,32 @@
 							"UnitMeasureCode"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_BillOfMaterials_UnitMeasure_UnitMeasureCode": {
 							"name": "FK_BillOfMaterials_UnitMeasure_UnitMeasureCode",
 							"schemaName": "Production",
 							"tableName": "BillOfMaterials",
 							"columnName": "UnitMeasureCode"
 						},
-						{
+						"FK_Product_UnitMeasure_SizeUnitMeasureCode": {
 							"name": "FK_Product_UnitMeasure_SizeUnitMeasureCode",
 							"schemaName": "Production",
 							"tableName": "Product",
 							"columnName": "SizeUnitMeasureCode"
 						},
-						{
+						"FK_Product_UnitMeasure_WeightUnitMeasureCode": {
 							"name": "FK_Product_UnitMeasure_WeightUnitMeasureCode",
 							"schemaName": "Production",
 							"tableName": "Product",
 							"columnName": "WeightUnitMeasureCode"
 						},
-						{
+						"FK_ProductVendor_UnitMeasure_UnitMeasureCode": {
 							"name": "FK_ProductVendor_UnitMeasure_UnitMeasureCode",
 							"schemaName": "Purchasing",
 							"tableName": "ProductVendor",
 							"columnName": "UnitMeasureCode"
 						}
-					]
+					}
 				},
 				"WorkOrder": {
 					"name": "WorkOrder",
@@ -9915,14 +9919,14 @@
 							"WorkOrderID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_WorkOrderRouting_WorkOrder_WorkOrderID": {
 							"name": "FK_WorkOrderRouting_WorkOrder_WorkOrderID",
 							"schemaName": "Production",
 							"tableName": "WorkOrderRouting",
 							"columnName": "WorkOrderID"
 						}
-					]
+					}
 				},
 				"WorkOrderRouting": {
 					"name": "WorkOrderRouting",
@@ -11916,14 +11920,14 @@
 							"PurchaseOrderID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID": {
 							"name": "FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID",
 							"schemaName": "Purchasing",
 							"tableName": "PurchaseOrderDetail",
 							"columnName": "PurchaseOrderID"
 						}
-					]
+					}
 				},
 				"ShipMethod": {
 					"name": "ShipMethod",
@@ -12086,20 +12090,20 @@
 							"ShipMethodID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_PurchaseOrderHeader_ShipMethod_ShipMethodID": {
 							"name": "FK_PurchaseOrderHeader_ShipMethod_ShipMethodID",
 							"schemaName": "Purchasing",
 							"tableName": "PurchaseOrderHeader",
 							"columnName": "ShipMethodID"
 						},
-						{
+						"FK_SalesOrderHeader_ShipMethod_ShipMethodID": {
 							"name": "FK_SalesOrderHeader_ShipMethod_ShipMethodID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderHeader",
 							"columnName": "ShipMethodID"
 						}
-					]
+					}
 				},
 				"Vendor": {
 					"name": "Vendor",
@@ -12291,20 +12295,20 @@
 							"BusinessEntityID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_ProductVendor_Vendor_BusinessEntityID": {
 							"name": "FK_ProductVendor_Vendor_BusinessEntityID",
 							"schemaName": "Purchasing",
 							"tableName": "ProductVendor",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_PurchaseOrderHeader_Vendor_VendorID": {
 							"name": "FK_PurchaseOrderHeader_Vendor_VendorID",
 							"schemaName": "Purchasing",
 							"tableName": "PurchaseOrderHeader",
 							"columnName": "VendorID"
 						}
-					]
+					}
 				}
 			},
 			"views": {
@@ -12901,20 +12905,20 @@
 							"CreditCardID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_PersonCreditCard_CreditCard_CreditCardID": {
 							"name": "FK_PersonCreditCard_CreditCard_CreditCardID",
 							"schemaName": "Sales",
 							"tableName": "PersonCreditCard",
 							"columnName": "CreditCardID"
 						},
-						{
+						"FK_SalesOrderHeader_CreditCard_CreditCardID": {
 							"name": "FK_SalesOrderHeader_CreditCard_CreditCardID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderHeader",
 							"columnName": "CreditCardID"
 						}
-					]
+					}
 				},
 				"Currency": {
 					"name": "Currency",
@@ -12992,26 +12996,26 @@
 							"CurrencyCode"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_CountryRegionCurrency_Currency_CurrencyCode": {
 							"name": "FK_CountryRegionCurrency_Currency_CurrencyCode",
 							"schemaName": "Sales",
 							"tableName": "CountryRegionCurrency",
 							"columnName": "CurrencyCode"
 						},
-						{
+						"FK_CurrencyRate_Currency_FromCurrencyCode": {
 							"name": "FK_CurrencyRate_Currency_FromCurrencyCode",
 							"schemaName": "Sales",
 							"tableName": "CurrencyRate",
 							"columnName": "FromCurrencyCode"
 						},
-						{
+						"FK_CurrencyRate_Currency_ToCurrencyCode": {
 							"name": "FK_CurrencyRate_Currency_ToCurrencyCode",
 							"schemaName": "Sales",
 							"tableName": "CurrencyRate",
 							"columnName": "ToCurrencyCode"
 						}
-					]
+					}
 				},
 				"CurrencyRate": {
 					"name": "CurrencyRate",
@@ -13175,14 +13179,14 @@
 							"CurrencyRateID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_SalesOrderHeader_CurrencyRate_CurrencyRateID": {
 							"name": "FK_SalesOrderHeader_CurrencyRate_CurrencyRateID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderHeader",
 							"columnName": "CurrencyRateID"
 						}
-					]
+					}
 				},
 				"Customer": {
 					"name": "Customer",
@@ -13351,14 +13355,14 @@
 							"CustomerID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_SalesOrderHeader_Customer_CustomerID": {
 							"name": "FK_SalesOrderHeader_Customer_CustomerID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderHeader",
 							"columnName": "CustomerID"
 						}
-					]
+					}
 				},
 				"PersonCreditCard": {
 					"name": "PersonCreditCard",
@@ -14316,20 +14320,20 @@
 							"SalesOrderID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID": {
 							"name": "FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderDetail",
 							"columnName": "SalesOrderID"
 						},
-						{
+						"FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID": {
 							"name": "FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderHeaderSalesReason",
 							"columnName": "SalesOrderID"
 						}
-					]
+					}
 				},
 				"SalesOrderHeaderSalesReason": {
 					"name": "SalesOrderHeaderSalesReason",
@@ -14652,32 +14656,32 @@
 							"BusinessEntityID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_SalesOrderHeader_SalesPerson_SalesPersonID": {
 							"name": "FK_SalesOrderHeader_SalesPerson_SalesPersonID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderHeader",
 							"columnName": "SalesPersonID"
 						},
-						{
+						"FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID": {
 							"name": "FK_SalesPersonQuotaHistory_SalesPerson_BusinessEntityID",
 							"schemaName": "Sales",
 							"tableName": "SalesPersonQuotaHistory",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID": {
 							"name": "FK_SalesTerritoryHistory_SalesPerson_BusinessEntityID",
 							"schemaName": "Sales",
 							"tableName": "SalesTerritoryHistory",
 							"columnName": "BusinessEntityID"
 						},
-						{
+						"FK_Store_SalesPerson_SalesPersonID": {
 							"name": "FK_Store_SalesPerson_SalesPersonID",
 							"schemaName": "Sales",
 							"tableName": "Store",
 							"columnName": "SalesPersonID"
 						}
-					]
+					}
 				},
 				"SalesPersonQuotaHistory": {
 					"name": "SalesPersonQuotaHistory",
@@ -14909,14 +14913,14 @@
 							"SalesReasonID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID": {
 							"name": "FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderHeaderSalesReason",
 							"columnName": "SalesReasonID"
 						}
-					]
+					}
 				},
 				"SalesTaxRate": {
 					"name": "SalesTaxRate",
@@ -15322,38 +15326,38 @@
 							"isForeignKey": false
 						}
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_StateProvince_SalesTerritory_TerritoryID": {
 							"name": "FK_StateProvince_SalesTerritory_TerritoryID",
 							"schemaName": "Person",
 							"tableName": "StateProvince",
 							"columnName": "TerritoryID"
 						},
-						{
+						"FK_Customer_SalesTerritory_TerritoryID": {
 							"name": "FK_Customer_SalesTerritory_TerritoryID",
 							"schemaName": "Sales",
 							"tableName": "Customer",
 							"columnName": "TerritoryID"
 						},
-						{
+						"FK_SalesOrderHeader_SalesTerritory_TerritoryID": {
 							"name": "FK_SalesOrderHeader_SalesTerritory_TerritoryID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderHeader",
 							"columnName": "TerritoryID"
 						},
-						{
+						"FK_SalesPerson_SalesTerritory_TerritoryID": {
 							"name": "FK_SalesPerson_SalesTerritory_TerritoryID",
 							"schemaName": "Sales",
 							"tableName": "SalesPerson",
 							"columnName": "TerritoryID"
 						},
-						{
+						"FK_SalesTerritoryHistory_SalesTerritory_TerritoryID": {
 							"name": "FK_SalesTerritoryHistory_SalesTerritory_TerritoryID",
 							"schemaName": "Sales",
 							"tableName": "SalesTerritoryHistory",
 							"columnName": "TerritoryID"
 						}
-					],
+					},
 					"checkConstraints": {
 						"CK_SalesTerritory_CostLastYear": {
 							"name": "CK_SalesTerritory_CostLastYear",
@@ -15963,14 +15967,14 @@
 							"SpecialOfferID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID": {
 							"name": "FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID",
 							"schemaName": "Sales",
 							"tableName": "SpecialOfferProduct",
 							"columnName": "SpecialOfferID"
 						}
-					]
+					}
 				},
 				"SpecialOfferProduct": {
 					"name": "SpecialOfferProduct",
@@ -16075,14 +16079,14 @@
 							"ProductID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID": {
 							"name": "FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID",
 							"schemaName": "Sales",
 							"tableName": "SalesOrderDetail",
 							"columnName": "ProductID"
 						}
-					]
+					}
 				},
 				"Store": {
 					"name": "Store",
@@ -16225,14 +16229,14 @@
 							"BusinessEntityID"
 						]
 					},
-					"reverseForeignKeys": [
-						{
+					"reverseForeignKeys": {
+						"FK_Customer_Store_StoreID": {
 							"name": "FK_Customer_Store_StoreID",
 							"schemaName": "Sales",
 							"tableName": "Customer",
 							"columnName": "StoreID"
 						}
-					]
+					}
 				}
 			},
 			"views": {

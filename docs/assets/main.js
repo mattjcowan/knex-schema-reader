@@ -1,33 +1,45 @@
 /**
- * Babel Starter Kit (https://www.kriasoft.com/babel-starter-kit)
- *
- * Copyright © 2015-2016 Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+ * Knex Schema Reader (https://github.com/mattjcowan/knex-schema-reader)
+ **/
 
-import 'babel/polyfill';
-import onStats from './js/onStats';
+function displayStats (stats) {
 
-const run = async () => {
   try {
-    console.log('Welcome to Babel Starter Kit!'); // eslint-disable-line no-console
     if (document.querySelector('.stats')) {
-      onStats(stats => {
-        document.querySelector('.stats-forks span').innerText = stats.forks;
-        document.querySelector('.stats-stars span').innerText = stats.watchers;
-        document.querySelector('.stats-subscribers span').innerText = stats.subscribers;
-        document.querySelector('.stats-open-issues span').innerText = stats.openIssues;
-      });
+      document.querySelector('span.stats-forks').innerText = stats.forks;
+      document.querySelector('span.stats-stars').innerText = stats.watchers;
+      document.querySelector('span.stats-subscribers').innerText = stats.subscribers;
+      document.querySelector('span.stats-open-issues').innerText = stats.openIssues;
     }
   } catch (err) {
-    console.log(err); // eslint-disable-line no-console
+    if(console && console.log) console.log(err); // eslint-disable-line no-console
   }
-};
 
-if (window.addEventListener) {
-  window.addEventListener('DOMContentLoaded', run);
-} else {
-  window.attachEvent('onload', run);
 }
+
+$(document).ready(function() {
+  var githubApi = 'https://api.github.com/repos/mattjcowan/knex-schema-reader';
+  var key = 'github.repo.knexschemareader';
+  var data = JSON.parse(window.localStorage.getItem(key)) || {};
+  if (data.value) {
+    displayStats(data.value);
+  }
+  if (!data.value || (new Date() - new Date(data.timestamp)) > 300000 /* 5 min */) {
+    $.getJSON(githubApi, function (response) {
+      data = {
+        value: {
+          createdAt: response.created_at,
+          updatedAt: response.updated_at,
+          pushedAt: response.pushed_at,
+          forks: response.forks,
+          watchers: response.watchers,
+          subscribers: response.subscribers_count,
+          openIssues: response.open_issues,
+        },
+        timestamp: new Date(),
+      };
+      window.localStorage.setItem(key, JSON.stringify(data));
+      displayStats(data.value);
+    });
+  }
+});
