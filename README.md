@@ -14,6 +14,14 @@ Install from github at this time.
 $ npm install git+https://git@github.com/mattjcowan/knex-schema-reader
 ```
 
+Also, install the provider you need:
+
+```shell
+$ npm install mssql
+$ npm install mysql
+$ npm install pg
+```
+
 ### Features
 
 Exports a database schema to either an object (api) or to a json file (cli). Useful in a code generation pipeline or to build tooling.
@@ -29,13 +37,13 @@ Supported database dialects:
 Run the command as:
 
 ```shell
-knexschemareader extract --knexfile knexfile.mysql.sakila.json -o sakila.json
+$ node ./node_modules/knex-schema-reader/bin/cli.js extract --knexfile ./knexfile.json -o ./schema.json
 ```
 
 Or if you just cloned this repo, you can run the pre-built version as:
 
 ```shell
-node ./bin/cli.js extract --knexfile knexfile.mysql.sakila.json -o sakila.json
+$ node ./bin/cli.js extract --knexfile ./test/knexfiles/knexfile.mysql.sakila.json -o ./samples/mysql/sakila.json
 ```
 
 #### Sample Outputs
@@ -100,7 +108,7 @@ github.io site to host documentation ... Currently, pretty much a re-hash of thi
 To build, run:
 
 ```shell
-npm run build
+$ npm run build
 ```
 
 #### Lint
@@ -108,7 +116,7 @@ npm run build
 To lint, run:
 
 ```shell
-npm run lint
+$ npm run lint
 ```
 
 #### Testing
@@ -122,7 +130,7 @@ for viewing [here](https://github.com/mattjcowan/knex-schema-reader/tree/master/
 To run the tests, run:
 
 ```shell
-npm run test
+$ npm run test
 ```
 
 #### Code Coverage
@@ -130,7 +138,7 @@ npm run test
 To test your code coverage, run:
 
 ```shell
-npm run test:cover
+$ npm run test:cover
 ```
 
 Travis CI code coverage is not reliable at the moment, as we don't have any migrations setup
