@@ -3,6 +3,7 @@ import walkBack from 'walk-back';
 import dotenv from 'dotenv';
 import chai from 'chai';
 import Knex from 'knex';
+import assert from 'assert';
 import reader from '../src/index';
 
 // environment variables and database connection strings are all stored in a separate file
@@ -13,7 +14,7 @@ dotenv.config({ silent: true, path: walkBack(path.resolve('./'), '.env') });
 // Tell chai that we'll be using the "should" style assertions.
 chai.should();
 
-describe('api', () => {
+describe('basics', () => {
 
   describe('error checks', () => {
     // variables
@@ -49,18 +50,17 @@ describe('api', () => {
 
     it('fails if client connection cannot be established', () => {
 
-      (() => {
-        reader({ client: 'mssql', connectionstring: 'bogus connectionstring' }).extract();
-      }).should.throw(Error);
+      (() => { reader({ client: 'mssql', connectionstring: 'bogus connectionstring' }); })
+        .should.throw(Error, /Knex client cannot be null/);
 
     });
 
     it('fails if knex client connection cannot be established', (done) => {
 
-      (() => {
-        reader(Knex({ client: 'mssql', connectionstring: 'bogus connectionstring' })).extract();
-        done();
-      }).should.throw(Error);
+      reader(Knex({ client: 'mssql', connectionstring: 'bogus connectionstring' }))
+        .extract()
+        .then(function () { assert.fail(0, 1, 'Should have thrown exception'); })
+        .catch(function () { done(); });
 
     });
 

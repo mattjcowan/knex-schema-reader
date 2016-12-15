@@ -1,0 +1,12 @@
+{
+  "client": "mysql",
+  "connection": {
+    "host": "localhost",
+    "database": "sakila",
+    "user": "sakila_user",
+    "password": "sakila_user",
+    "ssl": false
+  },
+  "debug": false,
+  "acquireConnectionTimeout": 3000
+}

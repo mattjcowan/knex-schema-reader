@@ -17,9 +17,9 @@ dotenv.config({ silent: true, path: walkBack(path.resolve('./'), '.env') });
 // Tell chai that we'll be using the "should" style assertions.
 chai.should();
 
-describe('api', () => {
+describe('mssql', () => {
 
-  describe('mssql checks', () => {
+  describe('mssql extract checks', () => {
 
     // variables
 
@@ -33,7 +33,7 @@ describe('api', () => {
 
       this.timeout(0);
 
-      const connectionFile = './knexfile.mssql.adventureworks.json';
+      const connectionFile = './test/knexfiles/knexfile.mssql.adventureworks.json';
       const connectionInfo = fs.existsSync(connectionFile) ?
         JSON.parse(fs.readFileSync(connectionFile)) : null;
 
@@ -68,8 +68,9 @@ describe('api', () => {
 
       this.timeout(0);
 
-      const connectionInfo = fs.existsSync('./knexfile.mssql.northwind.json') ?
-        JSON.parse(fs.readFileSync('./knexfile.mssql.northwind.json')) : null;
+      const connectionFile = './test/knexfiles/knexfile.mssql.northwind.json';
+      const connectionInfo = fs.existsSync(connectionFile) ?
+        JSON.parse(fs.readFileSync(connectionFile)) : null;
 
       if (connectionInfo) {
 

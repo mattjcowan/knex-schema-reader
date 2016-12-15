@@ -1,0 +1,12 @@
+{
+  "client": "mysql",
+  "connection": {
+    "host": "localhost",
+    "database": "employees",
+    "user": "employees_user",
+    "password": "employees_user",
+    "ssl": false
+  },
+  "debug": false,
+  "acquireConnectionTimeout": 3000
+}

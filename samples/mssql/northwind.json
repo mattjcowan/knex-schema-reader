@@ -1,10 +1,10 @@
 {
 	"driver": "mssql",
 	"variant": {
-    "majorVersion": "SQL2014",
-    "edition": "Express Edition (64-bit)",
-    "productLevel": "SP2",
-    "productVersion": "12.0.5203.0"
+		"majorVersion": "SQL 2014",
+		"edition": "Express Edition (64-bit)",
+		"productLevel": "SP2",
+		"productVersion": "12.0.5203.0"
 	},
 	"catalog": "Northwind",
 	"dataTypes": {
@@ -12,169 +12,169 @@
 			"typeName": "bigint",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 1,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": true,
+			"hasScale": false
 		},
 		"binary": {
 			"typeName": "binary",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"bit": {
 			"typeName": "bit",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 1,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": true,
+			"hasScale": false
 		},
 		"char": {
 			"typeName": "char",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"datetime": {
 			"typeName": "datetime",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 1,
-			"hasScale": 1
+			"hasMaxLength": true,
+			"hasPrecision": true,
+			"hasScale": true
 		},
 		"datetimeoffset": {
 			"typeName": "datetimeoffset",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 1,
-			"hasScale": 1
+			"hasMaxLength": true,
+			"hasPrecision": true,
+			"hasScale": true
 		},
 		"float": {
 			"typeName": "float",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 1,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": true,
+			"hasScale": false
 		},
 		"image": {
 			"typeName": "image",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"int": {
 			"typeName": "int",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 1,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": true,
+			"hasScale": false
 		},
 		"money": {
 			"typeName": "money",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 1,
-			"hasScale": 1
+			"hasMaxLength": true,
+			"hasPrecision": true,
+			"hasScale": true
 		},
 		"nchar": {
 			"typeName": "nchar",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"ntext": {
 			"typeName": "ntext",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"nvarchar": {
 			"typeName": "nvarchar",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"real": {
 			"typeName": "real",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 1,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": true,
+			"hasScale": false
 		},
 		"smallint": {
 			"typeName": "smallint",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 1,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": true,
+			"hasScale": false
 		},
 		"sql_variant": {
 			"typeName": "sql_variant",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"sysname": {
 			"typeName": "sysname",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"tinyint": {
 			"typeName": "tinyint",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 1,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": true,
+			"hasScale": false
 		},
 		"uniqueidentifier": {
 			"typeName": "uniqueidentifier",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"varbinary": {
 			"typeName": "varbinary",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"varchar": {
 			"typeName": "varchar",
 			"isUserDefined": false,
 			"isAssemblyType": false,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		}
 	},
 	"schemas": {
@@ -199,7 +199,8 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": true,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
@@ -207,8 +208,7 @@
 							"identity": {
 								"seed": 1,
 								"increment": 1
-							},
-							"isPartOfPrimaryKey": true
+							}
 						},
 						"CategoryName": {
 							"name": "CategoryName",
@@ -224,11 +224,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": true,
 							"isUnique": false,
 							"isForeignKey": false,
+							"isPartOfIndex": true,
 							"uniqueKeyName": "UC_Categories_CategoryName"
 						},
 						"Description": {
@@ -245,6 +247,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -265,11 +268,32 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": false
+						}
+					},
+					"indexes": {
+						"CategoryName": {
+							"name": "CategoryName",
+							"columnCount": 1,
+							"columns": [
+								"CategoryName"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"UC_Categories_CategoryName": {
+							"name": "UC_Categories_CategoryName",
+							"columnCount": 1,
+							"columns": [
+								"CategoryName"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": true
 						}
 					},
 					"primaryKey": {
@@ -315,12 +339,12 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
 							"foreignKeyName": "FK_CustomerCustomerDemo_Customers"
 						},
 						"CustomerTypeID": {
@@ -337,12 +361,12 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
 							"foreignKeyName": "FK_CustomerCustomerDemo"
 						}
 					},
@@ -373,12 +397,12 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"isPartOfPrimaryKey": true
+							"isForeignKey": false
 						},
 						"CustomerDesc": {
 							"name": "CustomerDesc",
@@ -394,6 +418,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -435,12 +460,12 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"isPartOfPrimaryKey": true
+							"isForeignKey": false
 						},
 						"CompanyName": {
 							"name": "CompanyName",
@@ -456,11 +481,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": true,
 							"isUnique": false,
 							"isForeignKey": false,
+							"isPartOfIndex": true,
 							"uniqueKeyName": "UC_Customers_CompanyName"
 						},
 						"ContactName": {
@@ -477,6 +504,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -497,6 +525,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -517,6 +546,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -537,11 +567,13 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false
+							"isForeignKey": false,
+							"isPartOfIndex": true
 						},
 						"Region": {
 							"name": "Region",
@@ -557,11 +589,13 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false
+							"isForeignKey": false,
+							"isPartOfIndex": true
 						},
 						"PostalCode": {
 							"name": "PostalCode",
@@ -577,11 +611,13 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false
+							"isForeignKey": false,
+							"isPartOfIndex": true
 						},
 						"Country": {
 							"name": "Country",
@@ -597,6 +633,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -617,6 +654,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -637,11 +675,62 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": false
+						}
+					},
+					"indexes": {
+						"City": {
+							"name": "City",
+							"columnCount": 1,
+							"columns": [
+								"City"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"CompanyName": {
+							"name": "CompanyName",
+							"columnCount": 2,
+							"columns": [
+								"CompanyName",
+								"CompanyName"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"PostalCode": {
+							"name": "PostalCode",
+							"columnCount": 3,
+							"columns": [
+								"PostalCode",
+								"PostalCode",
+								"PostalCode"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"Region": {
+							"name": "Region",
+							"columnCount": 1,
+							"columns": [
+								"Region"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"UC_Customers_CompanyName": {
+							"name": "UC_Customers_CompanyName",
+							"columnCount": 1,
+							"columns": [
+								"CompanyName"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": true
 						}
 					},
 					"primaryKey": {
@@ -693,7 +782,8 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": true,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
@@ -701,8 +791,7 @@
 							"identity": {
 								"seed": 1,
 								"increment": 1
-							},
-							"isPartOfPrimaryKey": true
+							}
 						},
 						"LastName": {
 							"name": "LastName",
@@ -718,11 +807,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false
+							"isForeignKey": false,
+							"isPartOfIndex": true
 						},
 						"FirstName": {
 							"name": "FirstName",
@@ -738,6 +829,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -758,6 +850,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -778,6 +871,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -798,6 +892,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -818,6 +913,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -838,6 +934,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -858,6 +955,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -878,6 +976,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -898,6 +997,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -918,6 +1018,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -938,6 +1039,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -958,6 +1060,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -978,6 +1081,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -998,6 +1102,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1018,6 +1123,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1039,6 +1145,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1050,6 +1157,17 @@
 						"CK_Birthdate": {
 							"name": "CK_Birthdate",
 							"expression": "([BirthDate]<getdate())"
+						}
+					},
+					"indexes": {
+						"LastName": {
+							"name": "LastName",
+							"columnCount": 1,
+							"columns": [
+								"LastName"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
 						}
 					},
 					"primaryKey": {
@@ -1098,12 +1216,12 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
 							"foreignKeyName": "FK_EmployeeTerritories_Employees"
 						},
 						"TerritoryID": {
@@ -1120,12 +1238,12 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
 							"foreignKeyName": "FK_EmployeeTerritories_Territories"
 						}
 					},
@@ -1156,12 +1274,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "FK_Order_Details_Orders"
 						},
 						"ProductID": {
@@ -1178,12 +1297,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "FK_Order_Details_Products"
 						},
 						"UnitPrice": {
@@ -1200,9 +1320,10 @@
 							"isNullable": false,
 							"default": {
 								"expression": "((0))",
-								"contraintName": "DF_Order_Details_UnitPrice"
+								"constraintName": "DF_Order_Details_UnitPrice"
 							},
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1223,9 +1344,10 @@
 							"isNullable": false,
 							"default": {
 								"expression": "((1))",
-								"contraintName": "DF_Order_Details_Quantity"
+								"constraintName": "DF_Order_Details_Quantity"
 							},
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1246,9 +1368,10 @@
 							"isNullable": false,
 							"default": {
 								"expression": "((0))",
-								"contraintName": "DF_Order_Details_Discount"
+								"constraintName": "DF_Order_Details_Discount"
 							},
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1268,6 +1391,44 @@
 						"CK_UnitPrice": {
 							"name": "CK_UnitPrice",
 							"expression": "([UnitPrice]>=(0))"
+						}
+					},
+					"indexes": {
+						"OrderID": {
+							"name": "OrderID",
+							"columnCount": 1,
+							"columns": [
+								"OrderID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"OrdersOrder_Details": {
+							"name": "OrdersOrder_Details",
+							"columnCount": 1,
+							"columns": [
+								"OrderID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"ProductID": {
+							"name": "ProductID",
+							"columnCount": 1,
+							"columns": [
+								"ProductID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"ProductsOrder_Details": {
+							"name": "ProductsOrder_Details",
+							"columnCount": 1,
+							"columns": [
+								"ProductID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
 						}
 					},
 					"primaryKey": {
@@ -1297,7 +1458,8 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": true,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
@@ -1305,8 +1467,7 @@
 							"identity": {
 								"seed": 1,
 								"increment": 1
-							},
-							"isPartOfPrimaryKey": true
+							}
 						},
 						"CustomerID": {
 							"name": "CustomerID",
@@ -1322,11 +1483,13 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "FK_Orders_Customers"
 						},
 						"EmployeeID": {
@@ -1343,11 +1506,13 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "FK_Orders_Employees"
 						},
 						"OrderDate": {
@@ -1364,11 +1529,13 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false
+							"isForeignKey": false,
+							"isPartOfIndex": true
 						},
 						"RequiredDate": {
 							"name": "RequiredDate",
@@ -1384,6 +1551,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1404,11 +1572,13 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false
+							"isForeignKey": false,
+							"isPartOfIndex": true
 						},
 						"ShipVia": {
 							"name": "ShipVia",
@@ -1424,11 +1594,13 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "FK_Orders_Shippers"
 						},
 						"Freight": {
@@ -1445,9 +1617,10 @@
 							"isNullable": true,
 							"default": {
 								"expression": "((0))",
-								"contraintName": "DF_Orders_Freight"
+								"constraintName": "DF_Orders_Freight"
 							},
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1468,6 +1641,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1488,6 +1662,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1508,6 +1683,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1528,6 +1704,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1548,11 +1725,13 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false
+							"isForeignKey": false,
+							"isPartOfIndex": true
 						},
 						"ShipCountry": {
 							"name": "ShipCountry",
@@ -1568,11 +1747,86 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": false
+						}
+					},
+					"indexes": {
+						"CustomerID": {
+							"name": "CustomerID",
+							"columnCount": 1,
+							"columns": [
+								"CustomerID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"CustomersOrders": {
+							"name": "CustomersOrders",
+							"columnCount": 1,
+							"columns": [
+								"CustomerID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"EmployeeID": {
+							"name": "EmployeeID",
+							"columnCount": 1,
+							"columns": [
+								"EmployeeID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"EmployeesOrders": {
+							"name": "EmployeesOrders",
+							"columnCount": 1,
+							"columns": [
+								"EmployeeID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"OrderDate": {
+							"name": "OrderDate",
+							"columnCount": 1,
+							"columns": [
+								"OrderDate"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"ShippedDate": {
+							"name": "ShippedDate",
+							"columnCount": 1,
+							"columns": [
+								"ShippedDate"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"ShippersOrders": {
+							"name": "ShippersOrders",
+							"columnCount": 1,
+							"columns": [
+								"ShipVia"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"ShipPostalCode": {
+							"name": "ShipPostalCode",
+							"columnCount": 1,
+							"columns": [
+								"ShipPostalCode"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
 						}
 					},
 					"primaryKey": {
@@ -1609,7 +1863,8 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": true,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
@@ -1617,8 +1872,7 @@
 							"identity": {
 								"seed": 1,
 								"increment": 1
-							},
-							"isPartOfPrimaryKey": true
+							}
 						},
 						"ProductName": {
 							"name": "ProductName",
@@ -1634,11 +1888,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": true,
 							"isUnique": false,
 							"isForeignKey": false,
+							"isPartOfIndex": true,
 							"uniqueKeyName": "UC_Products_ProductName"
 						},
 						"SupplierID": {
@@ -1655,11 +1911,13 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "FK_Products_Suppliers"
 						},
 						"CategoryID": {
@@ -1676,11 +1934,13 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "FK_Products_Categories"
 						},
 						"QuantityPerUnit": {
@@ -1697,6 +1957,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1717,9 +1978,10 @@
 							"isNullable": true,
 							"default": {
 								"expression": "((0))",
-								"contraintName": "DF_Products_UnitPrice"
+								"constraintName": "DF_Products_UnitPrice"
 							},
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1740,9 +2002,10 @@
 							"isNullable": true,
 							"default": {
 								"expression": "((0))",
-								"contraintName": "DF_Products_UnitsInStock"
+								"constraintName": "DF_Products_UnitsInStock"
 							},
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1763,9 +2026,10 @@
 							"isNullable": true,
 							"default": {
 								"expression": "((0))",
-								"contraintName": "DF_Products_UnitsOnOrder"
+								"constraintName": "DF_Products_UnitsOnOrder"
 							},
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1786,9 +2050,10 @@
 							"isNullable": true,
 							"default": {
 								"expression": "((0))",
-								"contraintName": "DF_Products_ReorderLevel"
+								"constraintName": "DF_Products_ReorderLevel"
 							},
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1809,9 +2074,10 @@
 							"isNullable": false,
 							"default": {
 								"expression": "((0))",
-								"contraintName": "DF_Products_Discontinued"
+								"constraintName": "DF_Products_Discontinued"
 							},
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -1835,6 +2101,62 @@
 						"CK_UnitsOnOrder": {
 							"name": "CK_UnitsOnOrder",
 							"expression": "([UnitsOnOrder]>=(0))"
+						}
+					},
+					"indexes": {
+						"CategoriesProducts": {
+							"name": "CategoriesProducts",
+							"columnCount": 1,
+							"columns": [
+								"CategoryID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"CategoryID": {
+							"name": "CategoryID",
+							"columnCount": 1,
+							"columns": [
+								"CategoryID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"ProductName": {
+							"name": "ProductName",
+							"columnCount": 1,
+							"columns": [
+								"ProductName"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"SupplierID": {
+							"name": "SupplierID",
+							"columnCount": 1,
+							"columns": [
+								"SupplierID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"SuppliersProducts": {
+							"name": "SuppliersProducts",
+							"columnCount": 1,
+							"columns": [
+								"SupplierID"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": false
+						},
+						"UC_Products_ProductName": {
+							"name": "UC_Products_ProductName",
+							"columnCount": 1,
+							"columns": [
+								"ProductName"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": true
 						}
 					},
 					"primaryKey": {
@@ -1880,12 +2202,12 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"isPartOfPrimaryKey": true
+							"isForeignKey": false
 						},
 						"RegionDescription": {
 							"name": "RegionDescription",
@@ -1901,12 +2223,25 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": true,
 							"isUnique": false,
 							"isForeignKey": false,
+							"isPartOfIndex": true,
 							"uniqueKeyName": "UC_Region_RegionDescription"
+						}
+					},
+					"indexes": {
+						"UC_Region_RegionDescription": {
+							"name": "UC_Region_RegionDescription",
+							"columnCount": 1,
+							"columns": [
+								"RegionDescription"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": true
 						}
 					},
 					"primaryKey": {
@@ -1952,7 +2287,8 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": true,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
@@ -1960,8 +2296,7 @@
 							"identity": {
 								"seed": 1,
 								"increment": 1
-							},
-							"isPartOfPrimaryKey": true
+							}
 						},
 						"CompanyName": {
 							"name": "CompanyName",
@@ -1977,11 +2312,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": true,
 							"isUnique": false,
 							"isForeignKey": false,
+							"isPartOfIndex": true,
 							"uniqueKeyName": "UC_Shippers_CompanyName"
 						},
 						"Phone": {
@@ -1998,11 +2335,23 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": false
+						}
+					},
+					"indexes": {
+						"UC_Shippers_CompanyName": {
+							"name": "UC_Shippers_CompanyName",
+							"columnCount": 1,
+							"columns": [
+								"CompanyName"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": true
 						}
 					},
 					"primaryKey": {
@@ -2048,7 +2397,8 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": true,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
@@ -2056,8 +2406,7 @@
 							"identity": {
 								"seed": 1,
 								"increment": 1
-							},
-							"isPartOfPrimaryKey": true
+							}
 						},
 						"CompanyName": {
 							"name": "CompanyName",
@@ -2073,11 +2422,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": true,
 							"isUnique": false,
 							"isForeignKey": false,
+							"isPartOfIndex": true,
 							"uniqueKeyName": "UC_Suppliers_CompanyName"
 						},
 						"ContactName": {
@@ -2094,6 +2445,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -2114,6 +2466,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -2134,6 +2487,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -2154,6 +2508,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -2174,6 +2529,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -2194,6 +2550,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -2214,6 +2571,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -2234,6 +2592,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -2254,6 +2613,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -2274,11 +2634,23 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": false
+						}
+					},
+					"indexes": {
+						"UC_Suppliers_CompanyName": {
+							"name": "UC_Suppliers_CompanyName",
+							"columnCount": 1,
+							"columns": [
+								"CompanyName"
+							],
+							"type": "NONCLUSTERED",
+							"isUnique": true
 						}
 					},
 					"primaryKey": {
@@ -2324,12 +2696,12 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"isPartOfPrimaryKey": true
+							"isForeignKey": false
 						},
 						"TerritoryDescription": {
 							"name": "TerritoryDescription",
@@ -2345,6 +2717,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -2365,6 +2738,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,

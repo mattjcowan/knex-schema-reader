@@ -1,0 +1,6 @@
+{
+  "client": "mssql",
+  "connection": "mssql://adventureworks:adventureworks@windows-server-2012-r2:1433/AdventureWorks2014",
+  "debug": false,
+  "acquireConnectionTimeout": 3000
+}

@@ -17,23 +17,23 @@ dotenv.config({ silent: true, path: walkBack(path.resolve('./'), '.env') });
 // Tell chai that we'll be using the "should" style assertions.
 chai.should();
 
-describe('mysql', () => {
+describe('postgresql', () => {
 
-  describe('mysql extract checks', () => {
+  describe('postgresql extract checks', () => {
 
     // variables
 
     // common methods
     beforeEach(() => {
       if (!fs.existsSync('./samples')) fs.mkdirSync('./samples');
-      if (!fs.existsSync('./samples/mysql')) fs.mkdirSync('./samples/mysql');
+      if (!fs.existsSync('./samples/postgresql')) fs.mkdirSync('./samples/postgresql');
     });
 
-    it('able to extract schema from Sakila database', function (done) {
+    it('able to extract schema from Pagila database', function (done) {
 
       this.timeout(0);
 
-      const connectionFile = './test/knexfiles/knexfile.mysql.sakila.json';
+      const connectionFile = './test/knexfiles/knexfile.postgresql.pagila.json';
       const connectionInfo = fs.existsSync(connectionFile) ?
         JSON.parse(fs.readFileSync(connectionFile)) : null;
 
@@ -41,19 +41,18 @@ describe('mysql', () => {
 
         const k = Knex(connectionInfo);
         k.raw('select 1+1 as result').then(function () {
-
           reader(k).extract().then(function (db) {
             k.destroy();
             db.should.not.be.null;
-            fs.writeFileSync('./samples/mysql/sakila.json', JSON.stringify(db, null, '\t'), 'utf-8');
+            fs.writeFileSync('./samples/postgresql/pagila.json', JSON.stringify(db, null, '\t'), 'utf-8');
             done();
           }).catch(function (err) {
             k.destroy();
             assert.fail(err);
             done();
           });
-
-        }).catch(function () {
+        }).catch(function (err) {
+          console.log(err);
           console.log('Unable to connect to database');
           done();
         });
@@ -64,11 +63,11 @@ describe('mysql', () => {
 
     });
 
-    it('able to extract schema from Employees database', function (done) {
+    it('able to extract schema from SportsDB database', function (done) {
 
       this.timeout(0);
 
-      const connectionFile = './test/knexfiles/knexfile.mysql.employees.json';
+      const connectionFile = './test/knexfiles/knexfile.postgresql.sportsdb.json';
       const connectionInfo = fs.existsSync(connectionFile) ?
         JSON.parse(fs.readFileSync(connectionFile)) : null;
 
@@ -80,7 +79,7 @@ describe('mysql', () => {
           reader(k).extract().then(function (db) {
             k.destroy();
             db.should.not.be.null;
-            fs.writeFileSync('./samples/mysql/employees.json', JSON.stringify(db, null, '\t'), 'utf-8');
+            fs.writeFileSync('./samples/postgresql/sportsdb.json', JSON.stringify(db, null, '\t'), 'utf-8');
             done();
           }).catch(function (err) {
             k.destroy();

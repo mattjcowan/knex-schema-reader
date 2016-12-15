@@ -5,10 +5,11 @@ import co from 'co';
 import cmds from './commands';
 
 function extractor() {
+  // MySQL does a weird thing on certain queries, where it wraps the result into a second array, this is
+  // a workaround until I figure out why and when the driver does this
+  // - The 1st array is a RowDataPacket
+  // - The 2nd array is a FieldPacket
   const getRows = function (result) {
-    // MySQL does a weird thing on some queries, where it wraps the result into a second array.
-    // - The 1st array is a RowDataPacket
-    // - The 2nd array is a FieldPacket
     if (Array.isArray(result) && result.length > 0) {
       if (Array.isArray(result[0])) {
         return result[0];
@@ -24,7 +25,16 @@ function extractor() {
           driver: 'mysql',
           variant: {},
           catalog: getRows(yield cmds.getCatalog(knex))[0].name,
-          dataTypes: _.keyBy(getRows(yield cmds.getDataTypes(knex)), 'typeName'),
+          dataTypes: _.keyBy(_.map(getRows(yield cmds.getDataTypes(knex)), function (row) {
+            return {
+              typeName: row.typeName,
+              isUserDefined: row.isUserDefined === 1,
+              isAssemblyType: row.isAssemblyType === 1,
+              hasMaxLength: row.hasMaxLength === 1,
+              hasPrecision: row.hasPrecision === 1,
+              hasScale: row.hasScale === 1
+            };
+          }), 'typeName'),
           schemas: {},
         };
 
@@ -39,7 +49,7 @@ function extractor() {
         });
 
         if (db.variant.productVersion && db.variant.productVersion.length > 0) {
-          db.variant.majorVersion = `MySQL${db.variant.productVersion.split('.')[0]}`;
+          db.variant.majorVersion = `MySQL ${db.variant.productVersion.split('.')[0]}`;
         }
 
         // get database users
@@ -78,7 +88,6 @@ function extractor() {
               description: '', // gets populated later
               ordinal: row.ordinal,
               dataType: row.dataType,
-              dataTypeDescriptor: row.dataTypeDescriptor,
               maxLength: row.maxLength,
               precision: row.precision,
               scale: row.scale,
@@ -86,8 +95,9 @@ function extractor() {
               characterSet: row.characterSet,
               collation: row.collation,
               isNullable: row.isNullable === 1,
-              default: row.default ? { expression: row.default } : null, // gets populated later
+              default: row.default ? { expression: row.default, constraintName: null } : null, // gets populated later
               isIdentity: false, // gets populated later
+              isPartOfPrimaryKey: false, // gets populated later
               isPrimaryKey: false, // gets populated later
               isComputed: false, // gets populated later
               isPartOfUniqueKey: false, // gets populated later
@@ -123,7 +133,6 @@ function extractor() {
               name: row.name,
               ordinal: row.ordinal,
               dataType: row.dataType,
-              dataTypeDescriptor: row.dataTypeDescriptor,
               maxLength: row.maxLength,
               precision: row.precision,
               scale: row.scale,
@@ -168,7 +177,7 @@ function extractor() {
                 cExpression += ` ${scdc.extra}`;
               }
               const cName = scdc.name && scdc.name.length > 0 ? scdc.name : null;
-              dcc.default = { expression: cExpression, contraintName: cName };
+              dcc.default = { expression: cExpression, constraintName: cName };
             }
           });
           _.forEach(schemaColumnIdentityDefinitions, function (idcd) {
@@ -203,25 +212,30 @@ function extractor() {
 
           // get indexes
           const indexes = getRows(yield cmds.getIndexes(knex, schema.name));
+          const primaryKeys = {};
           if (indexes.length > 0) {
-            _.forEach(_.groupBy(indexes, 'long_name'), function (idx, idxName) {
-              if (!idx[0].isPrimary === 1) {
-                const table = schema.tables[idx[0].table];
+            _.forEach(_.groupBy(indexes, 'long_name'), function (idxArr, idxName) {
+              const idx = idxArr[0];
+              const table = schema.tables[idx.table];
+              const isPrimaryKey = idx.isPrimary === 1;
+              if (!isPrimaryKey) {
                 const idxc = {
                   name: idxName,
-                  columnCount: idx.length,
-                  columns: _.map(idx, 'column'),
-                  type: idx[0].type,
-                  isUnique: idx[0].isUnique === 1,
+                  columnCount: idxArr.length,
+                  columns: _.map(idxArr, 'column'),
+                  type: idx.type,
+                  isUnique: idx.isUnique === 1,
                 };
                 table.indexes = table.indexes || {};
                 table.indexes[idxName] = idxc;
                 _.forEach(idxc.columns, function (idxcc) {
                   table.columns[idxcc].isPartOfIndex = true;
-                  if (idxc.isUnique) {
+                  if (idxc.isUnique && idxArr.length > 1) {
                     table.columns[idxcc].isUnique = true;
                   }
                 });
+              } else {
+                primaryKeys[table.name] = idx.name;
               }
             });
           }
@@ -231,9 +245,12 @@ function extractor() {
           if (primaryKeyConstraints.length > 0) {
             _.forEach(_.groupBy(primaryKeyConstraints, 'table'), function (pk, pkName) {
               const table = schema.tables[pkName];
-              table.primaryKey = { name: pk.name, columnCount: pk.length, columns: _.map(pk, 'column') };
+              table.primaryKey = { name: primaryKeys[table.name], columnCount: pk.length, columns: _.map(pk, 'column') };
               _.forEach(pk, function (pkc) {
                 table.columns[pkc.column].isPartOfPrimaryKey = true;
+                if (pk.length === 1) {
+                  table.columns[pkc.column].isPrimaryKey = true;
+                }
               });
             });
           }
@@ -252,15 +269,6 @@ function extractor() {
               });
             });
           }
-
-          // get sequences (NO SEQUENCES IN MYSQL)
-          // const hasSequences = getRows(yield cmds.hasSequences(knex, schema.name));
-          // if (hasSequences) {
-          //   const sequences = getRows(yield cmds.getSequences(knex, schemaName));
-          //   if (sequences.length > 0) {
-          //     schema.sequences = _.keyBy(sequences, 'name');
-          //   }
-          // }
 
           // get foreign keys
           const foreignKeyConstraints = getRows(yield cmds.getForeignKeyConstraints(knex, schema.name));
@@ -305,11 +313,10 @@ function extractor() {
                 name: '',
                 ordinal: 0,
                 isIn: false,
-                isOut: true,
+                isOut: false,
                 isResult: true,
                 asLocator: false,
                 dataType: row.dataType,
-                dataTypeDescriptor: row.dataTypeDescriptor,
                 maxLength: row.maxLength,
                 precision: row.precision,
                 scale: row.scale,
@@ -334,11 +341,10 @@ function extractor() {
                 name: '',
                 ordinal: 0,
                 isIn: false,
-                isOut: true,
+                isOut: false,
                 isResult: true,
                 asLocator: false,
                 dataType: row.dataType,
-                dataTypeDescriptor: row.dataTypeDescriptor,
                 maxLength: row.maxLength,
                 precision: row.precision,
                 scale: row.scale,
@@ -365,7 +371,6 @@ function extractor() {
                   isResult: false,
                   asLocator: false,
                   dataType: parg.dataType,
-                  dataTypeDescriptor: parg.dataTypeDescriptor,
                   maxLength: parg.maxLength,
                   precision: parg.precision,
                   scale: parg.scale,

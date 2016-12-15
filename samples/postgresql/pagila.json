@@ -1,87 +1,88 @@
 {
-	"driver": "mysql",
+	"driver": "postgresql",
 	"variant": {
-		"productLevel": "10",
-		"productVersion": "5.7.9",
-		"edition": "MySQL Community Server (GPL)",
-		"majorVersion": "MySQL 5"
+		"edition": "PostgreSQL",
+		"productVersion": "9.6.1",
+		"productLevel": null,
+		"majorVersion": "PostgreSQL 9"
 	},
-	"catalog": "sakila",
+	"catalog": "pagila",
 	"dataTypes": {
-		"blob": {
-			"typeName": "blob",
-			"isUserDefined": false,
-			"isAssemblyType": false,
-			"hasMaxLength": true,
-			"hasPrecision": false,
-			"hasScale": false
-		},
-		"char": {
-			"typeName": "char",
-			"isUserDefined": false,
-			"isAssemblyType": false,
-			"hasMaxLength": true,
-			"hasPrecision": false,
-			"hasScale": false
-		},
-		"datetime": {
-			"typeName": "datetime",
+		"boolean": {
+			"typeName": "boolean",
+			"internalName": "bool",
 			"isUserDefined": false,
 			"isAssemblyType": false,
 			"hasMaxLength": false,
 			"hasPrecision": false,
 			"hasScale": false
 		},
-		"decimal": {
-			"typeName": "decimal",
+		"bytea": {
+			"typeName": "bytea",
+			"internalName": "bytea",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": false,
+			"hasPrecision": false,
+			"hasScale": false
+		},
+		"character": {
+			"typeName": "character",
+			"internalName": "bpchar",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
+		},
+		"character varying": {
+			"typeName": "character varying",
+			"internalName": "varchar",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
+		},
+		"date": {
+			"typeName": "date",
+			"internalName": "date",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": false,
+			"hasPrecision": false,
+			"hasScale": false
+		},
+		"integer": {
+			"typeName": "integer",
+			"internalName": "int4",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": false,
+			"hasPrecision": true,
+			"hasScale": false
+		},
+		"mpaa_rating": {
+			"typeName": "mpaa_rating",
+			"internalName": "mpaa_rating",
+			"isUserDefined": true,
+			"isAssemblyType": false,
+			"hasMaxLength": false,
+			"hasPrecision": false,
+			"hasScale": false
+		},
+		"numeric": {
+			"typeName": "numeric",
+			"internalName": "numeric",
 			"isUserDefined": false,
 			"isAssemblyType": false,
 			"hasMaxLength": false,
 			"hasPrecision": true,
 			"hasScale": true
 		},
-		"enum": {
-			"typeName": "enum",
-			"isUserDefined": false,
-			"isAssemblyType": false,
-			"hasMaxLength": true,
-			"hasPrecision": false,
-			"hasScale": false
-		},
-		"geometry": {
-			"typeName": "geometry",
-			"isUserDefined": false,
-			"isAssemblyType": false,
-			"hasMaxLength": false,
-			"hasPrecision": false,
-			"hasScale": false
-		},
-		"int": {
-			"typeName": "int",
-			"isUserDefined": false,
-			"isAssemblyType": false,
-			"hasMaxLength": false,
-			"hasPrecision": true,
-			"hasScale": false
-		},
-		"mediumint": {
-			"typeName": "mediumint",
-			"isUserDefined": false,
-			"isAssemblyType": false,
-			"hasMaxLength": false,
-			"hasPrecision": true,
-			"hasScale": false
-		},
-		"set": {
-			"typeName": "set",
-			"isUserDefined": false,
-			"isAssemblyType": false,
-			"hasMaxLength": true,
-			"hasPrecision": false,
-			"hasScale": false
-		},
 		"smallint": {
 			"typeName": "smallint",
+			"internalName": "int2",
 			"isUserDefined": false,
 			"isAssemblyType": false,
 			"hasMaxLength": false,
@@ -90,38 +91,34 @@
 		},
 		"text": {
 			"typeName": "text",
-			"isUserDefined": false,
-			"isAssemblyType": false,
-			"hasMaxLength": true,
-			"hasPrecision": false,
-			"hasScale": false
-		},
-		"timestamp": {
-			"typeName": "timestamp",
+			"internalName": "text",
 			"isUserDefined": false,
 			"isAssemblyType": false,
 			"hasMaxLength": false,
 			"hasPrecision": false,
 			"hasScale": false
 		},
-		"tinyint": {
-			"typeName": "tinyint",
+		"text[]": {
+			"typeName": "text[]",
+			"internalName": "_text",
 			"isUserDefined": false,
 			"isAssemblyType": false,
 			"hasMaxLength": false,
-			"hasPrecision": true,
-			"hasScale": false
-		},
-		"varchar": {
-			"typeName": "varchar",
-			"isUserDefined": false,
-			"isAssemblyType": false,
-			"hasMaxLength": true,
 			"hasPrecision": false,
 			"hasScale": false
 		},
-		"year": {
-			"typeName": "year",
+		"timestamp without time zone": {
+			"typeName": "timestamp without time zone",
+			"internalName": "timestamp",
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": false,
+			"hasPrecision": false,
+			"hasScale": false
+		},
+		"tsvector": {
+			"typeName": "tsvector",
+			"internalName": "tsvector",
 			"isUserDefined": false,
 			"isAssemblyType": false,
 			"hasMaxLength": false,
@@ -130,8 +127,8 @@
 		}
 	},
 	"schemas": {
-		"sakila": {
-			"name": "sakila",
+		"public": {
+			"name": "public",
 			"tables": {
 				"actor": {
 					"name": "actor",
@@ -141,41 +138,40 @@
 							"name": "actor_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "smallint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('actor_actor_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"first_name": {
 							"name": "first_name",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 45,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -187,16 +183,16 @@
 							"name": "last_name",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 45,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -209,19 +205,19 @@
 							"name": "last_update",
 							"description": "",
 							"ordinal": 4,
-							"dataType": "timestamp",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -230,28 +226,46 @@
 							"isForeignKey": false
 						}
 					},
+					"checkConstraints": {
+						"2200_18156_1_not_null": {
+							"name": "2200_18156_1_not_null",
+							"expression": "actor_id IS NOT NULL"
+						},
+						"2200_18156_2_not_null": {
+							"name": "2200_18156_2_not_null",
+							"expression": "first_name IS NOT NULL"
+						},
+						"2200_18156_3_not_null": {
+							"name": "2200_18156_3_not_null",
+							"expression": "last_name IS NOT NULL"
+						},
+						"2200_18156_4_not_null": {
+							"name": "2200_18156_4_not_null",
+							"expression": "last_update IS NOT NULL"
+						}
+					},
 					"indexes": {
-						"actor.idx_actor_last_name": {
-							"name": "actor.idx_actor_last_name",
+						"idx_actor_last_name": {
+							"name": "idx_actor_last_name",
 							"columnCount": 1,
 							"columns": [
 								"last_name"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "actor_pkey",
 						"columnCount": 1,
 						"columns": [
 							"actor_id"
 						]
 					},
 					"reverseForeignKeys": {
-						"fk_film_actor_actor": {
-							"name": "fk_film_actor_actor",
-							"schemaName": "sakila",
+						"film_actor_actor_id_fkey": {
+							"name": "film_actor_actor_id_fkey",
+							"schemaName": "public",
 							"tableName": "film_actor",
 							"columnName": "actor_id"
 						}
@@ -265,41 +279,40 @@
 							"name": "address_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "smallint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('address_address_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"address": {
 							"name": "address",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -311,16 +324,16 @@
 							"name": "address2",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -332,16 +345,16 @@
 							"name": "district",
 							"description": "",
 							"ordinal": 4,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 20,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -355,14 +368,14 @@
 							"ordinal": 5,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -376,16 +389,16 @@
 							"name": "postal_code",
 							"description": "",
 							"ordinal": 6,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 10,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -397,62 +410,40 @@
 							"name": "phone",
 							"description": "",
 							"ordinal": 7,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 20,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": false
-						},
-						"location": {
-							"name": "location",
-							"description": "",
-							"ordinal": 8,
-							"dataType": "geometry",
-							"maxLength": null,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null,
-							"isNullable": false,
-							"default": null,
-							"isIdentity": false,
-							"isPartOfPrimaryKey": false,
-							"isPrimaryKey": false,
-							"isComputed": false,
-							"isPartOfUniqueKey": false,
-							"isUnique": false,
-							"isForeignKey": false,
-							"isPartOfIndex": true
 						},
 						"last_update": {
 							"name": "last_update",
 							"description": "",
-							"ordinal": 9,
-							"dataType": "timestamp",
+							"ordinal": 8,
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -461,49 +452,66 @@
 							"isForeignKey": false
 						}
 					},
+					"checkConstraints": {
+						"2200_18197_1_not_null": {
+							"name": "2200_18197_1_not_null",
+							"expression": "address_id IS NOT NULL"
+						},
+						"2200_18197_2_not_null": {
+							"name": "2200_18197_2_not_null",
+							"expression": "address IS NOT NULL"
+						},
+						"2200_18197_4_not_null": {
+							"name": "2200_18197_4_not_null",
+							"expression": "district IS NOT NULL"
+						},
+						"2200_18197_5_not_null": {
+							"name": "2200_18197_5_not_null",
+							"expression": "city_id IS NOT NULL"
+						},
+						"2200_18197_7_not_null": {
+							"name": "2200_18197_7_not_null",
+							"expression": "phone IS NOT NULL"
+						},
+						"2200_18197_8_not_null": {
+							"name": "2200_18197_8_not_null",
+							"expression": "last_update IS NOT NULL"
+						}
+					},
 					"indexes": {
-						"address.idx_fk_city_id": {
-							"name": "address.idx_fk_city_id",
+						"idx_fk_city_id": {
+							"name": "idx_fk_city_id",
 							"columnCount": 1,
 							"columns": [
 								"city_id"
 							],
-							"type": "BTREE",
-							"isUnique": true
-						},
-						"address.idx_location": {
-							"name": "address.idx_location",
-							"columnCount": 1,
-							"columns": [
-								"location"
-							],
-							"type": "SPATIAL",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "address_pkey",
 						"columnCount": 1,
 						"columns": [
 							"address_id"
 						]
 					},
 					"reverseForeignKeys": {
-						"fk_customer_address": {
-							"name": "fk_customer_address",
-							"schemaName": "sakila",
+						"customer_address_id_fkey": {
+							"name": "customer_address_id_fkey",
+							"schemaName": "public",
 							"tableName": "customer",
 							"columnName": "address_id"
 						},
-						"fk_staff_address": {
-							"name": "fk_staff_address",
-							"schemaName": "sakila",
+						"staff_address_id_fkey": {
+							"name": "staff_address_id_fkey",
+							"schemaName": "public",
 							"tableName": "staff",
 							"columnName": "address_id"
 						},
-						"fk_store_address": {
-							"name": "fk_store_address",
-							"schemaName": "sakila",
+						"store_address_id_fkey": {
+							"name": "store_address_id_fkey",
+							"schemaName": "public",
 							"tableName": "store",
 							"columnName": "address_id"
 						}
@@ -517,41 +525,40 @@
 							"name": "category_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "tinyint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('category_category_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"name": {
 							"name": "name",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 25,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -563,19 +570,19 @@
 							"name": "last_update",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "timestamp",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -584,17 +591,31 @@
 							"isForeignKey": false
 						}
 					},
+					"checkConstraints": {
+						"2200_18163_1_not_null": {
+							"name": "2200_18163_1_not_null",
+							"expression": "category_id IS NOT NULL"
+						},
+						"2200_18163_2_not_null": {
+							"name": "2200_18163_2_not_null",
+							"expression": "name IS NOT NULL"
+						},
+						"2200_18163_3_not_null": {
+							"name": "2200_18163_3_not_null",
+							"expression": "last_update IS NOT NULL"
+						}
+					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "category_pkey",
 						"columnCount": 1,
 						"columns": [
 							"category_id"
 						]
 					},
 					"reverseForeignKeys": {
-						"fk_film_category_category": {
-							"name": "fk_film_category_category",
-							"schemaName": "sakila",
+						"film_category_category_id_fkey": {
+							"name": "film_category_category_id_fkey",
+							"schemaName": "public",
 							"tableName": "film_category",
 							"columnName": "category_id"
 						}
@@ -608,41 +629,40 @@
 							"name": "city_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "smallint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('city_city_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"city": {
 							"name": "city",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -656,14 +676,14 @@
 							"ordinal": 3,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -671,25 +691,25 @@
 							"isUnique": false,
 							"isForeignKey": true,
 							"isPartOfIndex": true,
-							"foreignKeyName": "fk_city_country"
+							"foreignKeyName": "fk_city"
 						},
 						"last_update": {
 							"name": "last_update",
 							"description": "",
 							"ordinal": 4,
-							"dataType": "timestamp",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -698,19 +718,37 @@
 							"isForeignKey": false
 						}
 					},
+					"checkConstraints": {
+						"2200_18204_1_not_null": {
+							"name": "2200_18204_1_not_null",
+							"expression": "city_id IS NOT NULL"
+						},
+						"2200_18204_2_not_null": {
+							"name": "2200_18204_2_not_null",
+							"expression": "city IS NOT NULL"
+						},
+						"2200_18204_3_not_null": {
+							"name": "2200_18204_3_not_null",
+							"expression": "country_id IS NOT NULL"
+						},
+						"2200_18204_4_not_null": {
+							"name": "2200_18204_4_not_null",
+							"expression": "last_update IS NOT NULL"
+						}
+					},
 					"indexes": {
-						"city.idx_fk_country_id": {
-							"name": "city.idx_fk_country_id",
+						"idx_fk_country_id": {
+							"name": "idx_fk_country_id",
 							"columnCount": 1,
 							"columns": [
 								"country_id"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "city_pkey",
 						"columnCount": 1,
 						"columns": [
 							"city_id"
@@ -719,7 +757,7 @@
 					"reverseForeignKeys": {
 						"fk_address_city": {
 							"name": "fk_address_city",
-							"schemaName": "sakila",
+							"schemaName": "public",
 							"tableName": "address",
 							"columnName": "city_id"
 						}
@@ -733,41 +771,40 @@
 							"name": "country_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "smallint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('country_country_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"country": {
 							"name": "country",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -779,19 +816,19 @@
 							"name": "last_update",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "timestamp",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -800,17 +837,31 @@
 							"isForeignKey": false
 						}
 					},
+					"checkConstraints": {
+						"2200_18211_1_not_null": {
+							"name": "2200_18211_1_not_null",
+							"expression": "country_id IS NOT NULL"
+						},
+						"2200_18211_2_not_null": {
+							"name": "2200_18211_2_not_null",
+							"expression": "country IS NOT NULL"
+						},
+						"2200_18211_3_not_null": {
+							"name": "2200_18211_3_not_null",
+							"expression": "last_update IS NOT NULL"
+						}
+					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "country_pkey",
 						"columnCount": 1,
 						"columns": [
 							"country_id"
 						]
 					},
 					"reverseForeignKeys": {
-						"fk_city_country": {
-							"name": "fk_city_country",
-							"schemaName": "sakila",
+						"fk_city": {
+							"name": "fk_city",
+							"schemaName": "public",
 							"tableName": "city",
 							"columnName": "country_id"
 						}
@@ -824,64 +875,62 @@
 							"name": "customer_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "smallint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('customer_customer_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"store_id": {
 							"name": "store_id",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "tinyint",
+							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": true,
-							"isPartOfIndex": true,
-							"foreignKeyName": "fk_customer_store"
+							"isForeignKey": false,
+							"isPartOfIndex": true
 						},
 						"first_name": {
 							"name": "first_name",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 45,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -893,16 +942,16 @@
 							"name": "last_name",
 							"description": "",
 							"ordinal": 4,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 45,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -915,16 +964,16 @@
 							"name": "email",
 							"description": "",
 							"ordinal": 5,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -938,14 +987,14 @@
 							"ordinal": 6,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -953,25 +1002,25 @@
 							"isUnique": false,
 							"isForeignKey": true,
 							"isPartOfIndex": true,
-							"foreignKeyName": "fk_customer_address"
+							"foreignKeyName": "customer_address_id_fkey"
 						},
-						"active": {
-							"name": "active",
+						"activebool": {
+							"name": "activebool",
 							"description": "",
 							"ordinal": 7,
-							"dataType": "tinyint",
+							"dataType": "boolean",
 							"maxLength": null,
-							"precision": 3,
-							"scale": 0,
+							"precision": null,
+							"scale": null,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "1",
+								"expression": "true",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -983,7 +1032,7 @@
 							"name": "create_date",
 							"description": "",
 							"ordinal": 8,
-							"dataType": "datetime",
+							"dataType": "date",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
@@ -991,8 +1040,11 @@
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": false,
+							"default": {
+								"expression": "('now'::text)::date",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1004,19 +1056,40 @@
 							"name": "last_update",
 							"description": "",
 							"ordinal": 9,
-							"dataType": "timestamp",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
-							"isNullable": false,
+							"isNullable": true,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
+							"isPartOfPrimaryKey": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"active": {
+							"name": "active",
+							"description": "",
+							"ordinal": 10,
+							"dataType": "integer",
+							"maxLength": null,
+							"precision": 32,
+							"scale": 0,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1025,52 +1098,82 @@
 							"isForeignKey": false
 						}
 					},
+					"checkConstraints": {
+						"2200_18145_1_not_null": {
+							"name": "2200_18145_1_not_null",
+							"expression": "customer_id IS NOT NULL"
+						},
+						"2200_18145_2_not_null": {
+							"name": "2200_18145_2_not_null",
+							"expression": "store_id IS NOT NULL"
+						},
+						"2200_18145_3_not_null": {
+							"name": "2200_18145_3_not_null",
+							"expression": "first_name IS NOT NULL"
+						},
+						"2200_18145_4_not_null": {
+							"name": "2200_18145_4_not_null",
+							"expression": "last_name IS NOT NULL"
+						},
+						"2200_18145_6_not_null": {
+							"name": "2200_18145_6_not_null",
+							"expression": "address_id IS NOT NULL"
+						},
+						"2200_18145_7_not_null": {
+							"name": "2200_18145_7_not_null",
+							"expression": "activebool IS NOT NULL"
+						},
+						"2200_18145_8_not_null": {
+							"name": "2200_18145_8_not_null",
+							"expression": "create_date IS NOT NULL"
+						}
+					},
 					"indexes": {
-						"customer.idx_fk_address_id": {
-							"name": "customer.idx_fk_address_id",
+						"idx_fk_address_id": {
+							"name": "idx_fk_address_id",
 							"columnCount": 1,
 							"columns": [
 								"address_id"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						},
-						"customer.idx_fk_store_id": {
-							"name": "customer.idx_fk_store_id",
+						"idx_fk_store_id": {
+							"name": "idx_fk_store_id",
 							"columnCount": 1,
 							"columns": [
 								"store_id"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						},
-						"customer.idx_last_name": {
-							"name": "customer.idx_last_name",
+						"idx_last_name": {
+							"name": "idx_last_name",
 							"columnCount": 1,
 							"columns": [
 								"last_name"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "customer_pkey",
 						"columnCount": 1,
 						"columns": [
 							"customer_id"
 						]
 					},
 					"reverseForeignKeys": {
-						"fk_payment_customer": {
-							"name": "fk_payment_customer",
-							"schemaName": "sakila",
+						"payment_customer_id_fkey": {
+							"name": "payment_customer_id_fkey",
+							"schemaName": "public",
 							"tableName": "payment",
 							"columnName": "customer_id"
 						},
-						"fk_rental_customer": {
-							"name": "fk_rental_customer",
-							"schemaName": "sakila",
+						"rental_customer_id_fkey": {
+							"name": "rental_customer_id_fkey",
+							"schemaName": "public",
 							"tableName": "rental",
 							"columnName": "customer_id"
 						}
@@ -1084,41 +1187,40 @@
 							"name": "film_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "smallint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('film_film_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"title": {
 							"name": "title",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 255,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1132,15 +1234,15 @@
 							"description": "",
 							"ordinal": 3,
 							"dataType": "text",
-							"maxLength": 65535,
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1152,16 +1254,16 @@
 							"name": "release_year",
 							"description": "",
 							"ordinal": 4,
-							"dataType": "year",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": null,
-							"scale": null,
+							"precision": 32,
+							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": true,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1173,16 +1275,16 @@
 							"name": "language_id",
 							"description": "",
 							"ordinal": 5,
-							"dataType": "tinyint",
+							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1190,38 +1292,15 @@
 							"isUnique": false,
 							"isForeignKey": true,
 							"isPartOfIndex": true,
-							"foreignKeyName": "fk_film_language"
-						},
-						"original_language_id": {
-							"name": "original_language_id",
-							"description": "",
-							"ordinal": 6,
-							"dataType": "tinyint",
-							"maxLength": null,
-							"precision": 3,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null,
-							"isNullable": true,
-							"default": null,
-							"isIdentity": false,
-							"isPartOfPrimaryKey": false,
-							"isPrimaryKey": false,
-							"isComputed": false,
-							"isPartOfUniqueKey": false,
-							"isUnique": false,
-							"isForeignKey": true,
-							"isPartOfIndex": true,
-							"foreignKeyName": "fk_film_language_original"
+							"foreignKeyName": "film_language_id_fkey"
 						},
 						"rental_duration": {
 							"name": "rental_duration",
 							"description": "",
-							"ordinal": 7,
-							"dataType": "tinyint",
+							"ordinal": 6,
+							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
@@ -1231,7 +1310,7 @@
 								"expression": "3",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1242,8 +1321,8 @@
 						"rental_rate": {
 							"name": "rental_rate",
 							"description": "",
-							"ordinal": 8,
-							"dataType": "decimal",
+							"ordinal": 7,
+							"dataType": "numeric",
 							"maxLength": null,
 							"precision": 4,
 							"scale": 2,
@@ -1255,7 +1334,7 @@
 								"expression": "4.99",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1266,17 +1345,17 @@
 						"length": {
 							"name": "length",
 							"description": "",
-							"ordinal": 9,
+							"ordinal": 8,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": true,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1287,8 +1366,8 @@
 						"replacement_cost": {
 							"name": "replacement_cost",
 							"description": "",
-							"ordinal": 10,
-							"dataType": "decimal",
+							"ordinal": 9,
+							"dataType": "numeric",
 							"maxLength": null,
 							"precision": 5,
 							"scale": 2,
@@ -1300,7 +1379,7 @@
 								"expression": "19.99",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1311,20 +1390,44 @@
 						"rating": {
 							"name": "rating",
 							"description": "",
-							"ordinal": 11,
-							"dataType": "enum",
-							"maxLength": 5,
+							"ordinal": 10,
+							"dataType": "mpaa_rating",
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true,
 							"default": {
-								"expression": "G",
+								"expression": "'G'::mpaa_rating",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
+							"isPartOfPrimaryKey": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"last_update": {
+							"name": "last_update",
+							"description": "",
+							"ordinal": 11,
+							"dataType": "timestamp without time zone",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": 6,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": false,
+							"default": {
+								"expression": "now()",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1336,16 +1439,16 @@
 							"name": "special_features",
 							"description": "",
 							"ordinal": 12,
-							"dataType": "set",
-							"maxLength": 54,
+							"dataType": "text[]",
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1353,83 +1456,115 @@
 							"isUnique": false,
 							"isForeignKey": false
 						},
-						"last_update": {
-							"name": "last_update",
+						"fulltext": {
+							"name": "fulltext",
 							"description": "",
 							"ordinal": 13,
-							"dataType": "timestamp",
+							"dataType": "tsvector",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
-								"constraintName": null
-							},
-							"isIdentity": false,
+							"default": null,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false
+							"isForeignKey": false,
+							"isPartOfIndex": true
+						}
+					},
+					"checkConstraints": {
+						"2200_18170_11_not_null": {
+							"name": "2200_18170_11_not_null",
+							"expression": "last_update IS NOT NULL"
+						},
+						"2200_18170_13_not_null": {
+							"name": "2200_18170_13_not_null",
+							"expression": "fulltext IS NOT NULL"
+						},
+						"2200_18170_1_not_null": {
+							"name": "2200_18170_1_not_null",
+							"expression": "film_id IS NOT NULL"
+						},
+						"2200_18170_2_not_null": {
+							"name": "2200_18170_2_not_null",
+							"expression": "title IS NOT NULL"
+						},
+						"2200_18170_5_not_null": {
+							"name": "2200_18170_5_not_null",
+							"expression": "language_id IS NOT NULL"
+						},
+						"2200_18170_6_not_null": {
+							"name": "2200_18170_6_not_null",
+							"expression": "rental_duration IS NOT NULL"
+						},
+						"2200_18170_7_not_null": {
+							"name": "2200_18170_7_not_null",
+							"expression": "rental_rate IS NOT NULL"
+						},
+						"2200_18170_9_not_null": {
+							"name": "2200_18170_9_not_null",
+							"expression": "replacement_cost IS NOT NULL"
 						}
 					},
 					"indexes": {
-						"film.idx_fk_language_id": {
-							"name": "film.idx_fk_language_id",
+						"film_fulltext_idx": {
+							"name": "film_fulltext_idx",
+							"columnCount": 1,
+							"columns": [
+								"fulltext"
+							],
+							"type": null,
+							"isUnique": false
+						},
+						"idx_fk_language_id": {
+							"name": "idx_fk_language_id",
 							"columnCount": 1,
 							"columns": [
 								"language_id"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						},
-						"film.idx_fk_original_language_id": {
-							"name": "film.idx_fk_original_language_id",
-							"columnCount": 1,
-							"columns": [
-								"original_language_id"
-							],
-							"type": "BTREE",
-							"isUnique": true
-						},
-						"film.idx_title": {
-							"name": "film.idx_title",
+						"idx_title": {
+							"name": "idx_title",
 							"columnCount": 1,
 							"columns": [
 								"title"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "film_pkey",
 						"columnCount": 1,
 						"columns": [
 							"film_id"
 						]
 					},
 					"reverseForeignKeys": {
-						"fk_film_actor_film": {
-							"name": "fk_film_actor_film",
-							"schemaName": "sakila",
+						"film_actor_film_id_fkey": {
+							"name": "film_actor_film_id_fkey",
+							"schemaName": "public",
 							"tableName": "film_actor",
 							"columnName": "film_id"
 						},
-						"fk_film_category_film": {
-							"name": "fk_film_category_film",
-							"schemaName": "sakila",
+						"film_category_film_id_fkey": {
+							"name": "film_category_film_id_fkey",
+							"schemaName": "public",
 							"tableName": "film_category",
 							"columnName": "film_id"
 						},
-						"fk_inventory_film": {
-							"name": "fk_inventory_film",
-							"schemaName": "sakila",
+						"inventory_film_id_fkey": {
+							"name": "inventory_film_id_fkey",
+							"schemaName": "public",
 							"tableName": "inventory",
 							"columnName": "film_id"
 						}
@@ -1445,21 +1580,21 @@
 							"ordinal": 1,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"foreignKeyName": "fk_film_actor_actor"
+							"foreignKeyName": "film_actor_actor_id_fkey"
 						},
 						"film_id": {
 							"name": "film_id",
@@ -1467,14 +1602,14 @@
 							"ordinal": 2,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1482,25 +1617,25 @@
 							"isUnique": false,
 							"isForeignKey": true,
 							"isPartOfIndex": true,
-							"foreignKeyName": "fk_film_actor_film"
+							"foreignKeyName": "film_actor_film_id_fkey"
 						},
 						"last_update": {
 							"name": "last_update",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "timestamp",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1509,19 +1644,33 @@
 							"isForeignKey": false
 						}
 					},
+					"checkConstraints": {
+						"2200_18182_1_not_null": {
+							"name": "2200_18182_1_not_null",
+							"expression": "actor_id IS NOT NULL"
+						},
+						"2200_18182_2_not_null": {
+							"name": "2200_18182_2_not_null",
+							"expression": "film_id IS NOT NULL"
+						},
+						"2200_18182_3_not_null": {
+							"name": "2200_18182_3_not_null",
+							"expression": "last_update IS NOT NULL"
+						}
+					},
 					"indexes": {
-						"film_actor.idx_fk_film_id": {
-							"name": "film_actor.idx_fk_film_id",
+						"idx_fk_film_id": {
+							"name": "idx_fk_film_id",
 							"columnCount": 1,
 							"columns": [
 								"film_id"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "film_actor_pkey",
 						"columnCount": 2,
 						"columns": [
 							"actor_id",
@@ -1539,62 +1688,61 @@
 							"ordinal": 1,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"foreignKeyName": "fk_film_category_film"
+							"foreignKeyName": "film_category_film_id_fkey"
 						},
 						"category_id": {
 							"name": "category_id",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "tinyint",
+							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfIndex": true,
-							"foreignKeyName": "fk_film_category_category"
+							"foreignKeyName": "film_category_category_id_fkey"
 						},
 						"last_update": {
 							"name": "last_update",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "timestamp",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1603,113 +1751,26 @@
 							"isForeignKey": false
 						}
 					},
-					"indexes": {
-						"film_category.fk_film_category_category": {
-							"name": "film_category.fk_film_category_category",
-							"columnCount": 1,
-							"columns": [
-								"category_id"
-							],
-							"type": "BTREE",
-							"isUnique": true
+					"checkConstraints": {
+						"2200_18186_1_not_null": {
+							"name": "2200_18186_1_not_null",
+							"expression": "film_id IS NOT NULL"
+						},
+						"2200_18186_2_not_null": {
+							"name": "2200_18186_2_not_null",
+							"expression": "category_id IS NOT NULL"
+						},
+						"2200_18186_3_not_null": {
+							"name": "2200_18186_3_not_null",
+							"expression": "last_update IS NOT NULL"
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "film_category_pkey",
 						"columnCount": 2,
 						"columns": [
 							"film_id",
 							"category_id"
-						]
-					}
-				},
-				"film_text": {
-					"name": "film_text",
-					"description": "",
-					"columns": {
-						"film_id": {
-							"name": "film_id",
-							"description": "",
-							"ordinal": 1,
-							"dataType": "smallint",
-							"maxLength": null,
-							"precision": 5,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null,
-							"isNullable": false,
-							"default": null,
-							"isIdentity": false,
-							"isPartOfPrimaryKey": true,
-							"isPrimaryKey": true,
-							"isComputed": false,
-							"isPartOfUniqueKey": false,
-							"isUnique": false,
-							"isForeignKey": false
-						},
-						"title": {
-							"name": "title",
-							"description": "",
-							"ordinal": 2,
-							"dataType": "varchar",
-							"maxLength": 255,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false,
-							"default": null,
-							"isIdentity": false,
-							"isPartOfPrimaryKey": false,
-							"isPrimaryKey": false,
-							"isComputed": false,
-							"isPartOfUniqueKey": false,
-							"isUnique": true,
-							"isForeignKey": false,
-							"isPartOfIndex": true
-						},
-						"description": {
-							"name": "description",
-							"description": "",
-							"ordinal": 3,
-							"dataType": "text",
-							"maxLength": 65535,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": true,
-							"default": null,
-							"isIdentity": false,
-							"isPartOfPrimaryKey": false,
-							"isPrimaryKey": false,
-							"isComputed": false,
-							"isPartOfUniqueKey": false,
-							"isUnique": true,
-							"isForeignKey": false,
-							"isPartOfIndex": true
-						}
-					},
-					"indexes": {
-						"film_text.idx_title_description": {
-							"name": "film_text.idx_title_description",
-							"columnCount": 2,
-							"columns": [
-								"title",
-								"description"
-							],
-							"type": "FULLTEXT",
-							"isUnique": true
-						}
-					},
-					"primaryKey": {
-						"name": "PRIMARY",
-						"columnCount": 1,
-						"columns": [
-							"film_id"
 						]
 					}
 				},
@@ -1721,26 +1782,25 @@
 							"name": "inventory_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "mediumint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 7,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('inventory_inventory_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"film_id": {
 							"name": "film_id",
@@ -1748,63 +1808,62 @@
 							"ordinal": 2,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
-							"isUnique": true,
+							"isUnique": false,
 							"isForeignKey": true,
 							"isPartOfIndex": true,
-							"foreignKeyName": "fk_inventory_film"
+							"foreignKeyName": "inventory_film_id_fkey"
 						},
 						"store_id": {
 							"name": "store_id",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "tinyint",
+							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
-							"isUnique": true,
-							"isForeignKey": true,
-							"isPartOfIndex": true,
-							"foreignKeyName": "fk_inventory_store"
+							"isUnique": false,
+							"isForeignKey": false,
+							"isPartOfIndex": true
 						},
 						"last_update": {
 							"name": "last_update",
 							"description": "",
 							"ordinal": 4,
-							"dataType": "timestamp",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1813,38 +1872,47 @@
 							"isForeignKey": false
 						}
 					},
-					"indexes": {
-						"inventory.idx_fk_film_id": {
-							"name": "inventory.idx_fk_film_id",
-							"columnCount": 1,
-							"columns": [
-								"film_id"
-							],
-							"type": "BTREE",
-							"isUnique": true
+					"checkConstraints": {
+						"2200_18228_1_not_null": {
+							"name": "2200_18228_1_not_null",
+							"expression": "inventory_id IS NOT NULL"
 						},
-						"inventory.idx_store_id_film_id": {
-							"name": "inventory.idx_store_id_film_id",
+						"2200_18228_2_not_null": {
+							"name": "2200_18228_2_not_null",
+							"expression": "film_id IS NOT NULL"
+						},
+						"2200_18228_3_not_null": {
+							"name": "2200_18228_3_not_null",
+							"expression": "store_id IS NOT NULL"
+						},
+						"2200_18228_4_not_null": {
+							"name": "2200_18228_4_not_null",
+							"expression": "last_update IS NOT NULL"
+						}
+					},
+					"indexes": {
+						"idx_store_id_film_id": {
+							"name": "idx_store_id_film_id",
 							"columnCount": 2,
 							"columns": [
-								"store_id",
-								"film_id"
+								"film_id",
+								"store_id"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "inventory_pkey",
 						"columnCount": 1,
 						"columns": [
 							"inventory_id"
 						]
 					},
 					"reverseForeignKeys": {
-						"fk_rental_inventory": {
-							"name": "fk_rental_inventory",
-							"schemaName": "sakila",
+						"rental_inventory_id_fkey": {
+							"name": "rental_inventory_id_fkey",
+							"schemaName": "public",
 							"tableName": "rental",
 							"columnName": "inventory_id"
 						}
@@ -1858,41 +1926,40 @@
 							"name": "language_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "tinyint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('language_language_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"name": {
 							"name": "name",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "char",
+							"dataType": "character",
 							"maxLength": 20,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1904,19 +1971,19 @@
 							"name": "last_update",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "timestamp",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1925,25 +1992,33 @@
 							"isForeignKey": false
 						}
 					},
+					"checkConstraints": {
+						"2200_18235_1_not_null": {
+							"name": "2200_18235_1_not_null",
+							"expression": "language_id IS NOT NULL"
+						},
+						"2200_18235_2_not_null": {
+							"name": "2200_18235_2_not_null",
+							"expression": "name IS NOT NULL"
+						},
+						"2200_18235_3_not_null": {
+							"name": "2200_18235_3_not_null",
+							"expression": "last_update IS NOT NULL"
+						}
+					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "language_pkey",
 						"columnCount": 1,
 						"columns": [
 							"language_id"
 						]
 					},
 					"reverseForeignKeys": {
-						"fk_film_language": {
-							"name": "fk_film_language",
-							"schemaName": "sakila",
+						"film_language_id_fkey": {
+							"name": "film_language_id_fkey",
+							"schemaName": "public",
 							"tableName": "film",
 							"columnName": "language_id"
-						},
-						"fk_film_language_original": {
-							"name": "fk_film_language_original",
-							"schemaName": "sakila",
-							"tableName": "film",
-							"columnName": "original_language_id"
 						}
 					}
 				},
@@ -1955,26 +2030,25 @@
 							"name": "payment_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "smallint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('payment_payment_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"customer_id": {
 							"name": "customer_id",
@@ -1982,14 +2056,14 @@
 							"ordinal": 2,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -1997,22 +2071,22 @@
 							"isUnique": false,
 							"isForeignKey": true,
 							"isPartOfIndex": true,
-							"foreignKeyName": "fk_payment_customer"
+							"foreignKeyName": "payment_customer_id_fkey"
 						},
 						"staff_id": {
 							"name": "staff_id",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "tinyint",
+							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2020,22 +2094,22 @@
 							"isUnique": false,
 							"isForeignKey": true,
 							"isPartOfIndex": true,
-							"foreignKeyName": "fk_payment_staff"
+							"foreignKeyName": "payment_staff_id_fkey"
 						},
 						"rental_id": {
 							"name": "rental_id",
 							"description": "",
 							"ordinal": 4,
-							"dataType": "int",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 10,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
-							"isNullable": true,
+							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2043,13 +2117,13 @@
 							"isUnique": false,
 							"isForeignKey": true,
 							"isPartOfIndex": true,
-							"foreignKeyName": "fk_payment_rental"
+							"foreignKeyName": "payment_rental_id_fkey"
 						},
 						"amount": {
 							"name": "amount",
 							"description": "",
 							"ordinal": 5,
-							"dataType": "decimal",
+							"dataType": "numeric",
 							"maxLength": null,
 							"precision": 5,
 							"scale": 2,
@@ -2058,7 +2132,7 @@
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2070,40 +2144,16 @@
 							"name": "payment_date",
 							"description": "",
 							"ordinal": 6,
-							"dataType": "datetime",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
-							"isPartOfPrimaryKey": false,
-							"isPrimaryKey": false,
-							"isComputed": false,
-							"isPartOfUniqueKey": false,
-							"isUnique": false,
-							"isForeignKey": false
-						},
-						"last_update": {
-							"name": "last_update",
-							"description": "",
-							"ordinal": 7,
-							"dataType": "timestamp",
-							"maxLength": null,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": 0,
-							"characterSet": null,
-							"collation": null,
-							"isNullable": false,
-							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
-								"constraintName": null
-							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2112,37 +2162,63 @@
 							"isForeignKey": false
 						}
 					},
-					"indexes": {
-						"payment.fk_payment_rental": {
-							"name": "payment.fk_payment_rental",
-							"columnCount": 1,
-							"columns": [
-								"rental_id"
-							],
-							"type": "BTREE",
-							"isUnique": true
+					"checkConstraints": {
+						"2200_18247_1_not_null": {
+							"name": "2200_18247_1_not_null",
+							"expression": "payment_id IS NOT NULL"
 						},
-						"payment.idx_fk_customer_id": {
-							"name": "payment.idx_fk_customer_id",
+						"2200_18247_2_not_null": {
+							"name": "2200_18247_2_not_null",
+							"expression": "customer_id IS NOT NULL"
+						},
+						"2200_18247_3_not_null": {
+							"name": "2200_18247_3_not_null",
+							"expression": "staff_id IS NOT NULL"
+						},
+						"2200_18247_4_not_null": {
+							"name": "2200_18247_4_not_null",
+							"expression": "rental_id IS NOT NULL"
+						},
+						"2200_18247_5_not_null": {
+							"name": "2200_18247_5_not_null",
+							"expression": "amount IS NOT NULL"
+						},
+						"2200_18247_6_not_null": {
+							"name": "2200_18247_6_not_null",
+							"expression": "payment_date IS NOT NULL"
+						}
+					},
+					"indexes": {
+						"idx_fk_customer_id": {
+							"name": "idx_fk_customer_id",
 							"columnCount": 1,
 							"columns": [
 								"customer_id"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						},
-						"payment.idx_fk_staff_id": {
-							"name": "payment.idx_fk_staff_id",
+						"idx_fk_rental_id": {
+							"name": "idx_fk_rental_id",
+							"columnCount": 1,
+							"columns": [
+								"rental_id"
+							],
+							"type": null,
+							"isUnique": false
+						},
+						"idx_fk_staff_id": {
+							"name": "idx_fk_staff_id",
 							"columnCount": 1,
 							"columns": [
 								"staff_id"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "payment_pkey",
 						"columnCount": 1,
 						"columns": [
 							"payment_id"
@@ -2157,73 +2233,70 @@
 							"name": "rental_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "int",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 10,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('rental_rental_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"rental_date": {
 							"name": "rental_date",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "datetime",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
-							"isPartOfUniqueKey": true,
-							"isUnique": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": true,
 							"isForeignKey": false,
-							"isPartOfIndex": true,
-							"uniqueKeyName": "rental_date"
+							"isPartOfIndex": true
 						},
 						"inventory_id": {
 							"name": "inventory_id",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "mediumint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 7,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
-							"isPartOfUniqueKey": true,
-							"isUnique": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": true,
 							"isForeignKey": true,
 							"isPartOfIndex": true,
-							"uniqueKeyName": "rental_date",
-							"foreignKeyName": "fk_rental_inventory"
+							"foreignKeyName": "rental_inventory_id_fkey"
 						},
 						"customer_id": {
 							"name": "customer_id",
@@ -2231,38 +2304,37 @@
 							"ordinal": 4,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
-							"isPartOfUniqueKey": true,
-							"isUnique": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": true,
 							"isForeignKey": true,
 							"isPartOfIndex": true,
-							"uniqueKeyName": "rental_date",
-							"foreignKeyName": "fk_rental_customer"
+							"foreignKeyName": "rental_customer_id_fkey"
 						},
 						"return_date": {
 							"name": "return_date",
 							"description": "",
 							"ordinal": 5,
-							"dataType": "datetime",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": true,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2274,42 +2346,41 @@
 							"name": "staff_id",
 							"description": "",
 							"ordinal": 6,
-							"dataType": "tinyint",
+							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfIndex": true,
-							"foreignKeyName": "fk_rental_staff"
+							"foreignKeyName": "rental_staff_id_key"
 						},
 						"last_update": {
 							"name": "last_update",
 							"description": "",
 							"ordinal": 7,
-							"dataType": "timestamp",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2318,68 +2389,65 @@
 							"isForeignKey": false
 						}
 					},
-					"indexes": {
-						"rental.idx_fk_customer_id": {
-							"name": "rental.idx_fk_customer_id",
-							"columnCount": 1,
-							"columns": [
-								"customer_id"
-							],
-							"type": "BTREE",
-							"isUnique": true
+					"checkConstraints": {
+						"2200_18253_1_not_null": {
+							"name": "2200_18253_1_not_null",
+							"expression": "rental_id IS NOT NULL"
 						},
-						"rental.idx_fk_inventory_id": {
-							"name": "rental.idx_fk_inventory_id",
+						"2200_18253_2_not_null": {
+							"name": "2200_18253_2_not_null",
+							"expression": "rental_date IS NOT NULL"
+						},
+						"2200_18253_3_not_null": {
+							"name": "2200_18253_3_not_null",
+							"expression": "inventory_id IS NOT NULL"
+						},
+						"2200_18253_4_not_null": {
+							"name": "2200_18253_4_not_null",
+							"expression": "customer_id IS NOT NULL"
+						},
+						"2200_18253_6_not_null": {
+							"name": "2200_18253_6_not_null",
+							"expression": "staff_id IS NOT NULL"
+						},
+						"2200_18253_7_not_null": {
+							"name": "2200_18253_7_not_null",
+							"expression": "last_update IS NOT NULL"
+						}
+					},
+					"indexes": {
+						"idx_fk_inventory_id": {
+							"name": "idx_fk_inventory_id",
 							"columnCount": 1,
 							"columns": [
 								"inventory_id"
 							],
-							"type": "BTREE",
-							"isUnique": true
+							"type": null,
+							"isUnique": false
 						},
-						"rental.idx_fk_staff_id": {
-							"name": "rental.idx_fk_staff_id",
-							"columnCount": 1,
-							"columns": [
-								"staff_id"
-							],
-							"type": "BTREE",
-							"isUnique": true
-						},
-						"rental.rental_date": {
-							"name": "rental.rental_date",
+						"idx_unq_rental_rental_date_inventory_id_customer_id": {
+							"name": "idx_unq_rental_rental_date_inventory_id_customer_id",
 							"columnCount": 3,
 							"columns": [
 								"rental_date",
 								"inventory_id",
 								"customer_id"
 							],
-							"type": "BTREE",
-							"isUnique": false
+							"type": null,
+							"isUnique": true
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "rental_pkey",
 						"columnCount": 1,
 						"columns": [
 							"rental_id"
 						]
 					},
-					"uniqueKeys": {
-						"rental_date": {
-							"name": "rental_date",
-							"columnCount": 3,
-							"columns": [
-								"rental_date",
-								"inventory_id",
-								"customer_id"
-							]
-						}
-					},
 					"reverseForeignKeys": {
-						"fk_payment_rental": {
-							"name": "fk_payment_rental",
-							"schemaName": "sakila",
+						"payment_rental_id_fkey": {
+							"name": "payment_rental_id_fkey",
+							"schemaName": "public",
 							"tableName": "payment",
 							"columnName": "rental_id"
 						}
@@ -2393,41 +2461,40 @@
 							"name": "staff_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "tinyint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('staff_staff_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"first_name": {
 							"name": "first_name",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 45,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2439,16 +2506,16 @@
 							"name": "last_name",
 							"description": "",
 							"ordinal": 3,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 45,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2462,29 +2529,28 @@
 							"ordinal": 4,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfIndex": true,
-							"foreignKeyName": "fk_staff_address"
+							"foreignKeyName": "staff_address_id_fkey"
 						},
-						"picture": {
-							"name": "picture",
+						"email": {
+							"name": "email",
 							"description": "",
 							"ordinal": 5,
-							"dataType": "blob",
-							"maxLength": 65535,
+							"dataType": "character varying",
+							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
@@ -2492,28 +2558,7 @@
 							"collation": null,
 							"isNullable": true,
 							"default": null,
-							"isIdentity": false,
-							"isPartOfPrimaryKey": false,
-							"isPrimaryKey": false,
-							"isComputed": false,
-							"isPartOfUniqueKey": false,
-							"isUnique": false,
-							"isForeignKey": false
-						},
-						"email": {
-							"name": "email",
-							"description": "",
-							"ordinal": 6,
-							"dataType": "varchar",
-							"maxLength": 50,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": true,
-							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2524,43 +2569,41 @@
 						"store_id": {
 							"name": "store_id",
 							"description": "",
-							"ordinal": 7,
-							"dataType": "tinyint",
+							"ordinal": 6,
+							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": true,
-							"isPartOfIndex": true,
-							"foreignKeyName": "fk_staff_store"
+							"isForeignKey": false
 						},
 						"active": {
 							"name": "active",
 							"description": "",
-							"ordinal": 8,
-							"dataType": "tinyint",
+							"ordinal": 7,
+							"dataType": "boolean",
 							"maxLength": null,
-							"precision": 3,
-							"scale": 0,
+							"precision": null,
+							"scale": null,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "1",
+								"expression": "true",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2571,17 +2614,17 @@
 						"username": {
 							"name": "username",
 							"description": "",
-							"ordinal": 9,
-							"dataType": "varchar",
+							"ordinal": 8,
+							"dataType": "character varying",
 							"maxLength": 16,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2592,17 +2635,17 @@
 						"password": {
 							"name": "password",
 							"description": "",
-							"ordinal": 10,
-							"dataType": "varchar",
+							"ordinal": 9,
+							"dataType": "character varying",
 							"maxLength": 40,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_bin",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2613,20 +2656,41 @@
 						"last_update": {
 							"name": "last_update",
 							"description": "",
-							"ordinal": 11,
-							"dataType": "timestamp",
+							"ordinal": 10,
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
+							"isPartOfPrimaryKey": false,
+							"isPrimaryKey": false,
+							"isComputed": false,
+							"isPartOfUniqueKey": false,
+							"isUnique": false,
+							"isForeignKey": false
+						},
+						"picture": {
+							"name": "picture",
+							"description": "",
+							"ordinal": 11,
+							"dataType": "bytea",
+							"maxLength": null,
+							"precision": null,
+							"scale": null,
+							"dateTimePrecision": null,
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true,
+							"default": null,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2635,49 +2699,63 @@
 							"isForeignKey": false
 						}
 					},
-					"indexes": {
-						"staff.idx_fk_address_id": {
-							"name": "staff.idx_fk_address_id",
-							"columnCount": 1,
-							"columns": [
-								"address_id"
-							],
-							"type": "BTREE",
-							"isUnique": true
+					"checkConstraints": {
+						"2200_18265_10_not_null": {
+							"name": "2200_18265_10_not_null",
+							"expression": "last_update IS NOT NULL"
 						},
-						"staff.idx_fk_store_id": {
-							"name": "staff.idx_fk_store_id",
-							"columnCount": 1,
-							"columns": [
-								"store_id"
-							],
-							"type": "BTREE",
-							"isUnique": true
+						"2200_18265_1_not_null": {
+							"name": "2200_18265_1_not_null",
+							"expression": "staff_id IS NOT NULL"
+						},
+						"2200_18265_2_not_null": {
+							"name": "2200_18265_2_not_null",
+							"expression": "first_name IS NOT NULL"
+						},
+						"2200_18265_3_not_null": {
+							"name": "2200_18265_3_not_null",
+							"expression": "last_name IS NOT NULL"
+						},
+						"2200_18265_4_not_null": {
+							"name": "2200_18265_4_not_null",
+							"expression": "address_id IS NOT NULL"
+						},
+						"2200_18265_6_not_null": {
+							"name": "2200_18265_6_not_null",
+							"expression": "store_id IS NOT NULL"
+						},
+						"2200_18265_7_not_null": {
+							"name": "2200_18265_7_not_null",
+							"expression": "active IS NOT NULL"
+						},
+						"2200_18265_8_not_null": {
+							"name": "2200_18265_8_not_null",
+							"expression": "username IS NOT NULL"
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "staff_pkey",
 						"columnCount": 1,
 						"columns": [
 							"staff_id"
 						]
 					},
 					"reverseForeignKeys": {
-						"fk_payment_staff": {
-							"name": "fk_payment_staff",
-							"schemaName": "sakila",
+						"payment_staff_id_fkey": {
+							"name": "payment_staff_id_fkey",
+							"schemaName": "public",
 							"tableName": "payment",
 							"columnName": "staff_id"
 						},
-						"fk_rental_staff": {
-							"name": "fk_rental_staff",
-							"schemaName": "sakila",
+						"rental_staff_id_key": {
+							"name": "rental_staff_id_key",
+							"schemaName": "public",
 							"tableName": "rental",
 							"columnName": "staff_id"
 						},
-						"fk_store_staff": {
-							"name": "fk_store_staff",
-							"schemaName": "sakila",
+						"store_manager_staff_id_fkey": {
+							"name": "store_manager_staff_id_fkey",
+							"schemaName": "public",
 							"tableName": "store",
 							"columnName": "manager_staff_id"
 						}
@@ -2691,50 +2769,48 @@
 							"name": "store_id",
 							"description": "",
 							"ordinal": 1,
-							"dataType": "tinyint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
-							"default": null,
-							"isIdentity": true,
+							"default": {
+								"expression": "nextval('store_store_id_seq'::regclass)",
+								"constraintName": null
+							},
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"identity": {
-								"seed": 1,
-								"increment": 1
-							}
+							"isForeignKey": false
 						},
 						"manager_staff_id": {
 							"name": "manager_staff_id",
 							"description": "",
 							"ordinal": 2,
-							"dataType": "tinyint",
+							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
-							"isPartOfUniqueKey": true,
+							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
 							"isPartOfIndex": true,
-							"uniqueKeyName": "idx_unique_manager",
-							"foreignKeyName": "fk_store_staff"
+							"foreignKeyName": "store_manager_staff_id_fkey"
 						},
 						"address_id": {
 							"name": "address_id",
@@ -2742,40 +2818,39 @@
 							"ordinal": 3,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": null,
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfIndex": true,
-							"foreignKeyName": "fk_store_address"
+							"foreignKeyName": "store_address_id_fkey"
 						},
 						"last_update": {
 							"name": "last_update",
 							"description": "",
 							"ordinal": 4,
-							"dataType": "timestamp",
+							"dataType": "timestamp without time zone",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
-							"dateTimePrecision": 0,
+							"dateTimePrecision": 6,
 							"characterSet": null,
 							"collation": null,
 							"isNullable": false,
 							"default": {
-								"expression": "CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP",
+								"expression": "now()",
 								"constraintName": null
 							},
-							"isIdentity": false,
+							"isIdentity": "NO",
 							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
@@ -2784,116 +2859,189 @@
 							"isForeignKey": false
 						}
 					},
-					"indexes": {
-						"store.idx_fk_address_id": {
-							"name": "store.idx_fk_address_id",
-							"columnCount": 1,
-							"columns": [
-								"address_id"
-							],
-							"type": "BTREE",
-							"isUnique": true
+					"checkConstraints": {
+						"2200_18276_1_not_null": {
+							"name": "2200_18276_1_not_null",
+							"expression": "store_id IS NOT NULL"
 						},
-						"store.idx_unique_manager": {
-							"name": "store.idx_unique_manager",
+						"2200_18276_2_not_null": {
+							"name": "2200_18276_2_not_null",
+							"expression": "manager_staff_id IS NOT NULL"
+						},
+						"2200_18276_3_not_null": {
+							"name": "2200_18276_3_not_null",
+							"expression": "address_id IS NOT NULL"
+						},
+						"2200_18276_4_not_null": {
+							"name": "2200_18276_4_not_null",
+							"expression": "last_update IS NOT NULL"
+						}
+					},
+					"indexes": {
+						"idx_unq_manager_staff_id": {
+							"name": "idx_unq_manager_staff_id",
 							"columnCount": 1,
 							"columns": [
 								"manager_staff_id"
 							],
-							"type": "BTREE",
-							"isUnique": false
+							"type": null,
+							"isUnique": true
 						}
 					},
 					"primaryKey": {
-						"name": "PRIMARY",
+						"name": "store_pkey",
 						"columnCount": 1,
 						"columns": [
 							"store_id"
 						]
-					},
-					"uniqueKeys": {
-						"idx_unique_manager": {
-							"name": "idx_unique_manager",
-							"columnCount": 1,
-							"columns": [
-								"manager_staff_id"
-							]
-						}
-					},
-					"reverseForeignKeys": {
-						"fk_customer_store": {
-							"name": "fk_customer_store",
-							"schemaName": "sakila",
-							"tableName": "customer",
-							"columnName": "store_id"
-						},
-						"fk_inventory_store": {
-							"name": "fk_inventory_store",
-							"schemaName": "sakila",
-							"tableName": "inventory",
-							"columnName": "store_id"
-						},
-						"fk_staff_store": {
-							"name": "fk_staff_store",
-							"schemaName": "sakila",
-							"tableName": "staff",
-							"columnName": "store_id"
-						}
 					}
+				}
+			},
+			"sequences": {
+				"actor_actor_id_seq": {
+					"name": "actor_actor_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"address_address_id_seq": {
+					"name": "address_address_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"category_category_id_seq": {
+					"name": "category_category_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"city_city_id_seq": {
+					"name": "city_city_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"country_country_id_seq": {
+					"name": "country_country_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"customer_customer_id_seq": {
+					"name": "customer_customer_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"film_film_id_seq": {
+					"name": "film_film_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"inventory_inventory_id_seq": {
+					"name": "inventory_inventory_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"language_language_id_seq": {
+					"name": "language_language_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"payment_payment_id_seq": {
+					"name": "payment_payment_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"rental_rental_id_seq": {
+					"name": "rental_rental_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"staff_staff_id_seq": {
+					"name": "staff_staff_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
+				},
+				"store_store_id_seq": {
+					"name": "store_store_id_seq",
+					"dataType": "bigint",
+					"minValue": "1",
+					"increment": false,
+					"isCycling": false
 				}
 			},
 			"views": {
 				"actor_info": {
 					"name": "actor_info",
 					"description": "",
-					"sql": "select `a`.`actor_id` AS `actor_id`,`a`.`first_name` AS `first_name`,`a`.`last_name` AS `last_name`,group_concat(distinct concat(`c`.`name`,': ',(select group_concat(`f`.`title` order by `f`.`title` ASC separator ', ') from ((`sakila`.`film` `f` join `sakila`.`film_category` `fc` on((`f`.`film_id` = `fc`.`film_id`))) join `sakila`.`film_actor` `fa` on((`f`.`film_id` = `fa`.`film_id`))) where ((`fc`.`category_id` = `c`.`category_id`) and (`fa`.`actor_id` = `a`.`actor_id`)))) order by `c`.`name` ASC separator '; ') AS `film_info` from (((`sakila`.`actor` `a` left join `sakila`.`film_actor` `fa` on((`a`.`actor_id` = `fa`.`actor_id`))) left join `sakila`.`film_category` `fc` on((`fa`.`film_id` = `fc`.`film_id`))) left join `sakila`.`category` `c` on((`fc`.`category_id` = `c`.`category_id`))) group by `a`.`actor_id`,`a`.`first_name`,`a`.`last_name`",
+					"sql": " SELECT a.actor_id,\n    a.first_name,\n    a.last_name,\n    group_concat(DISTINCT (((c.name)::text || ': '::text) || ( SELECT group_concat((f.title)::text) AS group_concat\n           FROM ((film f\n             JOIN film_category fc_1 ON ((f.film_id = fc_1.film_id)))\n             JOIN film_actor fa_1 ON ((f.film_id = fa_1.film_id)))\n          WHERE ((fc_1.category_id = c.category_id) AND (fa_1.actor_id = a.actor_id))\n          GROUP BY fa_1.actor_id))) AS film_info\n   FROM (((actor a\n     LEFT JOIN film_actor fa ON ((a.actor_id = fa.actor_id)))\n     LEFT JOIN film_category fc ON ((fa.film_id = fc.film_id)))\n     LEFT JOIN category c ON ((fc.category_id = c.category_id)))\n  GROUP BY a.actor_id, a.first_name, a.last_name;",
 					"columns": {
 						"actor_id": {
 							"name": "actor_id",
 							"ordinal": 1,
-							"dataType": "smallint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
-							"isNullable": false
+							"isNullable": true
 						},
 						"first_name": {
 							"name": "first_name",
 							"ordinal": 2,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 45,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"last_name": {
 							"name": "last_name",
 							"ordinal": 3,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 45,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"film_info": {
 							"name": "film_info",
 							"ordinal": 4,
 							"dataType": "text",
-							"maxLength": 65535,
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						}
 					}
@@ -2901,129 +3049,129 @@
 				"customer_list": {
 					"name": "customer_list",
 					"description": "",
-					"sql": "select `cu`.`customer_id` AS `ID`,concat(`cu`.`first_name`,' ',`cu`.`last_name`) AS `name`,`a`.`address` AS `address`,`a`.`postal_code` AS `zip code`,`a`.`phone` AS `phone`,`sakila`.`city`.`city` AS `city`,`sakila`.`country`.`country` AS `country`,if(`cu`.`active`,'active','') AS `notes`,`cu`.`store_id` AS `SID` from (((`sakila`.`customer` `cu` join `sakila`.`address` `a` on((`cu`.`address_id` = `a`.`address_id`))) join `sakila`.`city` on((`a`.`city_id` = `sakila`.`city`.`city_id`))) join `sakila`.`country` on((`sakila`.`city`.`country_id` = `sakila`.`country`.`country_id`)))",
+					"sql": " SELECT cu.customer_id AS id,\n    (((cu.first_name)::text || ' '::text) || (cu.last_name)::text) AS name,\n    a.address,\n    a.postal_code AS \"zip code\",\n    a.phone,\n    city.city,\n    country.country,\n        CASE\n            WHEN cu.activebool THEN 'active'::text\n            ELSE ''::text\n        END AS notes,\n    cu.store_id AS sid\n   FROM (((customer cu\n     JOIN address a ON ((cu.address_id = a.address_id)))\n     JOIN city ON ((a.city_id = city.city_id)))\n     JOIN country ON ((city.country_id = country.country_id)));",
 					"columns": {
-						"ID": {
-							"name": "ID",
+						"id": {
+							"name": "id",
 							"ordinal": 1,
-							"dataType": "smallint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
-							"isNullable": false
+							"isNullable": true
 						},
 						"name": {
 							"name": "name",
 							"ordinal": 2,
-							"dataType": "varchar",
-							"maxLength": 91,
+							"dataType": "text",
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"address": {
 							"name": "address",
 							"ordinal": 3,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"zip code": {
 							"name": "zip code",
 							"ordinal": 4,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 10,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"phone": {
 							"name": "phone",
 							"ordinal": 5,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 20,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"city": {
 							"name": "city",
 							"ordinal": 6,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"country": {
 							"name": "country",
 							"ordinal": 7,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"notes": {
 							"name": "notes",
 							"ordinal": 8,
-							"dataType": "varchar",
-							"maxLength": 6,
+							"dataType": "text",
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
-						"SID": {
-							"name": "SID",
+						"sid": {
+							"name": "sid",
 							"ordinal": 9,
-							"dataType": "tinyint",
+							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
-							"isNullable": false
+							"isNullable": true
 						}
 					}
 				},
 				"film_list": {
 					"name": "film_list",
 					"description": "",
-					"sql": "select `sakila`.`film`.`film_id` AS `FID`,`sakila`.`film`.`title` AS `title`,`sakila`.`film`.`description` AS `description`,`sakila`.`category`.`name` AS `category`,`sakila`.`film`.`rental_rate` AS `price`,`sakila`.`film`.`length` AS `length`,`sakila`.`film`.`rating` AS `rating`,group_concat(concat(`sakila`.`actor`.`first_name`,' ',`sakila`.`actor`.`last_name`) separator ', ') AS `actors` from ((((`sakila`.`category` left join `sakila`.`film_category` on((`sakila`.`category`.`category_id` = `sakila`.`film_category`.`category_id`))) left join `sakila`.`film` on((`sakila`.`film_category`.`film_id` = `sakila`.`film`.`film_id`))) join `sakila`.`film_actor` on((`sakila`.`film`.`film_id` = `sakila`.`film_actor`.`film_id`))) join `sakila`.`actor` on((`sakila`.`film_actor`.`actor_id` = `sakila`.`actor`.`actor_id`))) group by `sakila`.`film`.`film_id`,`sakila`.`category`.`name`",
+					"sql": " SELECT film.film_id AS fid,\n    film.title,\n    film.description,\n    category.name AS category,\n    film.rental_rate AS price,\n    film.length,\n    film.rating,\n    group_concat((((actor.first_name)::text || ' '::text) || (actor.last_name)::text)) AS actors\n   FROM ((((category\n     LEFT JOIN film_category ON ((category.category_id = film_category.category_id)))\n     LEFT JOIN film ON ((film_category.film_id = film.film_id)))\n     JOIN film_actor ON ((film.film_id = film_actor.film_id)))\n     JOIN actor ON ((film_actor.actor_id = actor.actor_id)))\n  GROUP BY film.film_id, film.title, film.description, category.name, film.rental_rate, film.length, film.rating;",
 					"columns": {
-						"FID": {
-							"name": "FID",
+						"fid": {
+							"name": "fid",
 							"ordinal": 1,
-							"dataType": "smallint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
@@ -3033,43 +3181,43 @@
 						"title": {
 							"name": "title",
 							"ordinal": 2,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 255,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"description": {
 							"name": "description",
 							"ordinal": 3,
 							"dataType": "text",
-							"maxLength": 65535,
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"category": {
 							"name": "category",
 							"ordinal": 4,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 25,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"price": {
 							"name": "price",
 							"ordinal": 5,
-							"dataType": "decimal",
+							"dataType": "numeric",
 							"maxLength": null,
 							"precision": 4,
 							"scale": 2,
@@ -3083,7 +3231,7 @@
 							"ordinal": 6,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
@@ -3093,25 +3241,25 @@
 						"rating": {
 							"name": "rating",
 							"ordinal": 7,
-							"dataType": "enum",
-							"maxLength": 5,
+							"dataType": "mpaa_rating",
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"actors": {
 							"name": "actors",
 							"ordinal": 8,
 							"dataType": "text",
-							"maxLength": 65535,
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						}
 					}
@@ -3119,14 +3267,14 @@
 				"nicer_but_slower_film_list": {
 					"name": "nicer_but_slower_film_list",
 					"description": "",
-					"sql": "select `sakila`.`film`.`film_id` AS `FID`,`sakila`.`film`.`title` AS `title`,`sakila`.`film`.`description` AS `description`,`sakila`.`category`.`name` AS `category`,`sakila`.`film`.`rental_rate` AS `price`,`sakila`.`film`.`length` AS `length`,`sakila`.`film`.`rating` AS `rating`,group_concat(concat(concat(upper(substr(`sakila`.`actor`.`first_name`,1,1)),lower(substr(`sakila`.`actor`.`first_name`,2,length(`sakila`.`actor`.`first_name`))),' ',concat(upper(substr(`sakila`.`actor`.`last_name`,1,1)),lower(substr(`sakila`.`actor`.`last_name`,2,length(`sakila`.`actor`.`last_name`)))))) separator ', ') AS `actors` from ((((`sakila`.`category` left join `sakila`.`film_category` on((`sakila`.`category`.`category_id` = `sakila`.`film_category`.`category_id`))) left join `sakila`.`film` on((`sakila`.`film_category`.`film_id` = `sakila`.`film`.`film_id`))) join `sakila`.`film_actor` on((`sakila`.`film`.`film_id` = `sakila`.`film_actor`.`film_id`))) join `sakila`.`actor` on((`sakila`.`film_actor`.`actor_id` = `sakila`.`actor`.`actor_id`))) group by `sakila`.`film`.`film_id`,`sakila`.`category`.`name`",
+					"sql": " SELECT film.film_id AS fid,\n    film.title,\n    film.description,\n    category.name AS category,\n    film.rental_rate AS price,\n    film.length,\n    film.rating,\n    group_concat((((upper(\"substring\"((actor.first_name)::text, 1, 1)) || lower(\"substring\"((actor.first_name)::text, 2))) || upper(\"substring\"((actor.last_name)::text, 1, 1))) || lower(\"substring\"((actor.last_name)::text, 2)))) AS actors\n   FROM ((((category\n     LEFT JOIN film_category ON ((category.category_id = film_category.category_id)))\n     LEFT JOIN film ON ((film_category.film_id = film.film_id)))\n     JOIN film_actor ON ((film.film_id = film_actor.film_id)))\n     JOIN actor ON ((film_actor.actor_id = actor.actor_id)))\n  GROUP BY film.film_id, film.title, film.description, category.name, film.rental_rate, film.length, film.rating;",
 					"columns": {
-						"FID": {
-							"name": "FID",
+						"fid": {
+							"name": "fid",
 							"ordinal": 1,
-							"dataType": "smallint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
@@ -3136,43 +3284,43 @@
 						"title": {
 							"name": "title",
 							"ordinal": 2,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 255,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"description": {
 							"name": "description",
 							"ordinal": 3,
 							"dataType": "text",
-							"maxLength": 65535,
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"category": {
 							"name": "category",
 							"ordinal": 4,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 25,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"price": {
 							"name": "price",
 							"ordinal": 5,
-							"dataType": "decimal",
+							"dataType": "numeric",
 							"maxLength": null,
 							"precision": 4,
 							"scale": 2,
@@ -3186,7 +3334,7 @@
 							"ordinal": 6,
 							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 5,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
@@ -3196,25 +3344,25 @@
 						"rating": {
 							"name": "rating",
 							"ordinal": 7,
-							"dataType": "enum",
-							"maxLength": 5,
+							"dataType": "mpaa_rating",
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"actors": {
 							"name": "actors",
 							"ordinal": 8,
 							"dataType": "text",
-							"maxLength": 65535,
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						}
 					}
@@ -3222,27 +3370,27 @@
 				"sales_by_film_category": {
 					"name": "sales_by_film_category",
 					"description": "",
-					"sql": "select `c`.`name` AS `category`,sum(`p`.`amount`) AS `total_sales` from (((((`sakila`.`payment` `p` join `sakila`.`rental` `r` on((`p`.`rental_id` = `r`.`rental_id`))) join `sakila`.`inventory` `i` on((`r`.`inventory_id` = `i`.`inventory_id`))) join `sakila`.`film` `f` on((`i`.`film_id` = `f`.`film_id`))) join `sakila`.`film_category` `fc` on((`f`.`film_id` = `fc`.`film_id`))) join `sakila`.`category` `c` on((`fc`.`category_id` = `c`.`category_id`))) group by `c`.`name` order by `total_sales` desc",
+					"sql": " SELECT c.name AS category,\n    sum(p.amount) AS total_sales\n   FROM (((((payment p\n     JOIN rental r ON ((p.rental_id = r.rental_id)))\n     JOIN inventory i ON ((r.inventory_id = i.inventory_id)))\n     JOIN film f ON ((i.film_id = f.film_id)))\n     JOIN film_category fc ON ((f.film_id = fc.film_id)))\n     JOIN category c ON ((fc.category_id = c.category_id)))\n  GROUP BY c.name\n  ORDER BY (sum(p.amount)) DESC;",
 					"columns": {
 						"category": {
 							"name": "category",
 							"ordinal": 1,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 25,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"total_sales": {
 							"name": "total_sales",
 							"ordinal": 2,
-							"dataType": "decimal",
+							"dataType": "numeric",
 							"maxLength": null,
-							"precision": 27,
-							"scale": 2,
+							"precision": null,
+							"scale": null,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
@@ -3253,39 +3401,39 @@
 				"sales_by_store": {
 					"name": "sales_by_store",
 					"description": "",
-					"sql": "select concat(`c`.`city`,',',`cy`.`country`) AS `store`,concat(`m`.`first_name`,' ',`m`.`last_name`) AS `manager`,sum(`p`.`amount`) AS `total_sales` from (((((((`sakila`.`payment` `p` join `sakila`.`rental` `r` on((`p`.`rental_id` = `r`.`rental_id`))) join `sakila`.`inventory` `i` on((`r`.`inventory_id` = `i`.`inventory_id`))) join `sakila`.`store` `s` on((`i`.`store_id` = `s`.`store_id`))) join `sakila`.`address` `a` on((`s`.`address_id` = `a`.`address_id`))) join `sakila`.`city` `c` on((`a`.`city_id` = `c`.`city_id`))) join `sakila`.`country` `cy` on((`c`.`country_id` = `cy`.`country_id`))) join `sakila`.`staff` `m` on((`s`.`manager_staff_id` = `m`.`staff_id`))) group by `s`.`store_id` order by `cy`.`country`,`c`.`city`",
+					"sql": " SELECT (((c.city)::text || ','::text) || (cy.country)::text) AS store,\n    (((m.first_name)::text || ' '::text) || (m.last_name)::text) AS manager,\n    sum(p.amount) AS total_sales\n   FROM (((((((payment p\n     JOIN rental r ON ((p.rental_id = r.rental_id)))\n     JOIN inventory i ON ((r.inventory_id = i.inventory_id)))\n     JOIN store s ON ((i.store_id = s.store_id)))\n     JOIN address a ON ((s.address_id = a.address_id)))\n     JOIN city c ON ((a.city_id = c.city_id)))\n     JOIN country cy ON ((c.country_id = cy.country_id)))\n     JOIN staff m ON ((s.manager_staff_id = m.staff_id)))\n  GROUP BY cy.country, c.city, s.store_id, m.first_name, m.last_name\n  ORDER BY cy.country, c.city;",
 					"columns": {
 						"store": {
 							"name": "store",
 							"ordinal": 1,
-							"dataType": "varchar",
-							"maxLength": 101,
+							"dataType": "text",
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"manager": {
 							"name": "manager",
 							"ordinal": 2,
-							"dataType": "varchar",
-							"maxLength": 91,
+							"dataType": "text",
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"total_sales": {
 							"name": "total_sales",
 							"ordinal": 3,
-							"dataType": "decimal",
+							"dataType": "numeric",
 							"maxLength": null,
-							"precision": 27,
-							"scale": 2,
+							"precision": null,
+							"scale": null,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
@@ -3296,103 +3444,103 @@
 				"staff_list": {
 					"name": "staff_list",
 					"description": "",
-					"sql": "select `s`.`staff_id` AS `ID`,concat(`s`.`first_name`,' ',`s`.`last_name`) AS `name`,`a`.`address` AS `address`,`a`.`postal_code` AS `zip code`,`a`.`phone` AS `phone`,`sakila`.`city`.`city` AS `city`,`sakila`.`country`.`country` AS `country`,`s`.`store_id` AS `SID` from (((`sakila`.`staff` `s` join `sakila`.`address` `a` on((`s`.`address_id` = `a`.`address_id`))) join `sakila`.`city` on((`a`.`city_id` = `sakila`.`city`.`city_id`))) join `sakila`.`country` on((`sakila`.`city`.`country_id` = `sakila`.`country`.`country_id`)))",
+					"sql": " SELECT s.staff_id AS id,\n    (((s.first_name)::text || ' '::text) || (s.last_name)::text) AS name,\n    a.address,\n    a.postal_code AS \"zip code\",\n    a.phone,\n    city.city,\n    country.country,\n    s.store_id AS sid\n   FROM (((staff s\n     JOIN address a ON ((s.address_id = a.address_id)))\n     JOIN city ON ((a.city_id = city.city_id)))\n     JOIN country ON ((city.country_id = country.country_id)));",
 					"columns": {
-						"ID": {
-							"name": "ID",
+						"id": {
+							"name": "id",
 							"ordinal": 1,
-							"dataType": "tinyint",
+							"dataType": "integer",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 32,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
-							"isNullable": false
+							"isNullable": true
 						},
 						"name": {
 							"name": "name",
 							"ordinal": 2,
-							"dataType": "varchar",
-							"maxLength": 91,
+							"dataType": "text",
+							"maxLength": null,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"address": {
 							"name": "address",
 							"ordinal": 3,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"zip code": {
 							"name": "zip code",
 							"ordinal": 4,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 10,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
+							"characterSet": null,
+							"collation": null,
 							"isNullable": true
 						},
 						"phone": {
 							"name": "phone",
 							"ordinal": 5,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 20,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"city": {
 							"name": "city",
 							"ordinal": 6,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
 						"country": {
 							"name": "country",
 							"ordinal": 7,
-							"dataType": "varchar",
+							"dataType": "character varying",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
 							"dateTimePrecision": null,
-							"characterSet": "utf8",
-							"collation": "utf8_general_ci",
-							"isNullable": false
+							"characterSet": null,
+							"collation": null,
+							"isNullable": true
 						},
-						"SID": {
-							"name": "SID",
+						"sid": {
+							"name": "sid",
 							"ordinal": 8,
-							"dataType": "tinyint",
+							"dataType": "smallint",
 							"maxLength": null,
-							"precision": 3,
+							"precision": 16,
 							"scale": 0,
 							"dateTimePrecision": null,
 							"characterSet": null,
 							"collation": null,
-							"isNullable": false
+							"isNullable": true
 						}
 					}
 				}
@@ -3400,253 +3548,209 @@
 			"foreignKeys": {
 				"fk_address_city": {
 					"name": "fk_address_city",
-					"fkSchemaName": "sakila",
+					"fkSchemaName": "public",
 					"fkTableName": "address",
 					"fkColumnName": "city_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "city",
-					"pkName": "PRIMARY",
-					"deleteRule": "RESTRICT",
-					"updateRule": "CASCADE"
+					"pkName": "city_pkey",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
 				},
-				"fk_city_country": {
-					"name": "fk_city_country",
-					"fkSchemaName": "sakila",
+				"fk_city": {
+					"name": "fk_city",
+					"fkSchemaName": "public",
 					"fkTableName": "city",
 					"fkColumnName": "country_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "country",
-					"pkName": "PRIMARY",
-					"deleteRule": "RESTRICT",
-					"updateRule": "CASCADE"
+					"pkName": "country_pkey",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
 				},
-				"fk_customer_address": {
-					"name": "fk_customer_address",
-					"fkSchemaName": "sakila",
+				"customer_address_id_fkey": {
+					"name": "customer_address_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "customer",
 					"fkColumnName": "address_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "address",
-					"pkName": "PRIMARY",
+					"pkName": "address_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_customer_store": {
-					"name": "fk_customer_store",
-					"fkSchemaName": "sakila",
-					"fkTableName": "customer",
-					"fkColumnName": "store_id",
-					"pkSchemaName": "sakila",
-					"pkTableName": "store",
-					"pkName": "PRIMARY",
-					"deleteRule": "RESTRICT",
-					"updateRule": "CASCADE"
-				},
-				"fk_film_language": {
-					"name": "fk_film_language",
-					"fkSchemaName": "sakila",
+				"film_language_id_fkey": {
+					"name": "film_language_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "film",
 					"fkColumnName": "language_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "language",
-					"pkName": "PRIMARY",
+					"pkName": "language_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_film_language_original": {
-					"name": "fk_film_language_original",
-					"fkSchemaName": "sakila",
-					"fkTableName": "film",
-					"fkColumnName": "original_language_id",
-					"pkSchemaName": "sakila",
-					"pkTableName": "language",
-					"pkName": "PRIMARY",
-					"deleteRule": "RESTRICT",
-					"updateRule": "CASCADE"
-				},
-				"fk_film_actor_actor": {
-					"name": "fk_film_actor_actor",
-					"fkSchemaName": "sakila",
+				"film_actor_actor_id_fkey": {
+					"name": "film_actor_actor_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "film_actor",
 					"fkColumnName": "actor_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "actor",
-					"pkName": "PRIMARY",
+					"pkName": "actor_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_film_actor_film": {
-					"name": "fk_film_actor_film",
-					"fkSchemaName": "sakila",
+				"film_actor_film_id_fkey": {
+					"name": "film_actor_film_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "film_actor",
 					"fkColumnName": "film_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "film",
-					"pkName": "PRIMARY",
+					"pkName": "film_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_film_category_category": {
-					"name": "fk_film_category_category",
-					"fkSchemaName": "sakila",
+				"film_category_category_id_fkey": {
+					"name": "film_category_category_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "film_category",
 					"fkColumnName": "category_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "category",
-					"pkName": "PRIMARY",
+					"pkName": "category_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_film_category_film": {
-					"name": "fk_film_category_film",
-					"fkSchemaName": "sakila",
+				"film_category_film_id_fkey": {
+					"name": "film_category_film_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "film_category",
 					"fkColumnName": "film_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "film",
-					"pkName": "PRIMARY",
+					"pkName": "film_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_inventory_film": {
-					"name": "fk_inventory_film",
-					"fkSchemaName": "sakila",
+				"inventory_film_id_fkey": {
+					"name": "inventory_film_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "inventory",
 					"fkColumnName": "film_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "film",
-					"pkName": "PRIMARY",
+					"pkName": "film_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_inventory_store": {
-					"name": "fk_inventory_store",
-					"fkSchemaName": "sakila",
-					"fkTableName": "inventory",
-					"fkColumnName": "store_id",
-					"pkSchemaName": "sakila",
-					"pkTableName": "store",
-					"pkName": "PRIMARY",
-					"deleteRule": "RESTRICT",
-					"updateRule": "CASCADE"
-				},
-				"fk_payment_customer": {
-					"name": "fk_payment_customer",
-					"fkSchemaName": "sakila",
+				"payment_customer_id_fkey": {
+					"name": "payment_customer_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "payment",
 					"fkColumnName": "customer_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "customer",
-					"pkName": "PRIMARY",
+					"pkName": "customer_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_payment_rental": {
-					"name": "fk_payment_rental",
-					"fkSchemaName": "sakila",
+				"payment_rental_id_fkey": {
+					"name": "payment_rental_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "payment",
 					"fkColumnName": "rental_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "rental",
-					"pkName": "PRIMARY",
+					"pkName": "rental_pkey",
 					"deleteRule": "SET NULL",
 					"updateRule": "CASCADE"
 				},
-				"fk_payment_staff": {
-					"name": "fk_payment_staff",
-					"fkSchemaName": "sakila",
+				"payment_staff_id_fkey": {
+					"name": "payment_staff_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "payment",
 					"fkColumnName": "staff_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "staff",
-					"pkName": "PRIMARY",
+					"pkName": "staff_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_rental_customer": {
-					"name": "fk_rental_customer",
-					"fkSchemaName": "sakila",
+				"rental_customer_id_fkey": {
+					"name": "rental_customer_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "rental",
 					"fkColumnName": "customer_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "customer",
-					"pkName": "PRIMARY",
+					"pkName": "customer_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_rental_inventory": {
-					"name": "fk_rental_inventory",
-					"fkSchemaName": "sakila",
+				"rental_inventory_id_fkey": {
+					"name": "rental_inventory_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "rental",
 					"fkColumnName": "inventory_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "inventory",
-					"pkName": "PRIMARY",
+					"pkName": "inventory_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_rental_staff": {
-					"name": "fk_rental_staff",
-					"fkSchemaName": "sakila",
+				"rental_staff_id_key": {
+					"name": "rental_staff_id_key",
+					"fkSchemaName": "public",
 					"fkTableName": "rental",
 					"fkColumnName": "staff_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "staff",
-					"pkName": "PRIMARY",
-					"deleteRule": "RESTRICT",
-					"updateRule": "CASCADE"
+					"pkName": "staff_pkey",
+					"deleteRule": "NO ACTION",
+					"updateRule": "NO ACTION"
 				},
-				"fk_staff_address": {
-					"name": "fk_staff_address",
-					"fkSchemaName": "sakila",
+				"staff_address_id_fkey": {
+					"name": "staff_address_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "staff",
 					"fkColumnName": "address_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "address",
-					"pkName": "PRIMARY",
+					"pkName": "address_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_staff_store": {
-					"name": "fk_staff_store",
-					"fkSchemaName": "sakila",
-					"fkTableName": "staff",
-					"fkColumnName": "store_id",
-					"pkSchemaName": "sakila",
-					"pkTableName": "store",
-					"pkName": "PRIMARY",
-					"deleteRule": "RESTRICT",
-					"updateRule": "CASCADE"
-				},
-				"fk_store_address": {
-					"name": "fk_store_address",
-					"fkSchemaName": "sakila",
+				"store_address_id_fkey": {
+					"name": "store_address_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "store",
 					"fkColumnName": "address_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "address",
-					"pkName": "PRIMARY",
+					"pkName": "address_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				},
-				"fk_store_staff": {
-					"name": "fk_store_staff",
-					"fkSchemaName": "sakila",
+				"store_manager_staff_id_fkey": {
+					"name": "store_manager_staff_id_fkey",
+					"fkSchemaName": "public",
 					"fkTableName": "store",
 					"fkColumnName": "manager_staff_id",
-					"pkSchemaName": "sakila",
+					"pkSchemaName": "public",
 					"pkTableName": "staff",
-					"pkName": "PRIMARY",
+					"pkName": "staff_pkey",
 					"deleteRule": "RESTRICT",
 					"updateRule": "CASCADE"
 				}
 			},
 			"functions": {
-				"get_customer_balance": {
-					"name": "get_customer_balance",
+				"_group_concat": {
+					"name": "_group_concat",
 					"description": "",
-					"sql": null,
-					"language": "SQL",
+					"sql": "\nSELECT CASE\n  WHEN $2 IS NULL THEN $1\n  WHEN $1 IS NULL THEN $2\n  ELSE $1 || ', ' || $2\nEND\n",
+					"language": "sql",
 					"result": {
 						"name": "",
 						"ordinal": 0,
@@ -3654,13 +3758,130 @@
 						"isOut": false,
 						"isResult": true,
 						"asLocator": false,
-						"dataType": "decimal",
-						"maxLength": null,
-						"precision": 5,
-						"scale": 2,
-						"dateTimePrecision": null,
-						"characterSet": null,
-						"collation": null
+						"dataType": "text"
+					},
+					"arguments": {
+						"$01": {
+							"name": "$01",
+							"ordinal": 1,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "text"
+						},
+						"$11": {
+							"name": "$11",
+							"ordinal": 2,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "text"
+						}
+					}
+				},
+				"film_in_stock": {
+					"name": "film_in_stock",
+					"description": "",
+					"sql": "\n     SELECT inventory_id\n     FROM inventory\n     WHERE film_id = $1\n     AND store_id = $2\n     AND inventory_in_stock(inventory_id);\n",
+					"language": "sql",
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": false,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "integer"
+					},
+					"arguments": {
+						"p_film_id": {
+							"name": "p_film_id",
+							"ordinal": 1,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "integer"
+						},
+						"p_store_id": {
+							"name": "p_store_id",
+							"ordinal": 2,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "integer"
+						},
+						"p_film_count": {
+							"name": "p_film_count",
+							"ordinal": 3,
+							"isIn": true,
+							"isOut": true,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "integer"
+						}
+					}
+				},
+				"film_not_in_stock": {
+					"name": "film_not_in_stock",
+					"description": "",
+					"sql": "\n    SELECT inventory_id\n    FROM inventory\n    WHERE film_id = $1\n    AND store_id = $2\n    AND NOT inventory_in_stock(inventory_id);\n",
+					"language": "sql",
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": false,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "integer"
+					},
+					"arguments": {
+						"p_film_id": {
+							"name": "p_film_id",
+							"ordinal": 1,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "integer"
+						},
+						"p_store_id": {
+							"name": "p_store_id",
+							"ordinal": 2,
+							"isIn": true,
+							"isOut": false,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "integer"
+						},
+						"p_film_count": {
+							"name": "p_film_count",
+							"ordinal": 3,
+							"isIn": true,
+							"isOut": true,
+							"isResult": false,
+							"asLocator": false,
+							"dataType": "integer"
+						}
+					}
+				},
+				"get_customer_balance": {
+					"name": "get_customer_balance",
+					"description": "",
+					"sql": "\n       --#OK, WE NEED TO CALCULATE THE CURRENT BALANCE GIVEN A CUSTOMER_ID AND A DATE\n       --#THAT WE WANT THE BALANCE TO BE EFFECTIVE FOR. THE BALANCE IS:\n       --#   1) RENTAL FEES FOR ALL PREVIOUS RENTALS\n       --#   2) ONE DOLLAR FOR EVERY DAY THE PREVIOUS RENTALS ARE OVERDUE\n       --#   3) IF A FILM IS MORE THAN RENTAL_DURATION * 2 OVERDUE, CHARGE THE REPLACEMENT_COST\n       --#   4) SUBTRACT ALL PAYMENTS MADE BEFORE THE DATE SPECIFIED\nDECLARE\n    v_rentfees DECIMAL(5,2); --#FEES PAID TO RENT THE VIDEOS INITIALLY\n    v_overfees INTEGER;      --#LATE FEES FOR PRIOR RENTALS\n    v_payments DECIMAL(5,2); --#SUM OF PAYMENTS MADE PREVIOUSLY\nBEGIN\n    SELECT COALESCE(SUM(film.rental_rate),0) INTO v_rentfees\n    FROM film, inventory, rental\n    WHERE film.film_id = inventory.film_id\n      AND inventory.inventory_id = rental.inventory_id\n      AND rental.rental_date <= p_effective_date\n      AND rental.customer_id = p_customer_id;\n\n    SELECT COALESCE(SUM(IF((rental.return_date - rental.rental_date) > (film.rental_duration * '1 day'::interval),\n        ((rental.return_date - rental.rental_date) - (film.rental_duration * '1 day'::interval)),0)),0) INTO v_overfees\n    FROM rental, inventory, film\n    WHERE film.film_id = inventory.film_id\n      AND inventory.inventory_id = rental.inventory_id\n      AND rental.rental_date <= p_effective_date\n      AND rental.customer_id = p_customer_id;\n\n    SELECT COALESCE(SUM(payment.amount),0) INTO v_payments\n    FROM payment\n    WHERE payment.payment_date <= p_effective_date\n    AND payment.customer_id = p_customer_id;\n\n    RETURN v_rentfees + v_overfees - v_payments;\nEND\n",
+					"language": "plpgsql",
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": false,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "numeric"
 					},
 					"arguments": {
 						"p_customer_id": {
@@ -3670,13 +3891,7 @@
 							"isOut": false,
 							"isResult": false,
 							"asLocator": false,
-							"dataType": "int",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
+							"dataType": "integer"
 						},
 						"p_effective_date": {
 							"name": "p_effective_date",
@@ -3685,21 +3900,15 @@
 							"isOut": false,
 							"isResult": false,
 							"asLocator": false,
-							"dataType": "datetime",
-							"maxLength": null,
-							"precision": null,
-							"scale": null,
-							"dateTimePrecision": 0,
-							"characterSet": null,
-							"collation": null
+							"dataType": "timestamp without time zone"
 						}
 					}
 				},
 				"inventory_held_by_customer": {
 					"name": "inventory_held_by_customer",
 					"description": "",
-					"sql": null,
-					"language": "SQL",
+					"sql": "\nDECLARE\n    v_customer_id INTEGER;\nBEGIN\n\n  SELECT customer_id INTO v_customer_id\n  FROM rental\n  WHERE return_date IS NULL\n  AND inventory_id = p_inventory_id;\n\n  RETURN v_customer_id;\nEND ",
+					"language": "plpgsql",
 					"result": {
 						"name": "",
 						"ordinal": 0,
@@ -3707,13 +3916,7 @@
 						"isOut": false,
 						"isResult": true,
 						"asLocator": false,
-						"dataType": "int",
-						"maxLength": null,
-						"precision": 10,
-						"scale": 0,
-						"dateTimePrecision": null,
-						"characterSet": null,
-						"collation": null
+						"dataType": "integer"
 					},
 					"arguments": {
 						"p_inventory_id": {
@@ -3723,21 +3926,15 @@
 							"isOut": false,
 							"isResult": false,
 							"asLocator": false,
-							"dataType": "int",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
+							"dataType": "integer"
 						}
 					}
 				},
 				"inventory_in_stock": {
 					"name": "inventory_in_stock",
 					"description": "",
-					"sql": null,
-					"language": "SQL",
+					"sql": "\nDECLARE\n    v_rentals INTEGER;\n    v_out     INTEGER;\nBEGIN\n    -- AN ITEM IS IN-STOCK IF THERE ARE EITHER NO ROWS IN THE rental TABLE\n    -- FOR THE ITEM OR ALL ROWS HAVE return_date POPULATED\n\n    SELECT count(*) INTO v_rentals\n    FROM rental\n    WHERE inventory_id = p_inventory_id;\n\n    IF v_rentals = 0 THEN\n      RETURN TRUE;\n    END IF;\n\n    SELECT COUNT(rental_id) INTO v_out\n    FROM inventory LEFT JOIN rental USING(inventory_id)\n    WHERE inventory.inventory_id = p_inventory_id\n    AND rental.return_date IS NULL;\n\n    IF v_out > 0 THEN\n      RETURN FALSE;\n    ELSE\n      RETURN TRUE;\n    END IF;\nEND ",
+					"language": "plpgsql",
 					"result": {
 						"name": "",
 						"ordinal": 0,
@@ -3745,13 +3942,7 @@
 						"isOut": false,
 						"isResult": true,
 						"asLocator": false,
-						"dataType": "tinyint",
-						"maxLength": null,
-						"precision": 3,
-						"scale": 0,
-						"dateTimePrecision": null,
-						"characterSet": null,
-						"collation": null
+						"dataType": "boolean"
 					},
 					"arguments": {
 						"p_inventory_id": {
@@ -3761,132 +3952,50 @@
 							"isOut": false,
 							"isResult": false,
 							"asLocator": false,
-							"dataType": "int",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
-						}
-					}
-				}
-			},
-			"procedures": {
-				"film_in_stock": {
-					"name": "film_in_stock",
-					"description": "",
-					"sql": null,
-					"language": "SQL",
-					"result": null,
-					"arguments": {
-						"p_film_id": {
-							"name": "p_film_id",
-							"ordinal": 1,
-							"isIn": true,
-							"isOut": false,
-							"isResult": false,
-							"asLocator": false,
-							"dataType": "int",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
-						},
-						"p_store_id": {
-							"name": "p_store_id",
-							"ordinal": 2,
-							"isIn": true,
-							"isOut": false,
-							"isResult": false,
-							"asLocator": false,
-							"dataType": "int",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
-						},
-						"p_film_count": {
-							"name": "p_film_count",
-							"ordinal": 3,
-							"isIn": false,
-							"isOut": true,
-							"isResult": false,
-							"asLocator": false,
-							"dataType": "int",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
+							"dataType": "integer"
 						}
 					}
 				},
-				"film_not_in_stock": {
-					"name": "film_not_in_stock",
+				"last_day": {
+					"name": "last_day",
 					"description": "",
-					"sql": null,
-					"language": "SQL",
-					"result": null,
+					"sql": "\n  SELECT CASE\n    WHEN EXTRACT(MONTH FROM $1) = 12 THEN\n      (((EXTRACT(YEAR FROM $1) + 1) operator(pg_catalog.||) '-01-01')::date - INTERVAL '1 day')::date\n    ELSE\n      ((EXTRACT(YEAR FROM $1) operator(pg_catalog.||) '-' operator(pg_catalog.||) (EXTRACT(MONTH FROM $1) + 1) operator(pg_catalog.||) '-01')::date - INTERVAL '1 day')::date\n    END\n",
+					"language": "sql",
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": false,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "date"
+					},
 					"arguments": {
-						"p_film_id": {
-							"name": "p_film_id",
+						"$01": {
+							"name": "$01",
 							"ordinal": 1,
 							"isIn": true,
 							"isOut": false,
 							"isResult": false,
 							"asLocator": false,
-							"dataType": "int",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
-						},
-						"p_store_id": {
-							"name": "p_store_id",
-							"ordinal": 2,
-							"isIn": true,
-							"isOut": false,
-							"isResult": false,
-							"asLocator": false,
-							"dataType": "int",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
-						},
-						"p_film_count": {
-							"name": "p_film_count",
-							"ordinal": 3,
-							"isIn": false,
-							"isOut": true,
-							"isResult": false,
-							"asLocator": false,
-							"dataType": "int",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
+							"dataType": "timestamp without time zone"
 						}
 					}
 				},
 				"rewards_report": {
 					"name": "rewards_report",
-					"description": "Provides a customizable report on best customers",
-					"sql": null,
-					"language": "SQL",
-					"result": null,
+					"description": "",
+					"sql": "\nDECLARE\n    last_month_start DATE;\n    last_month_end DATE;\nrr RECORD;\ntmpSQL TEXT;\nBEGIN\n\n    /* Some sanity checks... */\n    IF min_monthly_purchases = 0 THEN\n        RAISE EXCEPTION 'Minimum monthly purchases parameter must be > 0';\n    END IF;\n    IF min_dollar_amount_purchased = 0.00 THEN\n        RAISE EXCEPTION 'Minimum monthly dollar amount purchased parameter must be > $0.00';\n    END IF;\n\n    last_month_start := CURRENT_DATE - '3 month'::interval;\n    last_month_start := to_date((extract(YEAR FROM last_month_start) || '-' || extract(MONTH FROM last_month_start) || '-01'),'YYYY-MM-DD');\n    last_month_end := LAST_DAY(last_month_start);\n\n    /*\n    Create a temporary storage area for Customer IDs.\n    */\n    CREATE TEMPORARY TABLE tmpCustomer (customer_id INTEGER NOT NULL PRIMARY KEY);\n\n    /*\n    Find all customers meeting the monthly purchase requirements\n    */\n\n    tmpSQL := 'INSERT INTO tmpCustomer (customer_id)\n        SELECT p.customer_id\n        FROM payment AS p\n        WHERE DATE(p.payment_date) BETWEEN '||quote_literal(last_month_start) ||' AND '|| quote_literal(last_month_end) || '\n        GROUP BY customer_id\n        HAVING SUM(p.amount) > '|| min_dollar_amount_purchased || '\n        AND COUNT(customer_id) > ' ||min_monthly_purchases ;\n\n    EXECUTE tmpSQL;\n\n    /*\n    Output ALL customer information of matching rewardees.\n    Customize output as needed.\n    */\n    FOR rr IN EXECUTE 'SELECT c.* FROM tmpCustomer AS t INNER JOIN customer AS c ON t.customer_id = c.customer_id' LOOP\n        RETURN NEXT rr;\n    END LOOP;\n\n    /* Clean up */\n    tmpSQL := 'DROP TABLE tmpCustomer';\n    EXECUTE tmpSQL;\n\nRETURN;\nEND\n",
+					"language": "plpgsql",
+					"result": {
+						"name": "",
+						"ordinal": 0,
+						"isIn": false,
+						"isOut": false,
+						"isResult": true,
+						"asLocator": false,
+						"dataType": "customer"
+					},
 					"arguments": {
 						"min_monthly_purchases": {
 							"name": "min_monthly_purchases",
@@ -3895,13 +4004,7 @@
 							"isOut": false,
 							"isResult": false,
 							"asLocator": false,
-							"dataType": "tinyint",
-							"maxLength": null,
-							"precision": 3,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
+							"dataType": "integer"
 						},
 						"min_dollar_amount_purchased": {
 							"name": "min_dollar_amount_purchased",
@@ -3910,28 +4013,7 @@
 							"isOut": false,
 							"isResult": false,
 							"asLocator": false,
-							"dataType": "decimal",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 2,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
-						},
-						"count_rewardees": {
-							"name": "count_rewardees",
-							"ordinal": 3,
-							"isIn": false,
-							"isOut": true,
-							"isResult": false,
-							"asLocator": false,
-							"dataType": "int",
-							"maxLength": null,
-							"precision": 10,
-							"scale": 0,
-							"dateTimePrecision": null,
-							"characterSet": null,
-							"collation": null
+							"dataType": "numeric"
 						}
 					}
 				}

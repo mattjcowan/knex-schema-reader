@@ -4,49 +4,49 @@
 		"productLevel": "10",
 		"productVersion": "5.7.9",
 		"edition": "MySQL Community Server (GPL)",
-		"majorVersion": "MySQL5"
+		"majorVersion": "MySQL 5"
 	},
 	"catalog": "employees",
 	"dataTypes": {
 		"char": {
 			"typeName": "char",
-			"isUserDefined": 0,
-			"isAssemblyType": 0,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"date": {
 			"typeName": "date",
-			"isUserDefined": 0,
-			"isAssemblyType": 0,
-			"hasMaxLength": 0,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": false,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"enum": {
 			"typeName": "enum",
-			"isUserDefined": 0,
-			"isAssemblyType": 0,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		},
 		"int": {
 			"typeName": "int",
-			"isUserDefined": 0,
-			"isAssemblyType": 0,
-			"hasMaxLength": 0,
-			"hasPrecision": 1,
-			"hasScale": 0
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": false,
+			"hasPrecision": true,
+			"hasScale": false
 		},
 		"varchar": {
 			"typeName": "varchar",
-			"isUserDefined": 0,
-			"isAssemblyType": 0,
-			"hasMaxLength": 1,
-			"hasPrecision": 0,
-			"hasScale": 0
+			"isUserDefined": false,
+			"isAssemblyType": false,
+			"hasMaxLength": true,
+			"hasPrecision": false,
+			"hasScale": false
 		}
 	},
 	"schemas": {
@@ -62,7 +62,6 @@
 							"description": "",
 							"ordinal": 1,
 							"dataType": "char",
-							"dataTypeDescriptor": "char(4)",
 							"maxLength": 4,
 							"precision": null,
 							"scale": null,
@@ -72,19 +71,18 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"isPartOfPrimaryKey": true
+							"isForeignKey": false
 						},
 						"dept_name": {
 							"name": "dept_name",
 							"description": "",
 							"ordinal": 2,
 							"dataType": "varchar",
-							"dataTypeDescriptor": "varchar(40)",
 							"maxLength": 40,
 							"precision": null,
 							"scale": null,
@@ -94,15 +92,29 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": true,
 							"isUnique": false,
 							"isForeignKey": false,
+							"isPartOfIndex": true,
 							"uniqueKeyName": "dept_name"
 						}
 					},
+					"indexes": {
+						"departments.dept_name": {
+							"name": "departments.dept_name",
+							"columnCount": 1,
+							"columns": [
+								"dept_name"
+							],
+							"type": "BTREE",
+							"isUnique": false
+						}
+					},
 					"primaryKey": {
+						"name": "PRIMARY",
 						"columnCount": 1,
 						"columns": [
 							"dept_no"
@@ -141,7 +153,6 @@
 							"description": "",
 							"ordinal": 1,
 							"dataType": "int",
-							"dataTypeDescriptor": "int(11)",
 							"maxLength": null,
 							"precision": 10,
 							"scale": 0,
@@ -151,12 +162,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "dept_emp_ibfk_1"
 						},
 						"dept_no": {
@@ -164,7 +176,6 @@
 							"description": "",
 							"ordinal": 2,
 							"dataType": "char",
-							"dataTypeDescriptor": "char(4)",
 							"maxLength": 4,
 							"precision": null,
 							"scale": null,
@@ -174,12 +185,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "dept_emp_ibfk_2"
 						},
 						"from_date": {
@@ -187,7 +199,6 @@
 							"description": "",
 							"ordinal": 3,
 							"dataType": "date",
-							"dataTypeDescriptor": "date",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
@@ -197,6 +208,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -208,7 +220,6 @@
 							"description": "",
 							"ordinal": 4,
 							"dataType": "date",
-							"dataTypeDescriptor": "date",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
@@ -218,6 +229,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -225,7 +237,28 @@
 							"isForeignKey": false
 						}
 					},
+					"indexes": {
+						"dept_emp.dept_no": {
+							"name": "dept_emp.dept_no",
+							"columnCount": 1,
+							"columns": [
+								"dept_no"
+							],
+							"type": "BTREE",
+							"isUnique": true
+						},
+						"dept_emp.emp_no": {
+							"name": "dept_emp.emp_no",
+							"columnCount": 1,
+							"columns": [
+								"emp_no"
+							],
+							"type": "BTREE",
+							"isUnique": true
+						}
+					},
 					"primaryKey": {
+						"name": "PRIMARY",
 						"columnCount": 2,
 						"columns": [
 							"emp_no",
@@ -242,7 +275,6 @@
 							"description": "",
 							"ordinal": 1,
 							"dataType": "char",
-							"dataTypeDescriptor": "char(4)",
 							"maxLength": 4,
 							"precision": null,
 							"scale": null,
@@ -252,12 +284,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "dept_manager_ibfk_2"
 						},
 						"emp_no": {
@@ -265,7 +298,6 @@
 							"description": "",
 							"ordinal": 2,
 							"dataType": "int",
-							"dataTypeDescriptor": "int(11)",
 							"maxLength": null,
 							"precision": 10,
 							"scale": 0,
@@ -275,12 +307,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "dept_manager_ibfk_1"
 						},
 						"from_date": {
@@ -288,7 +321,6 @@
 							"description": "",
 							"ordinal": 3,
 							"dataType": "date",
-							"dataTypeDescriptor": "date",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
@@ -298,6 +330,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -309,7 +342,6 @@
 							"description": "",
 							"ordinal": 4,
 							"dataType": "date",
-							"dataTypeDescriptor": "date",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
@@ -319,6 +351,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -326,7 +359,28 @@
 							"isForeignKey": false
 						}
 					},
+					"indexes": {
+						"dept_manager.dept_no": {
+							"name": "dept_manager.dept_no",
+							"columnCount": 1,
+							"columns": [
+								"dept_no"
+							],
+							"type": "BTREE",
+							"isUnique": true
+						},
+						"dept_manager.emp_no": {
+							"name": "dept_manager.emp_no",
+							"columnCount": 1,
+							"columns": [
+								"emp_no"
+							],
+							"type": "BTREE",
+							"isUnique": true
+						}
+					},
 					"primaryKey": {
+						"name": "PRIMARY",
 						"columnCount": 2,
 						"columns": [
 							"emp_no",
@@ -343,7 +397,6 @@
 							"description": "",
 							"ordinal": 1,
 							"dataType": "int",
-							"dataTypeDescriptor": "int(11)",
 							"maxLength": null,
 							"precision": 10,
 							"scale": 0,
@@ -353,19 +406,18 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
-							"isPrimaryKey": false,
+							"isPartOfPrimaryKey": true,
+							"isPrimaryKey": true,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"isPartOfPrimaryKey": true
+							"isForeignKey": false
 						},
 						"birth_date": {
 							"name": "birth_date",
 							"description": "",
 							"ordinal": 2,
 							"dataType": "date",
-							"dataTypeDescriptor": "date",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
@@ -375,6 +427,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -386,7 +439,6 @@
 							"description": "",
 							"ordinal": 3,
 							"dataType": "varchar",
-							"dataTypeDescriptor": "varchar(14)",
 							"maxLength": 14,
 							"precision": null,
 							"scale": null,
@@ -396,6 +448,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -407,7 +460,6 @@
 							"description": "",
 							"ordinal": 4,
 							"dataType": "varchar",
-							"dataTypeDescriptor": "varchar(16)",
 							"maxLength": 16,
 							"precision": null,
 							"scale": null,
@@ -417,6 +469,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -428,7 +481,6 @@
 							"description": "",
 							"ordinal": 5,
 							"dataType": "enum",
-							"dataTypeDescriptor": "enum('M','F')",
 							"maxLength": 1,
 							"precision": null,
 							"scale": null,
@@ -438,6 +490,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -449,7 +502,6 @@
 							"description": "",
 							"ordinal": 6,
 							"dataType": "date",
-							"dataTypeDescriptor": "date",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
@@ -459,6 +511,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -467,6 +520,7 @@
 						}
 					},
 					"primaryKey": {
+						"name": "PRIMARY",
 						"columnCount": 1,
 						"columns": [
 							"emp_no"
@@ -508,7 +562,6 @@
 							"description": "",
 							"ordinal": 1,
 							"dataType": "int",
-							"dataTypeDescriptor": "int(11)",
 							"maxLength": null,
 							"precision": 10,
 							"scale": 0,
@@ -518,12 +571,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "salaries_ibfk_1"
 						},
 						"salary": {
@@ -531,7 +585,6 @@
 							"description": "",
 							"ordinal": 2,
 							"dataType": "int",
-							"dataTypeDescriptor": "int(11)",
 							"maxLength": null,
 							"precision": 10,
 							"scale": 0,
@@ -541,6 +594,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -552,7 +606,6 @@
 							"description": "",
 							"ordinal": 3,
 							"dataType": "date",
-							"dataTypeDescriptor": "date",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
@@ -562,19 +615,18 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"isPartOfPrimaryKey": true
+							"isForeignKey": false
 						},
 						"to_date": {
 							"name": "to_date",
 							"description": "",
 							"ordinal": 4,
 							"dataType": "date",
-							"dataTypeDescriptor": "date",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
@@ -584,6 +636,7 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -591,7 +644,19 @@
 							"isForeignKey": false
 						}
 					},
+					"indexes": {
+						"salaries.emp_no": {
+							"name": "salaries.emp_no",
+							"columnCount": 1,
+							"columns": [
+								"emp_no"
+							],
+							"type": "BTREE",
+							"isUnique": true
+						}
+					},
 					"primaryKey": {
+						"name": "PRIMARY",
 						"columnCount": 2,
 						"columns": [
 							"emp_no",
@@ -608,7 +673,6 @@
 							"description": "",
 							"ordinal": 1,
 							"dataType": "int",
-							"dataTypeDescriptor": "int(11)",
 							"maxLength": null,
 							"precision": 10,
 							"scale": 0,
@@ -618,12 +682,13 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
 							"isForeignKey": true,
-							"isPartOfPrimaryKey": true,
+							"isPartOfIndex": true,
 							"foreignKeyName": "titles_ibfk_1"
 						},
 						"title": {
@@ -631,7 +696,6 @@
 							"description": "",
 							"ordinal": 2,
 							"dataType": "varchar",
-							"dataTypeDescriptor": "varchar(50)",
 							"maxLength": 50,
 							"precision": null,
 							"scale": null,
@@ -641,19 +705,18 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"isPartOfPrimaryKey": true
+							"isForeignKey": false
 						},
 						"from_date": {
 							"name": "from_date",
 							"description": "",
 							"ordinal": 3,
 							"dataType": "date",
-							"dataTypeDescriptor": "date",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
@@ -663,19 +726,18 @@
 							"isNullable": false,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": true,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
 							"isUnique": false,
-							"isForeignKey": false,
-							"isPartOfPrimaryKey": true
+							"isForeignKey": false
 						},
 						"to_date": {
 							"name": "to_date",
 							"description": "",
 							"ordinal": 4,
 							"dataType": "date",
-							"dataTypeDescriptor": "date",
 							"maxLength": null,
 							"precision": null,
 							"scale": null,
@@ -685,6 +747,7 @@
 							"isNullable": true,
 							"default": null,
 							"isIdentity": false,
+							"isPartOfPrimaryKey": false,
 							"isPrimaryKey": false,
 							"isComputed": false,
 							"isPartOfUniqueKey": false,
@@ -692,7 +755,19 @@
 							"isForeignKey": false
 						}
 					},
+					"indexes": {
+						"titles.emp_no": {
+							"name": "titles.emp_no",
+							"columnCount": 1,
+							"columns": [
+								"emp_no"
+							],
+							"type": "BTREE",
+							"isUnique": true
+						}
+					},
 					"primaryKey": {
+						"name": "PRIMARY",
 						"columnCount": 3,
 						"columns": [
 							"emp_no",

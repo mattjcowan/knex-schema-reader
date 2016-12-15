@@ -1,0 +1,6 @@
+{
+  "client": "mssql",
+  "connection": "mssql://northwind:northwind@windows-server-2012-r2:1433/Northwind",
+  "debug": false,
+  "acquireConnectionTimeout": 3000
+}

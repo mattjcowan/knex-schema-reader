@@ -44,9 +44,9 @@ function initKnex(env) {
     exit('No knexfile found in this directory. Specify a path with --knexfile');
   }
 
-  if (process.cwd() !== env.cwd) {
-    process.chdir(env.cwd);
-    console.log('Working directory changed to', chalk.magenta(tildify(env.cwd)));
+  if (argv.cwd && process.cwd() !== path.resolve(argv.cwd)) {
+    process.chdir(path.resolve(argv.cwd));
+    console.log('Working directory changed to', chalk.magenta(tildify(process.cwd())));
   }
 
   var environment = commander.env || process.env.NODE_ENV;

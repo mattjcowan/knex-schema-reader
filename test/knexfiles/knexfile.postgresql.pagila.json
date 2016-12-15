@@ -1,0 +1,12 @@
+{
+  "client": "postgresql",
+  "connection": {
+    "host": "localhost",
+    "database": "pagila",
+    "user": "pagila_user",
+    "password": "pagila_user",
+    "port": 5432
+  },
+  "debug": false,
+  "acquireConnectionTimeout": 3000
+}

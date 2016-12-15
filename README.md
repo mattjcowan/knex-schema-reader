@@ -1,16 +1,14 @@
 # Knex Schema Reader
 
 [![Build Status](http://img.shields.io/travis/mattjcowan/knex-schema-reader/master.svg?style=flat-square)](https://travis-ci.org/mattjcowan/knex-schema-reader)
-<!--
-[![Coverage Status](https://img.shields.io/coveralls/mattjcowan/knex-schema-reader.svg?style=flat-square)](https://coveralls.io/github/mattjcowan/knex-schema-reader)
--->
 [![Dependency Status](http://img.shields.io/david/dev/mattjcowan/knex-schema-reader.svg?style=flat-square)](https://david-dm.org/mattjcowan/knex-schema-reader#info=devDependencies)
+<!-- [![Coverage Status](https://img.shields.io/coveralls/mattjcowan/knex-schema-reader.svg?style=flat-square)](https://coveralls.io/github/mattjcowan/knex-schema-reader) -->
 
-> Knex Schema Reader is a utility for exporting a database schema to an object and/or json file
+> Knex Schema Reader is a utility for exporting a database schema to an object (API) and/or json file (CLI)
 
 ### Install
 
-Install from github at this time. Once it's ready, we'll publish it to npm.
+Install from github at this time.
 
 ```sh
 $ npm install git+https://git@github.com/mattjcowan/knex-schema-reader
@@ -24,12 +22,7 @@ Supported database dialects:
 
 - [x] mysql
 - [x] mssql
-- [ ] pg
-
-
-### Documentation
-
-* [Getting Started](https://mattjcowan.github.io/knex-schema-reader/getting-started)
+- [x] postgresql
 
 ### CLI
 
@@ -58,6 +51,12 @@ node ./bin/cli.js extract --knexfile knexfile.mysql.sakila.json -o sakila.json
     - [Get the database](https://dev.mysql.com/doc/sakila/en/)
   - [Employees JSON output file](https://github.com/mattjcowan/knex-schema-reader/blob/master/samples/mysql/employees.json)
     - [Get the database](https://dev.mysql.com/doc/employee/en/)
+
+- PostgreSQL samples:
+  - [Pagila JSON output file](https://github.com/mattjcowan/knex-schema-reader/blob/master/samples/postgresql/pagila.json)
+    - [Get the database](http://www.postgresqltutorial.com/postgresql-sample-database/)
+  - [SportsDB JSON output file](https://github.com/mattjcowan/knex-schema-reader/blob/master/samples/postgresql/sportsdb.json)
+    - [Get the database](http://www.sportsdb.org/sd/samples)
 
 ### API
 
@@ -88,10 +87,78 @@ SchemaReader(knex).extract()
 
 ```
 
-### Related Projects
+### Documentation
 
-* [DatabaseSchemaReader](https://github.com/martinjw/dbschemareader) — A simple, cross-database facade over .Net 2.0 DbProviderFactories to read database metadata.
+github.io site to host documentation ... Currently, pretty much a re-hash of this readme.
+
+* [Getting Started](https://mattjcowan.github.io/knex-schema-reader/getting-started)
+
+### Development/Contributions
+
+#### Build
+
+To build, run:
+
+```shell
+npm run build
+```
+
+#### Lint
+
+To lint, run:
+
+```shell
+npm run lint
+```
+
+#### Testing
+
+To run tests, you'll need to make sure that you have valid connections to the 6 sample databases.
+Check out the knexfiles [here](https://github.com/mattjcowan/knex-schema-reader/tree/master/test/knexfiles) for connection information.
+
+Running the tests currently generates the same sample JSON files listed above and available
+for viewing [here](https://github.com/mattjcowan/knex-schema-reader/tree/master/samples)
+
+To run the tests, run:
+
+```shell
+npm run test
+```
+
+#### Code Coverage
+
+To test your code coverage, run:
+
+```shell
+npm run test:cover
+```
+
+Travis CI code coverage is not reliable at the moment, as we don't have any migrations setup
+with database provisioning to run the included tests. And I don't think Travis CI supports
+SQL Server at this time either.
+
+The local code coverage is in the 90%:
+
+```
+=============================== Coverage summary ===============================
+Statements   : 93.15% ( 530/569 )
+Branches     : 76.42% ( 470/615 )
+Functions    : 94.08% ( 159/169 )
+Lines        : 93.31% ( 516/553 )
+================================================================================
+```
+
+That said, there are many many more tests that could be written to solidify the 
+framework, the tests right now skim the surface.
+
+### Notable Dependencies
+
 * [knex.js](https://github.com/tgriesser/knex) — A query builder for PostgreSQL, MySQL and SQLite3, designed to be flexible, portable, and fun to use. [](http://knexjs.org)
+
+### Similar Projects
+
+* [Loopback (Discovery API/CLI)](https://loopback.io/doc/en/lb2/Discovering-models-from-relational-databases.html) — LoopBack makes it simple to create models from an existing relational database.
+* [DatabaseSchemaReader](https://github.com/martinjw/dbschemareader) — A simple, cross-database facade over .Net 2.0 DbProviderFactories to read database metadata.
 
 ### Get in Touch
 

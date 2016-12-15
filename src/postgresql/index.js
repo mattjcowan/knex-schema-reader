@@ -1,42 +1,47 @@
-/* eslint-disable func-names */
+/* eslint-disable func-names, no-console */
 
 import _ from 'lodash';
 import co from 'co';
 import cmds from './commands';
 
 function extractor() {
+  const getRows = function (result) {
+    if (result.rows) {
+      return result.rows;
+    }
+    return result;
+  };
+
   return {
     extract: function extract(knex) {
       return co(function*() {
+        const pgTypes = _.keyBy(getRows(yield cmds.getPgTypes(knex)), 'id');
+
         const db = {
-          driver: 'mssql',
-          variant: (yield cmds.getVersionInfo(knex))[0],
-          catalog: (yield cmds.getCatalog(knex))[0].name,
-          dataTypes: _.keyBy(_.map(yield cmds.getDataTypes(knex), function (row) {
-            return {
-              typeName: row.typeName,
-              isUserDefined: row.isUserDefined === 1,
-              isAssemblyType: row.isAssemblyType === 1,
-              hasMaxLength: row.hasMaxLength === 1,
-              hasPrecision: row.hasPrecision === 1,
-              hasScale: row.hasScale === 1
-            };
-          }), 'typeName'),
+          driver: 'postgresql',
+          variant: {},
+          catalog: getRows(yield cmds.getCatalog(knex))[0].name,
+          dataTypes: _.keyBy(getRows(yield cmds.getDataTypes(knex)), 'typeName'),
           schemas: {},
         };
 
-        // get database users
-        // db.users = _.map(yield cmds.getUsers(knex), 'name');
+        const versionInfo = (getRows(yield cmds.getVersionInfo(knex)))[0].version.split(' ');
+        db.variant.edition = versionInfo[0];
+        db.variant.productVersion = versionInfo[1];
+        db.variant.productLevel = null;
+        if (db.variant.productVersion && db.variant.productVersion.length > 0) {
+          db.variant.majorVersion = `PostgreSQL ${db.variant.productVersion.split('.')[0]}`;
+        }
 
-        // get database schemas, but only include schemas that have tables in the output,
-        // we also want to pre-populate all the tables on each schema before we iterate
-        // through and populate table details
-        const schemaNames = _.map(yield cmds.getSchemas(knex), 'name');
+        // get database users
+        // db.users = _.map(getRows(yield cmds.getUsers(knex)), 'name');
+
+        const schemaNames = _.map(getRows(yield cmds.getSchemas(knex)), 'name');
         for (let i = 0; i < schemaNames.length; i++) {
           const schemaName = schemaNames[i];
 
           // get schema tables
-          const tables = yield cmds.getTables(knex, schemaName);
+          const tables = getRows(yield cmds.getTables(knex, schemaName));
           if (tables.length === 0) continue;
           const schema = {
             name: schemaName,
@@ -52,12 +57,13 @@ function extractor() {
           // get sequences
           const hasSequences = yield cmds.hasSequences(knex, schema.name);
           if (hasSequences) {
-            const sequences = _.map(yield cmds.getSequences(knex, schemaName), function (r) {
+            const sequences = _.map(getRows(yield cmds.getSequences(knex, schemaName)), function (r) {
               return {
                 name: r.name,
+                dataType: r.dataType,
                 minValue: r.minValue,
-                increment: r.increment,
-                isCycling: r.isCycling
+                increment: r.increment === 1,
+                isCycling: r.isCycling === 'YES'
               };
             });
             if (sequences.length > 0) {
@@ -66,22 +72,22 @@ function extractor() {
           }
 
           // get schema table columns
-          const schemaTableColumns = _.map(yield cmds.getTableColumns(knex, schema.name), function (row) {
-            return {
+          const schemaTableColumns = _.map(getRows(yield cmds.getTableColumns(knex, schema.name)), function (row) {
+            const col = {
               table: row.table,
               name: row.name,
               description: '', // gets populated later
               ordinal: row.ordinal,
               dataType: row.dataType,
-              maxLength: !row.maxLength || row.maxLength < 0 ? null : row.maxLength,
+              maxLength: row.maxLength,
               precision: row.precision,
               scale: row.scale,
               dateTimePrecision: row.dateTimePrecision,
               characterSet: row.characterSet,
               collation: row.collation,
-              isNullable: row.isNullable === 1,
+              isNullable: row.isNullable,
               default: row.default ? { expression: row.default, constraintName: null } : null, // gets populated later
-              isIdentity: false, // gets populated later
+              isIdentity: row.isIdentity,
               isPartOfPrimaryKey: false, // gets populated later
               isPrimaryKey: false, // gets populated later
               isComputed: false, // gets populated later
@@ -89,6 +95,13 @@ function extractor() {
               isUnique: false, // gets populated later
               isForeignKey: false // gets populated later
             };
+            if (row.seed && row.seed > 0 && row.increment && row.increment > 0) {
+              col.identity = {
+                seed: row.seed,
+                increment: row.increment,
+              };
+            }
+            return col;
           });
           _.forEach(schema.tables, function (table) {
             table.columns = _.keyBy(_.filter(schemaTableColumns, { table: table.name }), 'name');
@@ -100,32 +113,31 @@ function extractor() {
           });
 
           // get schema views
-          const views = yield cmds.getViews(knex, schemaName);
-          const viewSources = _.keyBy(yield cmds.getViewSources(knex, schema.name), 'name');
+          const views = getRows(yield cmds.getViews(knex, schemaName));
           if (views.length > 0) {
             schema.views = _.keyBy(_.map(views, function (v) {
               return {
                 name: v.name,
                 description: v.description,
-                sql: viewSources[v.name].sql
+                sql: v.sql
               };
             }), 'name');
           }
 
           // get schema view columns
-          const schemaViewColumns = _.map(yield cmds.getViewColumns(knex, schema.name), function (row) {
+          const schemaViewColumns = _.map(getRows(yield cmds.getViewColumns(knex, schema.name)), function (row) {
             return {
               view: row.view,
               name: row.name,
               ordinal: row.ordinal,
               dataType: row.dataType,
-              maxLength: !row.maxLength || row.maxLength < 0 ? null : row.maxLength,
+              maxLength: row.maxLength,
               precision: row.precision,
               scale: row.scale,
               dateTimePrecision: row.dateTimePrecision,
               characterSet: row.characterSet,
               collation: row.collation,
-              isNullable: row.isNullable === 1
+              isNullable: row.isNullable
             };
           });
           _.forEach(schema.views, function (view) {
@@ -145,40 +157,16 @@ function extractor() {
           const schema = db.schemas[schemaName];
           if (!schema) continue;
 
-          const schemaColumnDescriptions = yield cmds.getColumnDescriptions(knex, schema.name);
-          const schemaColumnDefaultConstraint = yield cmds.getDefaultConstraints(knex, schema.name);
-          const schemaColumnIdentityDefinitions = yield cmds.getIdentityDefinitions(knex, schema.name);
-          const schemaComputedColumnDefinitions = yield cmds.getComputedColumnDefinitions(knex, schema.name);
+          const schemaColumnDescriptions = getRows(yield cmds.getColumnDescriptions(knex, schema.name));
 
           _.forEach(schemaColumnDescriptions, function (scd) {
             if (scd.description && scd.description.length > 0) {
               schema.tables[scd.table].columns[scd.name].description = scd.description;
             }
           });
-          _.forEach(schemaComputedColumnDefinitions, function (scdd) {
-            if (scdd.definition && scdd.definition.length > 0) {
-              schema.tables[scdd.table].columns[scdd.name].isComputed = true;
-              schema.tables[scdd.table].columns[scdd.name].computedDefinition = scdd.definition;
-            }
-          });
-          _.forEach(schemaColumnDefaultConstraint, function (scdc) {
-            if (scdc.expression && scdc.expression.length > 0) {
-              const dcc = schema.tables[scdc.table].columns[scdc.column];
-              dcc.default = { expression: scdc.expression, constraintName: scdc.name };
-            }
-          });
-          _.forEach(schemaColumnIdentityDefinitions, function (idcd) {
-            const idc = schema.tables[idcd.table].columns[idcd.column];
-            idc.isIdentity = true;
-            idc.identity = {
-              seed: idcd.seed,
-              increment: idcd.increment,
-            };
-          });
 
           // get check constraints
-          const checkConstraints = yield cmds.getCheckConstraints(knex, schema.name);
-          const checkConstraintDescriptions = yield cmds.getCheckConstraintDescriptions(knex, schema.name);
+          const checkConstraints = getRows(yield cmds.getCheckConstraints(knex, schema.name));
           if (checkConstraints.length > 0) {
             _.forEach(schema.tables, function (table) {
               const tableCheckConstraints = _.filter(checkConstraints, { table: table.name });
@@ -190,15 +178,10 @@ function extractor() {
                 });
               }
             });
-            _.forEach(checkConstraintDescriptions, function (ccd) {
-              if (ccd.description && ccd.description.length > 0) {
-                schema.tables[ccd.table].checkConstraints[ccd.name].description = ccd.description;
-              }
-            });
           }
 
           // get indexes
-          const indexes = yield cmds.getIndexes(knex, schema.name);
+          const indexes = getRows(yield cmds.getIndexes(knex, schema.name));
           const primaryKeys = {};
           if (indexes.length > 0) {
             _.forEach(_.groupBy(indexes, 'name'), function (idxArr, idxName) {
@@ -210,7 +193,7 @@ function extractor() {
                   name: idxName,
                   columnCount: idxArr.length,
                   columns: _.map(idxArr, 'column'),
-                  type: idx.type,
+                  type: null,
                   isUnique: idx.isUnique
                 };
                 table.indexes = table.indexes || {};
@@ -227,13 +210,12 @@ function extractor() {
             });
           }
 
-
-          // get primary key
-          const primaryKeyConstraints = yield cmds.getPrimaryKeyConstraints(knex, schema.name);
+          // get primary key (in MySQL, primary key names are always 'PRIMARY' so we need to group by table name instead)
+          const primaryKeyConstraints = getRows(yield cmds.getPrimaryKeyConstraints(knex, schema.name));
           if (primaryKeyConstraints.length > 0) {
-            _.forEach(_.groupBy(primaryKeyConstraints, 'name'), function (pk) {
-              const table = schema.tables[pk[0].table];
-              table.primaryKey = { name: primaryKeys[table.name], columnCount: pk.length, columns: _.map(pk, 'column') };
+            _.forEach(_.groupBy(primaryKeyConstraints, 'table'), function (pk, pkName) {
+              const table = schema.tables[pkName];
+              table.primaryKey = { name: primaryKeys[pkName], columnCount: pk.length, columns: _.map(pk, 'column') };
               _.forEach(pk, function (pkc) {
                 table.columns[pkc.column].isPartOfPrimaryKey = true;
                 if (pk.length === 1) {
@@ -244,7 +226,7 @@ function extractor() {
           }
 
           // get unique keys
-          const uniqueKeyConstraints = yield cmds.getUniqueKeyConstraints(knex, schema.name);
+          const uniqueKeyConstraints = getRows(yield cmds.getUniqueKeyConstraints(knex, schema.name));
           if (uniqueKeyConstraints.length > 0) {
             _.forEach(_.groupBy(uniqueKeyConstraints, 'name'), function (uk, ukName) {
               const table = schema.tables[uk[0].table];
@@ -259,7 +241,7 @@ function extractor() {
           }
 
           // get foreign keys
-          const foreignKeyConstraints = yield cmds.getForeignKeyConstraints(knex, schema.name);
+          const foreignKeyConstraints = getRows(yield cmds.getForeignKeyConstraints(knex, schema.name));
           if (foreignKeyConstraints.length > 0) {
             schema.foreignKeys = _.keyBy(_.map(foreignKeyConstraints, function (fkc) {
               return {
@@ -291,62 +273,105 @@ function extractor() {
           }
 
           // get schema functions
-          const functions = _.map(yield cmds.getFunctions(knex, schemaName), function (row) {
+          const functions = _.map(getRows(yield cmds.getFunctions(knex, schemaName)), function (row) {
             return {
               name: row.name,
-              sql: row.sql
+              description: row.description,
+              sql: row.sql,
+              language: row.language, // typically always 'SQL'
+              result: !row.dataType ? null : {
+                name: '',
+                ordinal: 0,
+                isIn: false,
+                isOut: false,
+                isResult: true,
+                asLocator: false,
+                dataType: row.dataType
+                // maxLength: row.maxLength,
+                // precision: row.precision,
+                // scale: row.scale,
+                // dateTimePrecision: row.dateTimePrecision,
+                // characterSet: row.characterSetName,
+                // collation: row.collation
+              }
             };
           });
+
           if (functions.length > 0) {
             schema.functions = _.keyBy(functions, 'name');
           }
 
-          // get schema procedures
-          const procedures = _.map(yield cmds.getStoredProcedures(knex, schemaName), function (row) {
-            return {
-              name: row.name,
-              sql: row.sql
-            };
-          });
-          if (procedures.length > 0) {
-            schema.procedures = _.keyBy(procedures, 'name');
-          }
+          // get function arguments
+          const functionsWithArgumentInfo = getRows(yield cmds.getFunctionArguments(knex, schemaName));
+          if (functionsWithArgumentInfo && functionsWithArgumentInfo.length > 0) {
+            _.forEach(functionsWithArgumentInfo, function (functionWithArgumentInfo) {
+              // there is simply no easy way to get function arguments,
+              // this is a bit hackish in my mind (for being soo powerful, it's strange
+              // that PostgreSQL wouldn't give us a clean way to do this easily
+              // like MySQL and MSSQL do
 
-          // get procedure arguments
-          const procedureArguments = yield cmds.getProcedureArguments(knex, schemaName);
-          if (procedureArguments.length > 0) {
-            _.forEach(_.groupBy(procedureArguments, 'procedureName'), function (groupedArguments, procedureName) {
-              const pargs = _.map(groupedArguments, function (parg) {
-                return {
-                  name: parg.parameterName,
-                  ordinal: parg.ordinal,
-                  isIn: parg.parameterMode && parg.parameterMode.indexOf('IN') >= 0, // can be INOUT
-                  isOut: parg.parameterMode && parg.parameterMode.indexOf('OUT') >= 0, // can be INOUT
-                  isResult: parg.isResult === 1,
-                  asLocator: parg.asLocator === 1,
-                  dataType: parg.dataType,
-                  maxLength: !parg.maxLength || parg.maxLength < 0 ? null : parg.maxLength,
-                  precision: parg.precision,
-                  scale: parg.scale,
-                  dateTimePrecision: parg.dateTimePrecision,
-                  characterSet: parg.characterSetName,
-                  collation: parg.collation,
-                };
-              });
-              const presult = _.find(pargs, parg => parg.isResult);
-              const parguments = _.keyBy(_.filter(pargs, parg => !parg.isResult), 'name');
+              // SAMPLE ROW:
+              /*
+               {
+                 schema: 'public',
+                 procedureName: 'film_not_in_stock',
+                 parameterNames: [ 'p_film_id', 'p_store_id', 'p_film_count' ],
+                 parameterModes: '{i,i,o}',
+                 parameterDefinitions: 'p_film_id integer, p_store_id integer, OUT p_film_count integer',
+                 inDataTypes: '23 23',
+                 allDataTypes: [ 23, 23, 23 ]
+               }
 
-              if (schema.functions && schema.functions[procedureName]) {
-                if (presult) {
-                  schema.functions[procedureName].result = presult;
-                }
-                schema.functions[procedureName].arguments = parguments;
-              } else if (schema.procedures && schema.procedures[procedureName]) {
-                if (presult) {
-                  schema.procedures[procedureName].result = presult;
-                }
-                schema.procedures[procedureName].arguments = parguments;
+               parameterNames can be NULL sometimes in postgresql, i think it's a db that makes up rules as it goes
+               parameterModes is often NULL, in which case, the parameters are usually IN parameters
+               allDataTypes is also often null
+               */
+              const procedureName = functionWithArgumentInfo.procedureName;
+              const parameterDefinitions = (functionWithArgumentInfo.parameterDefinitions || '').split(', ');
+              const pcount = parameterDefinitions.length;
+              const parameterNames = functionWithArgumentInfo.parameterNames || [];
+              while (parameterNames.length < pcount) {
+                // create a fake name for the argument
+                parameterNames.push(`$${parameterNames.length}1`);
               }
+              const parameterModesStr = (functionWithArgumentInfo.parameterModes || '');
+              const parameterModes = parameterModesStr.length > 2 ? parameterModesStr.substring(1, parameterModesStr.length - 2).split(',') : [pcount];
+              while (parameterModes.length < pcount) {
+                parameterModes.push('i');
+              }
+              const inDataTypes = (functionWithArgumentInfo.inDataTypes || '').split(' ');
+              while (inDataTypes.length < pcount) {
+                inDataTypes.push(null);
+              }
+              const allDataTypes = (functionWithArgumentInfo.allDataTypes || [pcount]);
+              const pargs = [];
+              for (let p = 0; p < pcount; p++) {
+                const pName = parameterNames[p];
+                const pDef = parameterDefinitions[p];
+                const pMode = parameterModes[p];
+                const pIsInParam = pMode == null || pMode === 'i' || pMode !== 'b';
+                const pIsOutParam = (pMode != null && pMode === 'o') || ((pDef || '').split(' ')[0] === 'OUT');
+                const pDataTypeOid = (pIsInParam && inDataTypes[p]) || allDataTypes[p] || pDef;
+                let pDataType = pDataTypeOid;
+                const pDataTypeAsInt = parseInt(pDataTypeOid, 10);
+                if (Number.isInteger(pDataTypeAsInt)) {
+                  if (pgTypes[pDataTypeAsInt]) {
+                    pDataType = pgTypes[pDataTypeAsInt].name;
+                  }
+                }
+                const parg = {
+                  name: pName,
+                  ordinal: p + 1,
+                  isIn: pIsInParam, // can be INOUT
+                  isOut: pIsOutParam, // can be INOUT
+                  isResult: false,
+                  asLocator: false,
+                  dataType: pDataType
+                };
+                pargs.push(parg);
+              }
+              const parguments = _.keyBy(pargs, 'name');
+              schema.functions[procedureName].arguments = parguments;
             });
           }
         }

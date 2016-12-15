@@ -8,10 +8,13 @@
  */
 import mssqlExtractor from './mssql/index';
 import mysqlExtractor from './mysql/index';
+import postgresqlExtractor from './postgresql/index';
 
 const extractors = {
   mssql: mssqlExtractor,
-  mysql: mysqlExtractor
+  mysql: mysqlExtractor,
+  pg: postgresqlExtractor,
+  postgresql: postgresqlExtractor
 };
 
 function reader(knex) {

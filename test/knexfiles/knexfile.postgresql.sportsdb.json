@@ -1,0 +1,12 @@
+{
+  "client": "postgresql",
+  "connection": {
+    "host": "localhost",
+    "database": "sportsdb",
+    "user": "sportsdb_user",
+    "password": "sportsdb_user",
+    "port": 5432
+  },
+  "debug": false,
+  "acquireConnectionTimeout": 3000
+}

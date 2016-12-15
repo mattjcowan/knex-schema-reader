@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "knex-schema-reader",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Database schema reader and export utility",
   "homepage": "https://mattjcowan.github.io/knex-schema-reader/",
   "repository": "mattjcowan/knex-schema-reader",
