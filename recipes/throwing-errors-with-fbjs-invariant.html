@@ -1,0 +1,122 @@
+<!doctype html>
+<html class="no-js" lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Throwing errors with Facebook&#39;s invariant library ∙ Babel Starter Kit</title>
+  <meta name="description" content="Knex Schema Reader is a utility for exporting a database schema to an object and/or json file">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/knex-schema-reader/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700italic">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/knex-schema-reader/main.css">
+</head>
+<body>
+  <div class="header">
+  <div class="container">
+    <a class="header__logo" href="/knex-schema-reader/">
+      Knex Schema Reader
+    </a>
+        <span class="header__author">
+          made with &nbsp;♥&nbsp; by&nbsp; <a href="https://twitter.com/mattjcowan" rel="author" title="Matt Cowan on Twitter">@mattjcowan</a>
+        </span>
+    
+  </div>
+</div>
+
+
+  <div class="content">
+    <div class="content-left">
+      <div class="nav">
+  <h3 class="nav__title">Quick Start</h3>
+  <ul class="nav__menu">
+    <li class="nav__menu-item">
+      <a class="nav__link" href="/knex-schema-reader/">Overview</a>
+    </li>
+    <li class="nav__menu-item">
+      <a class="nav__link" href="/knex-schema-reader/getting-started">Getting Started</a>
+    </li>
+  </ul>
+  <!--
+  <h3 class="nav__title">Recipes</h3>
+  <ul class="nav__menu">
+    <li class="nav__menu-item">
+      <a class="nav__link" href="/knex-schema-reader/recipes/testing-with-mocha-and-jsdom">Testing with <code>mocha</code> and <code>jsdom</code></a>
+    </li>
+    <li class="nav__menu-item nav__menu-item--selected">
+      <a class="nav__link" href="/knex-schema-reader/recipes/throwing-errors-with-fbjs-invariant">Throwing errors with <code>invariant</code></a>
+    </li>
+  </ul>
+  -->
+</div>
+
+    </div>
+    <div class="content-right">
+      <h1>Throwing errors with FB's <code>invariant</code> library</h1>
+<p>If you're familiar with Facebook's <a href="https://github.com/facebook/react">React</a>,
+<a href="https://github.com/facebook/react-native">React Native</a>, <a href="https://github.com/facebook/flux">Flux</a>,
+<a href="https://github.com/facebook/relay">Relay</a> libraries, you might notice the extensive use of the
+<code>invariant</code> function from <code>fbjs</code> npm module in their code bases. The goal of which is being able to
+provide descriptive error messages for the development environment. These error messages are going
+to be replaced by a single generic error when the project is compiled for production environments by
+Babel and a module bundler, such as Webpack or Browserify. This allows to minimize the client-side
+bundle size, and at the same time provide a good developer experience.</p>
+<p>Here is how it works. First, you need to install <code>fbjs</code> and <code>fbjs-scripts</code> npm modules by running:</p>
+<pre><code class="language-sh">$ npm install fbjs@next --save
+$ npm install fbjs-scripts@next --save-dev
+</code></pre>
+<p>Then update Babel configuration located in <code>pacakge.json</code> file by including <code>dev-expression</code> plugin
+from the <code>fbjs-scripts</code> npm module:</p>
+<pre><code class="language-json">{
+  &quot;babel&quot;: {
+    &quot;presets&quot;: [
+      &quot;es2015&quot;,
+      &quot;stage-0&quot;
+    ],
+    &quot;plugins&quot;: [
+      &quot;fbjs-scripts/babel-6/dev-expression&quot;,
+      &quot;transform-runtime&quot;
+    ]
+  }
+}
+</code></pre>
+<p>Now you can use the <code>invariant</code> helper function in your code as follows:</p>
+<pre><code class="language-js">import invariant from 'fbjs/lib/invariant'
+
+class Greeting {
+
+  constructor(name) {
+    if (name) {
+      invariant(
+        typeof name === 'string' || name instanceof String,
+        'The name argument must be a string'
+      );
+      this.name = name;
+    } else {
+      this.name = 'Guest';
+    }
+    this.name = name || 'Guest';
+  }
+
+  hello() {
+    return `Welcome, ${this.name}!`;
+  }
+
+}
+
+export default Greeting;
+</code></pre>
+<p>When you bundle your project for a production environment, you need to make sure that
+<code>process.env.NODE_ENV</code> variable is set to <code>'production'</code>. Here is an example how to do it with
+Webpack — <a href="https://github.com/kriasoft/react-starter-kit/blob/master/tools/webpack.config.js#L28">webpack.config.js#L28</a>
+in <a href="https://www.reactstarterkit.com">React Starter Kit</a>.</p>
+
+    </div>
+  </div>
+  <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+  <script src="/knex-schema-reader/main.js"></script>
+</body>
+</html>

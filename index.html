@@ -1,0 +1,160 @@
+<!doctype html>
+<html class="no-js" lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Knex Schema Reader ∙ A database schema reader and export utility</title>
+  <meta name="description" content="Knex Schema Reader is a utility for exporting a database schema to an object and/or json file">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="/knex-schema-reader/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700italic">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/knex-schema-reader/main.css">
+</head>
+<body>
+  <div class="header">
+  <div class="container">
+    <a class="header__logo" href="/knex-schema-reader/">
+      Knex Schema Reader
+    </a>
+        <span class="header__author">
+          made with &nbsp;♥&nbsp; by&nbsp; <a href="https://twitter.com/mattjcowan" rel="author" title="Matt Cowan on Twitter">@mattjcowan</a>
+        </span>
+    
+    <div class="header__hero">
+      <img class="header__hero-img" src="/knex-schema-reader/img/database.png" alt="Knex Schema Reader" />
+      <h1 class="header__hero-title">Got a database?</h1>
+      <p class="header__hero-desc">Knex Schema Reader is a utility for exporting a database schema to an object and/or json file</p>
+      <p class="stats">
+  <a href="https://github.com/mattjcowan/knex-schema-reader/watchers" class="stats__link">
+    <svg class="stats__icon" aria-hidden="true" height="16" role="img" version="1.1" viewBox="0 0 16 16" width="16"><path d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6c4.94 0 7.94-6 7.94-6S13 2 8.06 2z m-0.06 10c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4z m2-4c0 1.11-0.89 2-2 2s-2-0.89-2-2 0.89-2 2-2 2 0.89 2 2z"></path></svg>
+    <span class="stats-subscribers">1</span> watchers
+  </a>
+  <a href="https://github.com/mattjcowan/knex-schema-reader/stargazers" class="stats__link">
+    <svg class="stats__icon" aria-hidden="true" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+    <span class="stats-stars">0</span> stars
+  </a>
+  <a href="https://github.com/mattjcowan/knex-schema-reader/network" class="stats__link">
+    <svg class="stats__icon" aria-hidden="true" height="16" role="img" version="1.1" viewBox="0 0 10 16" width="10"><path d="M8 1c-1.11 0-2 0.89-2 2 0 0.73 0.41 1.38 1 1.72v1.28L5 8 3 6v-1.28c0.59-0.34 1-0.98 1-1.72 0-1.11-0.89-2-2-2S0 1.89 0 3c0 0.73 0.41 1.38 1 1.72v1.78l3 3v1.78c-0.59 0.34-1 0.98-1 1.72 0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.73-0.41-1.38-1-1.72V9.5l3-3V4.72c0.59-0.34 1-0.98 1-1.72 0-1.11-0.89-2-2-2zM2 4.2c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z m3 10c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z m3-10c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z"></path></svg>
+    <span class="stats-forks">0</span> forks
+  </a>
+  <a href="https://github.com/mattjcowan/knex-schema-reader/issues" class="stats__link">
+    <svg class="stats__icon" aria-hidden="true" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z m1 3H6v5h2V4z m0 6H6v2h2V10z"></path></svg>
+    <span class="stats-open-issues">0</span> open issues
+  </a>
+</p>
+
+      <a class="header__hero-btn" href="/knex-schema-reader/getting-started">Get Started</a>
+      <a class="header__hero-btn header__hero-btn--muted" href="https://github.com/mattjcowan/knex-schema-reader">
+        <img class="header__hero-btn-icon" src="/knex-schema-reader/img/github-icon.svg" alt="GitHub" />
+        View on GitHub
+      </a>
+    </div>
+    
+  </div>
+</div>
+
+<div class="header__version">
+  <div class="container">
+    <span>2016-11-11 &nbsp; | &nbsp; <a href="https://www.npmjs.com/package/generator-javascript">v0.0.3</a> &nbsp;(<a href="https://github.com/mattjcowan/knex-schema-reader/blob/master/CHANGELOG.md">changelog</a>)</span>
+  </div>
+</div>
+
+
+  <div class="content">
+    <div class="content-left">
+      <div class="nav">
+  <h3 class="nav__title">Quick Start</h3>
+  <ul class="nav__menu">
+    <li class="nav__menu-item nav__menu-item--selected">
+      <a class="nav__link" href="/knex-schema-reader/">Overview</a>
+    </li>
+    <li class="nav__menu-item">
+      <a class="nav__link" href="/knex-schema-reader/getting-started">Getting Started</a>
+    </li>
+  </ul>
+  <!--
+  <h3 class="nav__title">Recipes</h3>
+  <ul class="nav__menu">
+    <li class="nav__menu-item">
+      <a class="nav__link" href="/knex-schema-reader/recipes/testing-with-mocha-and-jsdom">Testing with <code>mocha</code> and <code>jsdom</code></a>
+    </li>
+    <li class="nav__menu-item">
+      <a class="nav__link" href="/knex-schema-reader/recipes/throwing-errors-with-fbjs-invariant">Throwing errors with <code>invariant</code></a>
+    </li>
+  </ul>
+  -->
+</div>
+
+    </div>
+    <div class="content-right">
+      <h1>Knex Schema Reader</h1>
+<p>Knex Schema Reader is a utility for exporting a database schema to an object (API) and/or json file (CLI)</p>
+<h3>Features</h3>
+<p>Exports a database schema to either an object (api) or to a json file (cli).
+Useful in a code generation pipeline or to build tooling.</p>
+<p>Supported database dialects:</p>
+<ul>
+<li><i class="fa fa-check-square-o" aria-hidden="true"></i> mssql</li>
+<li><i class="fa fa-check-square-o" aria-hidden="true"></i> mysql</li>
+<li><i class="fa fa-check-square-o" aria-hidden="true"></i> postgresql</li>
+<li><i class="fa fa-square-o" aria-hidden="true"></i> oracle</li>
+</ul>
+<h3>Sample Outputs</h3>
+<ul>
+<li>
+<p>SQL Server samples:</p>
+<ul>
+<li><a href="https://github.com/mattjcowan/knex-schema-reader/blob/master/samples/mssql/adventureworks.json">AdventureWorks 2014</a>
+<ul>
+<li><a href="https://msftdbprodsamples.codeplex.com/releases">Get the database</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/mattjcowan/knex-schema-reader/blob/master/samples/mssql/northwind.json">Northwind</a>
+<ul>
+<li><a href="https://northwinddatabase.codeplex.com/releases/view/71634">Get the database</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>MySQL samples:</p>
+<ul>
+<li><a href="https://github.com/mattjcowan/knex-schema-reader/blob/master/samples/mysql/sakila.json">Sakila JSON output file</a>
+<ul>
+<li><a href="https://dev.mysql.com/doc/sakila/en/">Get the database</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/mattjcowan/knex-schema-reader/blob/master/samples/mysql/employees.json">Employees JSON output file</a>
+<ul>
+<li><a href="https://dev.mysql.com/doc/employee/en/">Get the database</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>PostgreSQL samples:</p>
+<ul>
+<li><a href="https://github.com/mattjcowan/knex-schema-reader/blob/master/samples/postgresql/pagila.json">Pagila JSON output file</a>
+<ul>
+<li><a href="http://www.postgresqltutorial.com/postgresql-sample-database/">Get the database</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/mattjcowan/knex-schema-reader/blob/master/samples/postgresql/sportsdb.json">SportsDB JSON output file</a>
+<ul>
+<li><a href="http://www.sportsdb.org/sd/samples">Get the database</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+  <script src="/knex-schema-reader/main.js"></script>
+</body>
+</html>
